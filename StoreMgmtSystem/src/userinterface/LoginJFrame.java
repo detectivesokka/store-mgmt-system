@@ -2,6 +2,7 @@ package userinterface;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
 
@@ -145,11 +146,38 @@ public class LoginJFrame extends javax.swing.JFrame {
 
             JFrame userFrame=new JFrame();
             
-            String confirmText = user.getRole();
+            String confirmText = user.getRoleString();                                    
             
+            JPanel userPanel;
             
-            JOptionPane.showMessageDialog(null, "Welcome " + confirmText);
-
+            switch(user.getRole()) {
+                
+                case 0 : userPanel = new AdminJPanel();
+                break;
+                case 1 : userPanel = new OCustomerJPanel();
+                break;
+                case 2 : userPanel = new ODeliverymanJPanel();
+                break;                
+                case 3 : userPanel = new ShopMgrJPanel();
+                break;
+                case 4 : userPanel = new ShopEmpJPanel();
+                break;                
+                case 5 : userPanel = new TaxAuditorJPanel();
+                break;
+                case 6 : userPanel = new GTransporterJPanel();
+                break;
+                case 7 : userPanel = new GMfrJPanel();
+                break;
+                case 8 : userPanel = new GDistributorJPanel();
+                break;        
+                default: userPanel = null;
+            }
+            
+            userFrame.getContentPane().add(userPanel);
+            
+            // Window opens in full size mode
+            userFrame.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);             
+            userFrame.setVisible(true);            
         } else {
 
             JOptionPane.showMessageDialog(null, "Incorrect username/password. Please try again later.");

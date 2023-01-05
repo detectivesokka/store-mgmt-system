@@ -40,39 +40,41 @@ public class UserAccount {
         this.password = password;
     }           
 
-    public String getRole() {
+    public String getRoleString() {
         
         String roleName;
         
         switch(this.role) {
             
             case 0 : roleName = "Admin";
+            break;            
+            case 1 : roleName = "Online Customer";
             break;
-            case 1 : roleName = "Customer";
+            case 2 : roleName = "Online Delivery Man";
+            break;            
+            case 3 : roleName = "Shop Manager";
             break;
-            case 2 : roleName = "Online Customer";
+            case 4 : roleName = "Shop Employee";
             break;
-            case 3 : roleName = "Online Delivery Man";
+            case 5 : roleName = "Govt Tax Auditor";
             break;
-            case 4 : roleName = "Goods Manufacturer";
+            case 6 : roleName = "Goods Transporter";
             break;
-            case 5 : roleName = "Shop Manager";
+            case 7 : roleName = "Goods Manufacturer";
             break;
-            case 6 : roleName = "Shop Employee";
-            break;
-            case 7 : roleName = "Govt Tax Auditor";
-            break;
-            case 8 : roleName = "Goods Transporter";
-            break;
-            case 9 : roleName = "Goods Manufacturer";
-            break;
-            case 10 : roleName = "Goods Distributor";
+            case 8 : roleName = "Goods Distributor";
             break;
             default: roleName = "";
         }
         
         return roleName;
     }
+    
+    public int getRole() {
+        
+        return this.role;
+    }
+    
     public void setRole(int pRole) {
         
         this.role = pRole;
