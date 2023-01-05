@@ -166,7 +166,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                 break;
                 case 6 : userPanel = new GTransporterJPanel();
                 break;
-                case 7 : userPanel = new GMfrJPanel();
+                case 7 : userPanel = new GMfrJPanel(user);
                 break;
                 case 8 : userPanel = new GDistributorJPanel();
                 break;        
@@ -177,7 +177,8 @@ public class LoginJFrame extends javax.swing.JFrame {
             
             // Window opens in full size mode
             userFrame.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);             
-            userFrame.setVisible(true);            
+            userFrame.setVisible(true);      
+            
         } else {
 
             JOptionPane.showMessageDialog(null, "Incorrect username/password. Please try again later.");
