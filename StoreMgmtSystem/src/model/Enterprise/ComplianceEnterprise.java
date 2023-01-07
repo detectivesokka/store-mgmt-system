@@ -6,7 +6,7 @@ package model.Enterprise;
  */
 public class ComplianceEnterprise extends Enterprise{
 
-    public ComplianceEnterprise(int pType, int pId) {
-        super(pType, pId);
+    public ComplianceEnterprise() {
+        super(2);
     }        
 }

@@ -6,8 +6,8 @@ package model.Enterprise;
  */
 public class StoreEnterprise extends Enterprise {
 
-    public StoreEnterprise(int pType, int pId) {
-        super(pType, pId);
+    public StoreEnterprise() {
+        super(1);
     }
         
 }

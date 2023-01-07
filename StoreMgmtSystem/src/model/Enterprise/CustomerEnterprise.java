@@ -6,8 +6,8 @@ package model.Enterprise;
  */
 public class CustomerEnterprise extends Enterprise{
 
-    public CustomerEnterprise(int pType, int pId) {
-        super(pType, pId);
+    public CustomerEnterprise() {
+        super(0);
     }
         
     

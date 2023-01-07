@@ -6,20 +6,17 @@ package model.Enterprise;
  */
 public class Enterprise {
     
-    int enterpriseType;
-    final int enterpriseId;
+    private int enterpriseType;        
 
-    Enterprise(int pType, int pId) {
-        
-        this.enterpriseId = pId;
-        this.enterpriseType = pType;        
+    Enterprise() {
+                
     }
     
-    public int getEnterpriseId() {
-        
-        return enterpriseId;
+    Enterprise(int pType) {
+                
+        this.enterpriseType = pType;        
     }
-
+        
     public int getEnterpriseType() {
         
         return enterpriseType;
@@ -28,5 +25,5 @@ public class Enterprise {
     public void setEnterpriseType(int enterpriseType) {
         
         this.enterpriseType = enterpriseType;
-    }          
+    }                  
 }
