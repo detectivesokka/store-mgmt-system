@@ -40,4 +40,23 @@ public class StockItemDirectory {
         this.stockItemList.add(si);
         return si;        
     }
+    
+    public StockItem searchStockItem(int pId) {
+        
+        for( StockItem si : this.stockItemList) {
+            
+            if (si.getItemId() == pId) {
+                
+                return si;
+            }
+        }
+        
+        return null;
+    }
+    
+    public void deleteStockItem(int pId) {
+        
+        StockItem si = searchStockItem(pId);        
+        this.stockItemList.remove(si);
+    }
 }

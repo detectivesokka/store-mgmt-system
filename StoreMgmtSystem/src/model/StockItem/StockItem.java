@@ -56,4 +56,8 @@ public class StockItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }           
+
+    public int getItemId() {
+        return itemId;
+    }        
 }
