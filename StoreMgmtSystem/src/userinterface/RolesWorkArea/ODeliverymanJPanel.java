@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface;
+package userinterface.RolesWorkArea;
 
 /**
  *
  * @author saidutt
  */
-public class TaxAuditorJPanel extends javax.swing.JPanel {
+public class ODeliverymanJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form TaxAuditorJPanel
+     * Creates new form OnlineDeliveryman
      */
-    public TaxAuditorJPanel() {
+    public ODeliverymanJPanel() {
         initComponents();
     }
 

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface;
+package userinterface.RolesWorkArea;
 
 /**
  *
  * @author saidutt
  */
-public class AdminJPanel extends javax.swing.JPanel {
+public class ShopMgrJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form AdminJPanel
+     * Creates new form ShopMgrJPanel
      */
-    public AdminJPanel() {
+    public ShopMgrJPanel() {
         initComponents();
     }
 
@@ -30,11 +30,11 @@ public class AdminJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 751, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

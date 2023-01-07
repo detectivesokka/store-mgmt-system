@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface;
+package userinterface.RolesWorkArea;
 
 /**
  *
  * @author saidutt
  */
-public class GTransporterJPanel extends javax.swing.JPanel {
+public class ShopEmpJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form GoodsTransporter
+     * Creates new form ShopEmpJPanel
      */
-    public GTransporterJPanel() {
+    public ShopEmpJPanel() {
         initComponents();
     }
 
