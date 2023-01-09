@@ -1,5 +1,7 @@
 package userinterface.Order;
 
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author saidutt
@@ -9,7 +11,9 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
     /**
      * Creates new form EditOrderJPanel
      */
-    public SalesOrderJPanel() {
+    
+    
+    public SalesOrderJPanel(Organization pOrg, UserAccount pUser) {
         initComponents();
         
     }
@@ -106,7 +110,8 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_btnSubmitActionPerformed
 
 
