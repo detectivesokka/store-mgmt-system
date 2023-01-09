@@ -54,7 +54,7 @@ public class EditStockItemJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Tax bracket (Percentage)");
 
-        comboTax.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "10", "15", " " }));
+        comboTax.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "10", "15" }));
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
