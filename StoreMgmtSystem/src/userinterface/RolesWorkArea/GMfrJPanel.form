@@ -256,7 +256,7 @@
                   <Component id="jScrollPane2" alignment="0" pref="649" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
-                      <Component id="btnAcceptOrder" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnNewOrder" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -266,7 +266,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane2" min="-2" pref="494" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnAcceptOrder" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnNewOrder" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -327,7 +327,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnAcceptOrder">
+            <Component class="javax.swing.JButton" name="btnNewOrder">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Accept order"/>
               </Properties>

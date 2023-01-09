@@ -34,9 +34,9 @@ public class StoreMgmtSystem {
         userAccountDirectory.newUserAccount("admin", "admin", 0);
         userAccountDirectory.newUserAccount("customer", "customer", 1);
         userAccountDirectory.newUserAccount("odeliveryman", "odeliveryman", 2);        
-        userAccountDirectory.newUserAccount("gmfr", "gmfr", 7);        
-        userAccountDirectory.newUserAccount("gdis", "gdis", 8);        
-        userAccountDirectory.newUserAccount("gtran", "gtran", 6);                
+        //userAccountDirectory.newUserAccount("gmfr", "gmfr", 7);        
+        //userAccountDirectory.newUserAccount("gdis", "gdis", 8);        
+        //userAccountDirectory.newUserAccount("gtran", "gtran", 6);                
         
         // add items
         inventoryEnterprise.newInvManufacturerOrganization().newUserAccount("gmfr", "gmfr", 7);

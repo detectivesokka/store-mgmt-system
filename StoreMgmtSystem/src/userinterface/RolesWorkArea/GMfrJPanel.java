@@ -18,7 +18,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
     /**
      * Creates new form GoodsManufacturer
      */
-    InvManufacturerOrganization org;
+    private InvManufacturerOrganization org;
     
     public GMfrJPanel(UserAccount pUserAccount, Organization pOrganization) {
         
@@ -26,8 +26,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
         
         initComponents();
         customizeWelcomeScreen(pUserAccount);                
-        populateInventoryTable();
-        
+        populateInventoryTable();        
     }
     
     private void customizeWelcomeScreen(UserAccount pUserAccount) {
@@ -61,7 +60,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
         paneOrders = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
-        btnAcceptOrder = new javax.swing.JButton();
+        btnNewOrder = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -210,7 +209,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblOrders);
 
-        btnAcceptOrder.setText("Accept order");
+        btnNewOrder.setText("Accept order");
 
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
@@ -219,7 +218,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addGap(270, 270, 270)
-                .addComponent(btnAcceptOrder)
+                .addComponent(btnNewOrder)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
@@ -227,7 +226,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAcceptOrder)
+                .addComponent(btnNewOrder)
                 .addGap(0, 24, Short.MAX_VALUE))
         );
 
@@ -340,10 +339,10 @@ public class GMfrJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAcceptOrder;
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnDeleteItem;
     private javax.swing.JButton btnEditItem;
+    private javax.swing.JButton btnNewOrder;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDispName;
