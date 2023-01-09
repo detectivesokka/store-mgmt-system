@@ -126,7 +126,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item Name", "Item price", "Tax bracket", "Quantity"
+                "ID", "Item Name", "Cost", "Tax bracket", "Quantity"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -138,6 +138,9 @@ public class GMfrJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tblInventory);
+        if (tblInventory.getColumnModel().getColumnCount() > 0) {
+            tblInventory.getColumnModel().getColumn(3).setHeaderValue("Tax bracket");
+        }
 
         btnAddItem.setText("Add Item");
         btnAddItem.addActionListener(new java.awt.event.ActionListener() {
