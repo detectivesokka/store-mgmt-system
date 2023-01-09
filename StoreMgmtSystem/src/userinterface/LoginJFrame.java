@@ -1,8 +1,20 @@
 package userinterface;
 
+import java.util.ArrayList;
+import userinterface.RolesWorkArea.AdminJPanel;
+import userinterface.RolesWorkArea.TaxAuditorJPanel;
+import userinterface.RolesWorkArea.ShopEmpJPanel;
+import userinterface.RolesWorkArea.ShopMgrJPanel;
+import userinterface.RolesWorkArea.ODeliverymanJPanel;
+import userinterface.RolesWorkArea.OCustomerJPanel;
+import userinterface.RolesWorkArea.GTransporterJPanel;
+import userinterface.RolesWorkArea.GMfrJPanel;
+import userinterface.RolesWorkArea.GDistributorJPanel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Organization.InvManufacturerOrganization;
+import model.Organization.Organization;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
 
@@ -129,17 +141,14 @@ public class LoginJFrame extends javax.swing.JFrame {
 
         // Since getPassword() returns a character array we convert it to String using String.valueOf()
         String pwd = String.valueOf(fldPassword.getPassword());
-        UserAccount user = null;
-
-        for(UserAccount u : system.getUserAccountDirectory().getUserAccountList()) {
-
-            if (u.getUserName().equals(fldUsername.getText()) && u.getPassword().equals(pwd))
-            {
-                user = u;
-                break;
-            }
-        }
-
+        UserAccount user = null;        
+        ArrayList<Object> searchResult;
+        Organization org;
+                          
+        searchResult = searchUser(fldUsername.getText(), pwd);        
+        org = (Organization)searchResult.get(0);
+        user = (UserAccount)searchResult.get(1);
+        
         if(user != null) {
 
             clearPasswordField();
@@ -166,7 +175,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                 break;
                 case 6 : userPanel = new GTransporterJPanel();
                 break;
-                case 7 : userPanel = new GMfrJPanel(user);
+                case 7 : userPanel = new GMfrJPanel(user, org);
                 break;
                 case 8 : userPanel = new GDistributorJPanel();
                 break;        
@@ -185,6 +194,34 @@ public class LoginJFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSubmitActionPerformed
+    
+    private ArrayList<Object> searchUser(String pUsername, String pPassword) {                
+        
+        ArrayList<Object> result;
+        
+        for(UserAccount u : this.system.getUserAccountDirectory().getUserAccountList()) {
+
+            if (u.getUserName().equals(pUsername) && u.getPassword().equals(pPassword))
+            {
+                result = new ArrayList<Object> ();
+                result.add(null);
+                result.add(u);
+            }
+        }
+        
+        // Checking InventoryEnterprise        
+        UserAccount ua;
+        Organization org;
+                
+        result = this.system.getInventoryEnterprise().searchUserAccount(pUsername, pPassword);
+        
+        if(result != null) {
+            
+            return result;
+        }                
+        
+        return null;
+    }
     
     private void clearPasswordField() {
         

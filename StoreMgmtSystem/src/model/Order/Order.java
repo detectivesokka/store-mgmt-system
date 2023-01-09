@@ -9,6 +9,7 @@ public class Order {
     private final int orderID;        
     private int fromId;
     private int toId;
+    private int orderType;
     
     Order(int pId) {
         

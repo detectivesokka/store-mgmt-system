@@ -1,14 +1,16 @@
 package model.Organization;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author saidutt
  */
-public class Organization {
+public abstract class Organization {
     
     private String name;
-    private int organizationId;
-
+    private int organizationId;        
+    
     public String getName() {
         return name;
     }
@@ -23,5 +25,5 @@ public class Organization {
 
     public void setOrganizationId(int organizationId) {
         this.organizationId = organizationId;
-    }            
+    }                  
 }

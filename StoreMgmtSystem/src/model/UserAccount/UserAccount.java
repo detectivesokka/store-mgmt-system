@@ -11,6 +11,8 @@ public class UserAccount {
     private int role;
     private final int userId;
     
+    
+    
     UserAccount(int pUserId) {
         
         this.userId = pUserId;        

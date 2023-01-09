@@ -11,7 +11,7 @@ public class OrderQueue {
     private ArrayList<Order> orderList;
     private int orderCount = 1;
     
-    OrderQueue() {
+    public OrderQueue() {
         
         orderList = new ArrayList<>();
     }

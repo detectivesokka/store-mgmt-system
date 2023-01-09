@@ -1,8 +1,11 @@
 package model.Enterprise;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
+import model.Organization.Organization;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -37,4 +40,38 @@ public class InventoryEnterprise extends Enterprise{
         this.invDisOrgList.add(id);
         return id;        
     }
+
+    public ArrayList<Object> searchUserAccount(String pUsername, String pPassword) {
+        
+        UserAccount user;
+        ArrayList<Object> result = new ArrayList<Object>();
+        
+        for (InvManufacturerOrganization imo : this.invManOrgList) {
+            
+            user = imo.getUserAccountDirectory().searchUser(pUsername);
+            
+            if(user != null) {
+                                
+                result.add(imo);
+                result.add(user);
+                return result;
+            }
+        }
+        
+        for (InvManufacturerOrganization imo : this.invManOrgList) {
+            
+            user = imo.getUserAccountDirectory().searchUser(pUsername);
+            
+            if(user != null) {
+                                
+                result.add(imo);
+                result.add(user);
+                return result;
+            }
+        }
+        
+        return null;
+    }
+    
+    
 }   

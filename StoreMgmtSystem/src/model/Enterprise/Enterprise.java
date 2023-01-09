@@ -1,5 +1,7 @@
 package model.Enterprise;
 
+import model.Order.OrderQueue;
+
 /**
  *
  * @author saidutt
@@ -7,9 +9,11 @@ package model.Enterprise;
 public class Enterprise {
     
     private int enterpriseType;        
-
+    private OrderQueue orderQueue;
+    
     Enterprise() {
                 
+        orderQueue = new OrderQueue();        
     }
     
     Enterprise(int pType) {
