@@ -29,5 +29,15 @@ public class Enterprise {
     public void setEnterpriseType(int enterpriseType) {
         
         this.enterpriseType = enterpriseType;
-    }                  
+    }      
+
+    public OrderQueue getOrderQueue() {
+        return orderQueue;
+    }
+
+    public void setOrderQueue(OrderQueue orderQueue) {
+        this.orderQueue = orderQueue;
+    }
+    
+    
 }

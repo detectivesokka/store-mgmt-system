@@ -12,8 +12,8 @@ public class Order {
     private int orderType;
     private String itemName;
     private int quantity;
-    private int taxPc;
-    private int total;
+    private float taxPc;
+    private float totalSellingPrice;
     
     Order(int pId) {
         
@@ -64,19 +64,21 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public int getTaxPc() {
+    public float getTaxPc() {
         return taxPc;
     }
 
-    public void setTaxPc(int taxPc) {
+    public void setTaxPc(float taxPc) {
         this.taxPc = taxPc;
     }
 
-    public int getTotal() {
-        return total;
+    public float getTotalSellingPrice() {
+        
+        return totalSellingPrice;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setTotalSellingPrice(float totalSellingPrice) {
+        
+        this.totalSellingPrice = totalSellingPrice;
     }
 }

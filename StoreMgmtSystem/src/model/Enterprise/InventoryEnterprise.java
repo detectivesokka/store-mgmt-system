@@ -2,6 +2,7 @@ package model.Enterprise;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import model.Order.GoodsOrderQueue;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
 import model.Organization.Organization;
@@ -15,6 +16,7 @@ public class InventoryEnterprise extends Enterprise{
 
     private ArrayList<InvManufacturerOrganization> invManOrgList;
     private ArrayList<InvDistributorOrganization> invDisOrgList;    
+    private GoodsOrderQueue goQueue;
     
     public InventoryEnterprise() {
         
@@ -72,6 +74,8 @@ public class InventoryEnterprise extends Enterprise{
         
         return null;
     }
-    
-    
+
+    public GoodsOrderQueue getGOQueue() {
+        return goQueue;
+    }        
 }   

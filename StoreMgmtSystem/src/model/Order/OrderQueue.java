@@ -20,7 +20,7 @@ public class OrderQueue {
         return orderList;
     }
     
-    public Order newStockItem () {
+    public Order newOrder () {
         
         Order o = new Order(orderCount++);
         this.orderList.add(o);
