@@ -40,10 +40,12 @@ public class GoodsOrder extends Order {
     }
 
     public StockItem getItem() {
+        
         return item;
     }
 
     public void setItem(StockItem item) {
+        
         this.item = item;
     }
 }

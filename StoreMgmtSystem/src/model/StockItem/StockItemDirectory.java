@@ -1,6 +1,7 @@
 package model.StockItem;
 
 import java.util.ArrayList;
+import model.Organization.Organization;
 import model.UserAccount.UserAccount;
 
 /**
@@ -9,27 +10,25 @@ import model.UserAccount.UserAccount;
  */
 public class StockItemDirectory {
     
-    private ArrayList<StockItem> stockItemList;
+    private final ArrayList<StockItem> stockItemList;
+    private final Organization parentOrg;
+            
     private int itemCount = 1;
     
-    public StockItemDirectory() {
+    public StockItemDirectory(Organization pParent) {
         
-        stockItemList = new ArrayList<> ();
+        stockItemList = new ArrayList<> ();    
+        this.parentOrg = pParent;
     }
 
     public ArrayList<StockItem> getStockItemList() {
         
         return stockItemList;
-    }
-
-    public void setStockItemList(ArrayList<StockItem> stockItemList) {
-        
-        this.stockItemList = stockItemList;
-    }       
+    }  
     
     public StockItem newStockItem () {
         
-        StockItem si = new StockItem(itemCount++);
+        StockItem si = new StockItem(itemCount++, this);
         this.stockItemList.add(si);
         return si;        
     }
@@ -78,4 +77,9 @@ public class StockItemDirectory {
         StockItem si = searchStockItem(pItemName);        
         this.stockItemList.remove(si);
     }
+
+    public Organization getParentOrg() {
+        return parentOrg;
+    }
+        
 }

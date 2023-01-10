@@ -21,7 +21,7 @@ public class InvManufacturerOrganization extends Organization {
 
     public InvManufacturerOrganization() {
         
-        stockItemDirectory = new StockItemDirectory();
+        stockItemDirectory = new StockItemDirectory(this);
         userAccountDirectory = new UserAccountDirectory();
     }
     

@@ -10,11 +10,14 @@ public class StockItem {
     private float price;
     private int pcTax;
     private int quantity;
+    private StockItemDirectory parentDirectory;
     
     private final int itemId;
 
-    public StockItem(int itemId) {
+    public StockItem(int itemId, StockItemDirectory pSID) {
+        
         this.itemId = itemId;
+        this.parentDirectory = pSID;
     }
 
     public StockItem(int itemId, String itemName, float price, int pcTax, int quantity) {
@@ -60,4 +63,10 @@ public class StockItem {
     public int getItemId() {
         return itemId;
     }        
+
+    public StockItemDirectory getParentDirectory() {
+        return parentDirectory;
+    }
+    
+    
 }
