@@ -9,8 +9,7 @@ import model.StockItem.StockItem;
  */
 
 public class GoodsOrder extends Order {
-    
-    
+        
     private InvManufacturerOrganization imo;
     private InvDistributorOrganization ido;    
     private StockItem item;   

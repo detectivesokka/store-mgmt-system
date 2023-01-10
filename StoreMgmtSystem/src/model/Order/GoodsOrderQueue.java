@@ -4,8 +4,7 @@ package model.Order;
  *
  * @author saidutt
  */
-public class GoodsOrderQueue extends OrderQueue {
-    
+public class GoodsOrderQueue extends OrderQueue {    
     
     private int goodsOrderCount = 1;
     

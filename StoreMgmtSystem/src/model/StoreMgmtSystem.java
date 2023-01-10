@@ -2,6 +2,8 @@ package model;
 
 import model.UserAccount.*;
 import model.Enterprise.*;
+import model.Order.GoodsOrderQueue;
+import model.Order.ShopOrderQueue;
 
 /**
  *
@@ -16,6 +18,9 @@ public class StoreMgmtSystem {
     private StoreEnterprise storeEnterprise;
     private CustomerEnterprise customerEnterprise;
     
+    private GoodsOrderQueue goQueue;
+    private ShopOrderQueue soQueue;
+    
     
     public StoreMgmtSystem() {
         
@@ -25,6 +30,9 @@ public class StoreMgmtSystem {
         inventoryEnterprise = new InventoryEnterprise();
         storeEnterprise = new StoreEnterprise();                
         customerEnterprise = new CustomerEnterprise();
+        
+        goQueue = new GoodsOrderQueue();
+        soQueue = new ShopOrderQueue();                
         
         initData();
     }
@@ -76,6 +84,16 @@ public class StoreMgmtSystem {
     public void setStoreEnterprise(StoreEnterprise storeEnterprise) {
         this.storeEnterprise = storeEnterprise;
     }           
-    
-    
+
+    public CustomerEnterprise getCustomerEnterprise() {
+        return customerEnterprise;
+    }
+
+    public GoodsOrderQueue getGoodsOrderQueue() {
+        return goQueue;
+    }
+
+    public ShopOrderQueue getShopOrderQueue() {
+        return soQueue;
+    }            
 }

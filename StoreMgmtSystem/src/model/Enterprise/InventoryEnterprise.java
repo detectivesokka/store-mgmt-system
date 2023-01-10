@@ -15,8 +15,7 @@ import model.UserAccount.UserAccount;
 public class InventoryEnterprise extends Enterprise{
 
     private ArrayList<InvManufacturerOrganization> invManOrgList;
-    private ArrayList<InvDistributorOrganization> invDisOrgList;    
-    private GoodsOrderQueue goQueue;
+    private ArrayList<InvDistributorOrganization> invDisOrgList;        
     
     public InventoryEnterprise() {
         
@@ -74,8 +73,5 @@ public class InventoryEnterprise extends Enterprise{
         
         return null;
     }
-
-    public GoodsOrderQueue getGOQueue() {
-        return goQueue;
-    }        
+    
 }   
