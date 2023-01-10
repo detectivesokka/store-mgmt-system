@@ -7,6 +7,8 @@ import model.Order.ShopOrder;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
 import model.Organization.Organization;
+import model.Organization.ShopOrganization;
+import model.StockItem.StockItem;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
 
@@ -20,17 +22,17 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
      * Creates new form EditOrderJPanel
      */
     
-    private InvDistributorOrganization invDisOrg;
+    private StockItem orderItem;
     private UserAccount user;
     private StoreMgmtSystem system;
     
-    public SalesOrderJPanel(StoreMgmtSystem pSystem,InvDistributorOrganization pInvDisOrg, UserAccount pUser) {
+    public SalesOrderJPanel(StoreMgmtSystem pSystem,StockItem pItem, UserAccount pUser) {
         
         initComponents();
         this.system = pSystem;
-        this.invDisOrg = pInvDisOrg;
+        this.orderItem = pItem;
         this.user = pUser;
-        populateStockItemComboBox();
+        populateStockItemName();
     }
 
     /**
@@ -44,7 +46,6 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        comboItems = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         fldQuantity = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -52,6 +53,7 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
+        lblItemName = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,10 +97,10 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(comboItems, 0, 183, Short.MAX_VALUE)
-                    .addComponent(fldQuantity)
+                    .addComponent(fldQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                     .addComponent(fldSellingPrice)
-                    .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblItemName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(281, Short.MAX_VALUE)
@@ -112,7 +114,7 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(comboItems))
+                    .addComponent(lblItemName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -130,23 +132,19 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
                 .addGap(136, 136, 136))
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void populateStockItemComboBox() {
+    private void populateStockItemName() {
         
-        for (StockItem si: )
+        this.lblItemName.setText(this.orderItem.getItemName());
     }
     
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         
         OrderQueue orderQueue = this.system.getInventoryEnterprise().getOrderQueue();        
-        ShopOrder so = this.system.getShopOrderQueue().newOrder();
-        
-        String itemName = (String)this.comboItems.getSelectedItem();
+        ShopOrder so = this.system.getShopOrderQueue().newOrder();                
        
-        so.set((InvDistributorOrganization)this.user.getParentOrg());
-        so.setMfrOrganization((InvManufacturerOrganization)invMfrOrg);
-        so.setItem(this.invMfrOrg.getStockItemDirectory().searchStockItem(itemName));
-        so.setQuantity(Integer.parseInt(this.fldQuantity.getText()));
-        so.setTotalSellingPrice(Float.parseFloat(this.lblTotal.getText()));
+        so.setIdo((InvDistributorOrganization)this.orderItem.getParentDirectory().getParentOrg());
+        so.setShop((ShopOrganization)this.user.getParentOrg());
+        so.setItem(orderItem);        
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void fldSellingPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSellingPriceActionPerformed
@@ -158,7 +156,6 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JComboBox<String> comboItems;
     private javax.swing.JTextField fldQuantity;
     private javax.swing.JTextField fldSellingPrice;
     private javax.swing.JLabel jLabel1;
@@ -166,6 +163,7 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblItemName;
     private javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables
 }
