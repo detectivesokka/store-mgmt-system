@@ -1,21 +1,34 @@
 package userinterface.Order;
 
+import model.Order.GoodsOrder;
+import model.Order.Order;
+import model.Order.OrderQueue;
+import model.Organization.InvDistributorOrganization;
+import model.Organization.InvManufacturerOrganization;
+import model.Organization.Organization;
+import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
 
 /**
  *
  * @author saidutt
  */
-public class SalesOrderJPanel extends javax.swing.JPanel {
+public class GoodsOrderJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form EditOrderJPanel
      */
     
+    private InvManufacturerOrganization invMfrOrg;
+    private UserAccount user;
+    private StoreMgmtSystem system;
     
-    public SalesOrderJPanel(Organization pOrg, UserAccount pUser) {
-        initComponents();
+    public GoodsOrderJPanel(StoreMgmtSystem pSystem,InvManufacturerOrganization pInvOrg, UserAccount pUser) {
         
+        initComponents();
+        this.system = pSystem;
+        this.invMfrOrg = pInvOrg;
+        this.user = pUser;
     }
 
     /**
@@ -46,7 +59,11 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Quantity");
 
-        jLabel4.setText("Selling price");
+        fldQuantity.setText("0");
+
+        jLabel4.setText("Selling price (per item)");
+
+        fldSellingPrice.setText("0");
 
         jLabel5.setText("Total");
 
@@ -86,20 +103,18 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(comboItems))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fldQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(fldSellingPrice)
-                        .addGap(1, 1, 1))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(fldSellingPrice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -111,9 +126,19 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         
+        OrderQueue orderQueue = this.system.getInventoryEnterprise().getOrderQueue();        
+        GoodsOrder go = this.system.getInventoryEnterprise().getGOQueue().newOrder();
         
+        String itemName = (String)this.comboItems.getSelectedItem();
+       
+        go.setDistributorOrganization((InvDistributorOrganization)this.user.getParentOrg());
+        go.setMfrOrganization((InvManufacturerOrganization)invMfrOrg);
+        go.setItem(this.invMfrOrg.getStockItemDirectory().searchStockItem(itemName));
+        go.setQuantity(Integer.parseInt(this.fldQuantity.getText()));
+        go.setTotalSellingPrice(Float.parseFloat(this.lblTotal.getText()));
     }//GEN-LAST:event_btnSubmitActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
