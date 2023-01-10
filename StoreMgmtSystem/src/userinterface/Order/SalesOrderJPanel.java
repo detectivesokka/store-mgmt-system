@@ -3,6 +3,7 @@ package userinterface.Order;
 import model.Order.GoodsOrder;
 import model.Order.Order;
 import model.Order.OrderQueue;
+import model.Order.ShopOrder;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
 import model.Organization.Organization;
@@ -13,22 +14,23 @@ import model.UserAccount.UserAccount;
  *
  * @author saidutt
  */
-public class GoodsOrderJPanel extends javax.swing.JPanel {
+public class SalesOrderJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form EditOrderJPanel
      */
     
-    private InvManufacturerOrganization invMfrOrg;
+    private InvDistributorOrganization invDisOrg;
     private UserAccount user;
     private StoreMgmtSystem system;
     
-    public GoodsOrderJPanel(StoreMgmtSystem pSystem,InvManufacturerOrganization pInvOrg, UserAccount pUser) {
+    public SalesOrderJPanel(StoreMgmtSystem pSystem,InvDistributorOrganization pInvDisOrg, UserAccount pUser) {
         
         initComponents();
         this.system = pSystem;
-        this.invMfrOrg = pInvOrg;
+        this.invDisOrg = pInvDisOrg;
         this.user = pUser;
+        populateStockItemComboBox();
     }
 
     /**
@@ -53,7 +55,7 @@ public class GoodsOrderJPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Sales voucher");
+        jLabel1.setText("Sales order");
 
         jLabel2.setText("Item ");
 
@@ -64,8 +66,13 @@ public class GoodsOrderJPanel extends javax.swing.JPanel {
         jLabel4.setText("Selling price (per item)");
 
         fldSellingPrice.setText("0");
+        fldSellingPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fldSellingPriceActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("Total");
+        jLabel5.setText("Total (press enter to update)");
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -123,21 +130,30 @@ public class GoodsOrderJPanel extends javax.swing.JPanel {
                 .addGap(136, 136, 136))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    private void populateStockItemComboBox() {
+        
+        for (StockItem si: )
+    }
+    
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         
         OrderQueue orderQueue = this.system.getInventoryEnterprise().getOrderQueue();        
-        GoodsOrder go = this.system.getInventoryEnterprise().getGOQueue().newOrder();
+        ShopOrder so = this.system.getShopOrderQueue().newOrder();
         
         String itemName = (String)this.comboItems.getSelectedItem();
        
-        go.setDistributorOrganization((InvDistributorOrganization)this.user.getParentOrg());
-        go.setMfrOrganization((InvManufacturerOrganization)invMfrOrg);
-        go.setItem(this.invMfrOrg.getStockItemDirectory().searchStockItem(itemName));
-        go.setQuantity(Integer.parseInt(this.fldQuantity.getText()));
-        go.setTotalSellingPrice(Float.parseFloat(this.lblTotal.getText()));
+        so.set((InvDistributorOrganization)this.user.getParentOrg());
+        so.setMfrOrganization((InvManufacturerOrganization)invMfrOrg);
+        so.setItem(this.invMfrOrg.getStockItemDirectory().searchStockItem(itemName));
+        so.setQuantity(Integer.parseInt(this.fldQuantity.getText()));
+        so.setTotalSellingPrice(Float.parseFloat(this.lblTotal.getText()));
     }//GEN-LAST:event_btnSubmitActionPerformed
 
+    private void fldSellingPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSellingPriceActionPerformed
+        
+        float total_price = Integer.parseInt(this.fldQuantity.getText()) * Float.parseFloat(this.fldSellingPrice.getText());
+        this.lblTotal.setText(Float.toString(total_price));
+    }//GEN-LAST:event_fldSellingPriceActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
