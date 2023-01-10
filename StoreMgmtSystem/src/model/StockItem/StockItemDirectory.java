@@ -54,9 +54,28 @@ public class StockItemDirectory {
         return null;
     }
     
+    public StockItem searchStockItem(String pItemName) {
+        
+        for( StockItem si : this.stockItemList) {
+            
+            if (si.getItemName().equals(pItemName)) {
+                
+                return si;
+            }
+        }
+        
+        return null;
+    }
+    
     public void deleteStockItem(int pId) {
         
         StockItem si = searchStockItem(pId);        
+        this.stockItemList.remove(si);
+    }
+    
+    public void deleteStockItem(String pItemName) {
+        
+        StockItem si = searchStockItem(pItemName);        
         this.stockItemList.remove(si);
     }
 }

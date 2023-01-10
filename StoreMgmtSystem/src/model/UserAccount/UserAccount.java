@@ -1,5 +1,7 @@
 package model.UserAccount;
 
+import model.Organization.Organization;
+
 /**
  *
  * @author saidutt
@@ -10,12 +12,13 @@ public class UserAccount {
     private String password;
     private int role;
     private final int userId;
+    private Organization parentOrg;
     
     
-    
-    UserAccount(int pUserId) {
+    UserAccount(int pUserId, Organization pParentOrg) {
         
-        this.userId = pUserId;        
+        this.userId = pUserId;     
+        this.parentOrg = pParentOrg;        
     }
     
     UserAccount(int pUserId, String pUserName, String pPassword, int pRole) {
@@ -80,5 +83,13 @@ public class UserAccount {
     public void setRole(int pRole) {
         
         this.role = pRole;
+    }
+
+    public Organization getParentOrg() {
+        return parentOrg;
+    }
+
+    public void setParentOrg(Organization parentOrg) {
+        this.parentOrg = parentOrg;
     }
 }

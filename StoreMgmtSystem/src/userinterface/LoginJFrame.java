@@ -13,7 +13,6 @@ import userinterface.RolesWorkArea.GDistributorJPanel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import model.Organization.InvManufacturerOrganization;
 import model.Organization.Organization;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
@@ -177,7 +176,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                 break;
                 case 7 : userPanel = new GMfrJPanel(user, org);
                 break;
-                case 8 : userPanel = new GDistributorJPanel();
+                case 8 : userPanel = new GDistributorJPanel(this.system, user);
                 break;        
                 default: userPanel = null;
             }
