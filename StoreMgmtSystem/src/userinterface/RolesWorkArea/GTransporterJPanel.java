@@ -1,6 +1,11 @@
 package userinterface.RolesWorkArea;
 
 import javax.swing.JTabbedPane;
+import javax.swing.table.DefaultTableModel;
+import model.Order.GoodsOrder;
+import model.Organization.InvTransportationOrganization;
+import model.Organization.Organization;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -8,11 +13,18 @@ import javax.swing.JTabbedPane;
  */
 public class GTransporterJPanel extends javax.swing.JPanel {
 
+    private final InvTransportationOrganization org;
+    private final UserAccount user;
     /**
      * Creates new form GoodsTransporter
-     */
-    public GTransporterJPanel() {
+     * @param pUser
+     * @param pOrg
+     */    
+    public GTransporterJPanel(UserAccount pUser, Organization pOrg) {
+        
         initComponents();
+        this.org = (InvTransportationOrganization)pOrg;
+        this.user = pUser;             
     }
 
     /**
@@ -34,7 +46,8 @@ public class GTransporterJPanel extends javax.swing.JPanel {
         paneOrders = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnDelivered = new javax.swing.JButton();
+        btnAccept = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -113,7 +126,9 @@ public class GTransporterJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblOrders);
 
-        jButton2.setText("Accept Order");
+        btnDelivered.setText("Delver Order");
+
+        btnAccept.setText("Accept Order");
 
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
@@ -122,16 +137,26 @@ public class GTransporterJPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOrdersLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(234, 234, 234))
+                .addComponent(btnDelivered)
+                .addGap(178, 178, 178))
+            .addGroup(paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paneOrdersLayout.createSequentialGroup()
+                    .addGap(161, 161, 161)
+                    .addComponent(btnAccept)
+                    .addContainerGap(300, Short.MAX_VALUE)))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnDelivered)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOrdersLayout.createSequentialGroup()
+                    .addContainerGap(500, Short.MAX_VALUE)
+                    .addComponent(btnAccept)
+                    .addContainerGap()))
         );
 
         tbdPane.addTab("Orders", paneOrders);
@@ -140,11 +165,11 @@ public class GTransporterJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbdPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .addComponent(tbdPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbdPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+            .addComponent(tbdPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,11 +186,19 @@ public class GTransporterJPanel extends javax.swing.JPanel {
     
     private void populateOrdersTable() {
         
-        
+        DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+        model.setRowCount(0);
+                        
+        for (GoodsOrder goq : this.org.getParentInvEnterprise().getInvGoodsOrderQueue().getOrderList()) {
+            
+            // Adding new row to the table                                       
+            model.addRow(new Object[]{goq.getOrderID(),goq.getItemName(), goq.getQuantity(), goq.getFrom(), goq.getStatus()});            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnDelivered;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDispName;
     private javax.swing.JLabel lblDispRole;

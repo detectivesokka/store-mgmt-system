@@ -1,12 +1,8 @@
 package userinterface.Order;
 
-import model.Order.GoodsOrder;
-import model.Order.Order;
 import model.Order.OrderQueue;
 import model.Order.ShopOrder;
 import model.Organization.InvDistributorOrganization;
-import model.Organization.InvManufacturerOrganization;
-import model.Organization.Organization;
 import model.Organization.ShopOrganization;
 import model.StockItem.StockItem;
 import model.StoreMgmtSystem;

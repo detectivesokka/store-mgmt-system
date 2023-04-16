@@ -140,53 +140,63 @@ public class LoginJFrame extends javax.swing.JFrame {
 
         // Since getPassword() returns a character array we convert it to String using String.valueOf()
         String pwd = String.valueOf(fldPassword.getPassword());
-        UserAccount user = null;        
+        UserAccount user = null;
         ArrayList<Object> searchResult;
         Organization org;
-                          
-        searchResult = searchUser(fldUsername.getText(), pwd);        
-        org = (Organization)searchResult.get(0);
-        user = (UserAccount)searchResult.get(1);
-        
-        if(user != null) {
 
-            clearPasswordField();
+        searchResult = searchUser(fldUsername.getText(), pwd);
 
-            JFrame userFrame=new JFrame();
-            
-            String confirmText = user.getRoleString();                                    
-            
-            JPanel userPanel;
-            
-            switch(user.getRole()) {
-                
-                case 0 : userPanel = new AdminJPanel();
-                break;
-                case 1 : userPanel = new OCustomerJPanel();
-                break;
-                case 2 : userPanel = new ODeliverymanJPanel();
-                break;                
-                case 3 : userPanel = new ShopMgrJPanel();
-                break;
-                case 4 : userPanel = new ShopEmpJPanel();
-                break;                
-                case 5 : userPanel = new TaxAuditorJPanel();
-                break;
-                case 6 : userPanel = new GTransporterJPanel();
-                break;
-                case 7 : userPanel = new GMfrJPanel(user, org);
-                break;
-                case 8 : userPanel = new GDistributorJPanel(this.system, user);
-                break;        
-                default: userPanel = null;
+        if (searchResult != null) {
+
+            org = (Organization) searchResult.get(0);
+            user = (UserAccount) searchResult.get(1);
+
+            if (user != null) {
+
+                clearPasswordField();
+                JFrame userFrame = new JFrame();
+                JPanel userPanel;
+
+                switch (user.getRole()) {
+
+                    case 0:
+                        userPanel = new AdminJPanel();
+                        break;
+                    case 1:
+                        userPanel = new OCustomerJPanel();
+                        break;
+                    case 2:
+                        userPanel = new ODeliverymanJPanel();
+                        break;
+                    case 3:
+                        userPanel = new ShopMgrJPanel();
+                        break;
+                    case 4:
+                        userPanel = new ShopEmpJPanel();
+                        break;
+                    case 5:
+                        userPanel = new TaxAuditorJPanel();
+                        break;
+                    case 6:
+                        userPanel = new GTransporterJPanel(user, org);
+                        break;
+                    case 7:
+                        userPanel = new GMfrJPanel(user, org);
+                        break;
+                    case 8:
+                        userPanel = new GDistributorJPanel(this.system, user);
+                        break;
+                    default:
+                        userPanel = null;
+                }
+
+                userFrame.getContentPane().add(userPanel);
+
+                // Window opens in full size mode
+                userFrame.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+                userFrame.setVisible(true);
             }
-            
-            userFrame.getContentPane().add(userPanel);
-            
-            // Window opens in full size mode
-            userFrame.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);             
-            userFrame.setVisible(true);      
-            
+
         } else {
 
             JOptionPane.showMessageDialog(null, "Incorrect username/password. Please try again later.");
@@ -202,16 +212,13 @@ public class LoginJFrame extends javax.swing.JFrame {
 
             if (u.getUserName().equals(pUsername) && u.getPassword().equals(pPassword))
             {
-                result = new ArrayList<Object> ();
+                result = new ArrayList<> ();
                 result.add(null);
                 result.add(u);
             }
         }
-        
-        // Checking InventoryEnterprise        
-        UserAccount ua;
-        Organization org;
-                
+        // Checking InventoryEnterprise
+                       
         result = this.system.getInventoryEnterprise().searchUserAccount(pUsername, pPassword);
         
         if(result != null) {
@@ -256,6 +263,7 @@ public class LoginJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new LoginJFrame().setVisible(true);
             }

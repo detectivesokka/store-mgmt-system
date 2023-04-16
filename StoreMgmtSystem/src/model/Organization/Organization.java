@@ -1,7 +1,5 @@
 package model.Organization;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author saidutt
@@ -9,7 +7,7 @@ import java.util.ArrayList;
 public abstract class Organization {
     
     private String name;
-    private int organizationId;        
+    private int organizationId;  
     
     public String getName() {
         return name;

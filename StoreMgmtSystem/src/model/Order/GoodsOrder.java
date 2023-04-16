@@ -27,6 +27,7 @@ public class GoodsOrder extends Order {
     public void setMfrOrganization(InvManufacturerOrganization imo) {
         
         this.imo = imo;
+        setFrom(imo.getName());
     }
 
     public InvDistributorOrganization getMfrOrganization() {
@@ -36,7 +37,8 @@ public class GoodsOrder extends Order {
 
     public void setDistributorOrganization(InvDistributorOrganization ido) {
         
-        this.ido = ido;
+        this.ido = ido;       
+        setTo(ido.getName());
     }
 
     public StockItem getItem() {
@@ -47,5 +49,14 @@ public class GoodsOrder extends Order {
     public void setItem(StockItem item) {
         
         this.item = item;
+        setItemName(item.getItemName());
     }
+
+    @Override
+    public String getStatus() {
+        
+        return "Goods order";
+    }
+    
+    
 }

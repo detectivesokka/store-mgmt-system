@@ -3,6 +3,7 @@ package userinterface.RolesWorkArea;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
+import model.Order.GoodsOrder;
 import model.Organization.InvManufacturerOrganization;
 import model.Organization.Organization;
 import model.StockItem.StockItem;
@@ -18,7 +19,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
     /**
      * Creates new form GoodsManufacturer
      */
-    private InvManufacturerOrganization org;
+    private final InvManufacturerOrganization org;
     
     public GMfrJPanel(UserAccount pUserAccount, Organization pOrganization) {
         
@@ -60,7 +61,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
         paneOrders = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
-        btnNewOrder = new javax.swing.JButton();
+        btnAcceptOrder = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -212,7 +213,12 @@ public class GMfrJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblOrders);
 
-        btnNewOrder.setText("Accept order");
+        btnAcceptOrder.setText("Accept order");
+        btnAcceptOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptOrderActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
@@ -221,15 +227,15 @@ public class GMfrJPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addGap(270, 270, 270)
-                .addComponent(btnNewOrder)
+                .addComponent(btnAcceptOrder)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnNewOrder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAcceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 24, Short.MAX_VALUE))
         );
 
@@ -296,8 +302,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditItemActionPerformed
 
     private void btnDeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteItemActionPerformed
-        
-        
+                
         int itemId = getSelectedItemFromTable();
         
         if (itemId < 0) {
@@ -308,6 +313,11 @@ public class GMfrJPanel extends javax.swing.JPanel {
         this.org.getStockItemDirectory().deleteStockItem(itemId);
         populateInventoryTable();
     }//GEN-LAST:event_btnDeleteItemActionPerformed
+
+    private void btnAcceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptOrderActionPerformed
+
+    
+    }//GEN-LAST:event_btnAcceptOrderActionPerformed
     
     private int getSelectedItemFromTable() {
         
@@ -338,14 +348,21 @@ public class GMfrJPanel extends javax.swing.JPanel {
     
     private void populateOrdersTable() {
         
-        
+        DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+        model.setRowCount(0);
+                        
+        for (GoodsOrder goq : this.org.getParentInvEnterprise().getInvGoodsOrderQueue().getOrderList()) {
+            
+            // Adding new row to the table                                       
+            model.addRow(new Object[]{goq.getOrderID(),goq.getItemName(), goq.getQuantity(), goq.getFrom(), goq.getStatus()});            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcceptOrder;
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnDeleteItem;
     private javax.swing.JButton btnEditItem;
-    private javax.swing.JButton btnNewOrder;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDispName;

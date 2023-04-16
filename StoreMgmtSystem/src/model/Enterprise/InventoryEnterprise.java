@@ -1,11 +1,10 @@
 package model.Enterprise;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import model.Order.GoodsOrderQueue;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
-import model.Organization.Organization;
+import model.Organization.InvTransportationOrganization;
 import model.UserAccount.UserAccount;
 
 /**
@@ -14,23 +13,24 @@ import model.UserAccount.UserAccount;
  */
 public class InventoryEnterprise extends Enterprise{
 
-    private ArrayList<InvManufacturerOrganization> invManOrgList;
-    private ArrayList<InvDistributorOrganization> invDisOrgList;        
+    private final ArrayList<InvManufacturerOrganization> invManOrgList;
+    private final ArrayList<InvDistributorOrganization> invDisOrgList;   
+    private final ArrayList<InvTransportationOrganization> invTransOrgList;
+    private final GoodsOrderQueue invGoodsOrderQueue;
+    
     
     public InventoryEnterprise() {
         
         super(3);
         invManOrgList = new ArrayList<>();
-        invDisOrgList = new ArrayList<>();                
+        invDisOrgList = new ArrayList<>();
+        invTransOrgList = new ArrayList<>();
+        this.invGoodsOrderQueue = new GoodsOrderQueue();   
     }                
 
-    public ArrayList<InvManufacturerOrganization> getInvManOrgList() {
-        return invManOrgList;
-    }
-    
     public InvManufacturerOrganization newInvManufacturerOrganization() {
         
-        InvManufacturerOrganization imf = new InvManufacturerOrganization();
+        InvManufacturerOrganization imf = new InvManufacturerOrganization(this, "imo1");
         this.invManOrgList.add(imf);
         return imf;        
     }
@@ -41,11 +41,18 @@ public class InventoryEnterprise extends Enterprise{
         this.invDisOrgList.add(id);
         return id;        
     }
+    
+    public InvTransportationOrganization newInvTransportationOrganization() {
+        
+        InvTransportationOrganization it = new InvTransportationOrganization(this);
+        this.invTransOrgList.add(it);
+        return it;        
+    }
 
     public ArrayList<Object> searchUserAccount(String pUsername, String pPassword) {
         
         UserAccount user;
-        ArrayList<Object> result = new ArrayList<Object>();
+        ArrayList<Object> result = new ArrayList<>();
         
         for (InvManufacturerOrganization imo : this.invManOrgList) {
             
@@ -59,13 +66,25 @@ public class InventoryEnterprise extends Enterprise{
             }
         }
         
-        for (InvManufacturerOrganization imo : this.invManOrgList) {
+        for (InvDistributorOrganization ido : this.invDisOrgList) {
             
-            user = imo.getUserAccountDirectory().searchUser(pUsername);
+            user = ido.getUserAccountDirectory().searchUser(pUsername);
             
             if(user != null) {
                                 
-                result.add(imo);
+                result.add(ido);
+                result.add(user);
+                return result;
+            }
+        }
+        
+        for (InvTransportationOrganization ito : this.invTransOrgList) {
+            
+            user = ito.getUserAccountDirectory().searchUser(pUsername);
+            
+            if(user != null) {
+                                
+                result.add(ito);
                 result.add(user);
                 return result;
             }
@@ -74,4 +93,19 @@ public class InventoryEnterprise extends Enterprise{
         return null;
     }
     
+    public ArrayList<InvManufacturerOrganization> getInvManOrgList() {
+        return invManOrgList;
+    }        
+
+    public ArrayList<InvDistributorOrganization> getInvDisOrgList() {
+        return invDisOrgList;
+    }
+
+    public ArrayList<InvTransportationOrganization> getInvTransOrgList() {
+        return invTransOrgList;
+    }
+
+    public GoodsOrderQueue getInvGoodsOrderQueue() {
+        return invGoodsOrderQueue;
+    }        
 }   

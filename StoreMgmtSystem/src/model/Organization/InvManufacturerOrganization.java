@@ -1,5 +1,6 @@
 package model.Organization;
 
+import model.Enterprise.InventoryEnterprise;
 import model.StockItem.StockItemDirectory;
 import model.UserAccount.UserAccount;
 import model.UserAccount.UserAccountDirectory;
@@ -10,30 +11,30 @@ import model.UserAccount.UserAccountDirectory;
  */
 public class InvManufacturerOrganization extends Organization {
     
-    private StockItemDirectory stockItemDirectory;
-    private UserAccountDirectory userAccountDirectory;    
+    private final StockItemDirectory stockItemDirectory;
+    private final UserAccountDirectory userAccountDirectory;    
+    private final InventoryEnterprise parentInvEnterprise;
 
-    public InvManufacturerOrganization(StockItemDirectory stockItemDirectory, UserAccountDirectory userAccountDirectory) {
+    public InvManufacturerOrganization(StockItemDirectory stockItemDirectory, UserAccountDirectory userAccountDirectory, InventoryEnterprise pParent, String pName) {
         
         this.stockItemDirectory = stockItemDirectory;
         this.userAccountDirectory = userAccountDirectory;
+        this.parentInvEnterprise = pParent;
+        this.setName(pName);
     }        
 
-    public InvManufacturerOrganization() {
+    public InvManufacturerOrganization(InventoryEnterprise pParent, String pName) {
         
         stockItemDirectory = new StockItemDirectory(this);
         userAccountDirectory = new UserAccountDirectory();
+        parentInvEnterprise = pParent;
+        this.setName(pName);
     }
     
     public StockItemDirectory getStockItemDirectory() {
         
         return stockItemDirectory;
     }
-
-    public void setStockItemDirectory(StockItemDirectory stockItemDirectory) {
-        
-        this.stockItemDirectory = stockItemDirectory;
-    }             
     
     public UserAccount newUserAccount(String pUserName, String pPassword, int pRole) {
         
@@ -41,11 +42,12 @@ public class InvManufacturerOrganization extends Organization {
     }
 
     public UserAccountDirectory getUserAccountDirectory() {
-        return userAccountDirectory;
-    }
-
-    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
         
-        this.userAccountDirectory = userAccountDirectory;
-    }        
+        return userAccountDirectory;
+    }    
+
+    public InventoryEnterprise getParentInvEnterprise() {
+        
+        return parentInvEnterprise;
+    }
 }

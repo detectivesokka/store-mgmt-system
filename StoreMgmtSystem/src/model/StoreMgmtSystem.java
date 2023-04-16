@@ -2,8 +2,13 @@ package model;
 
 import model.UserAccount.*;
 import model.Enterprise.*;
+import model.Order.GoodsOrder;
 import model.Order.GoodsOrderQueue;
 import model.Order.ShopOrderQueue;
+import model.Organization.InvDistributorOrganization;
+import model.Organization.InvManufacturerOrganization;
+import model.Organization.InvTransportationOrganization;
+import model.StockItem.StockItem;
 
 /**
  *
@@ -11,15 +16,15 @@ import model.Order.ShopOrderQueue;
  */
 public class StoreMgmtSystem {
 
-    private UserAccountDirectory userAccountDirectory;
+    private final UserAccountDirectory userAccountDirectory;
     
     private ComplianceEnterprise complianceEnterprise;
     private InventoryEnterprise inventoryEnterprise;
     private StoreEnterprise storeEnterprise;
-    private CustomerEnterprise customerEnterprise;
+    private final ECommerceEnterprise customerEnterprise;
     
-    private GoodsOrderQueue goQueue;
-    private ShopOrderQueue soQueue;
+    private final GoodsOrderQueue goQueue;
+    private final ShopOrderQueue soQueue;
     
     
     public StoreMgmtSystem() {
@@ -29,31 +34,44 @@ public class StoreMgmtSystem {
         complianceEnterprise = new ComplianceEnterprise();
         inventoryEnterprise = new InventoryEnterprise();
         storeEnterprise = new StoreEnterprise();                
-        customerEnterprise = new CustomerEnterprise();
-        
+        customerEnterprise = new ECommerceEnterprise();
+                
         goQueue = new GoodsOrderQueue();
         soQueue = new ShopOrderQueue();                
         
         initData();
     }
     
-    public void initData() {
+    public final void initData() {
         
         userAccountDirectory.newUserAccount("admin", "admin", 0);
         userAccountDirectory.newUserAccount("customer", "customer", 1);
         userAccountDirectory.newUserAccount("odeliveryman", "odeliveryman", 2);        
-        //userAccountDirectory.newUserAccount("gmfr", "gmfr", 7);        
-        //userAccountDirectory.newUserAccount("gdis", "gdis", 8);        
-        //userAccountDirectory.newUserAccount("gtran", "gtran", 6);                
-        
+
         // add items
-        inventoryEnterprise.newInvManufacturerOrganization().newUserAccount("gmfr", "gmfr", 7);
-        inventoryEnterprise.newInvDistributorOrganization().newUserAccount("gdis", "gdis", 8);
-        inventoryEnterprise.newInvDistributorOrganization().newUserAccount("gtrans", "gtrans", 6);                
+        InvManufacturerOrganization imo = inventoryEnterprise.newInvManufacturerOrganization();
+        imo.newUserAccount("gmfr", "gmfr", 7);
         
-        inventoryEnterprise.getInvManOrgList().get(0).getStockItemDirectory().newStockItem("stockitem1", 100, 15, 10);
-        inventoryEnterprise.getInvManOrgList().get(0).getStockItemDirectory().newStockItem("stockitem2", 110, 10, 8);
-        inventoryEnterprise.getInvManOrgList().get(0).getStockItemDirectory().newStockItem("stockitem3", 120, 5, 5);
+        InvDistributorOrganization ido = inventoryEnterprise.newInvDistributorOrganization();
+        ido.newUserAccount("gdis", "gdis", 8);
+        
+        InvTransportationOrganization ito = inventoryEnterprise.newInvTransportationOrganization();
+        ito.newUserAccount("gtrans", "gtrans", 6);                
+        
+        StockItem si = imo.getStockItemDirectory().newStockItem("stockitem1", 100, 15, 10);
+        imo.getStockItemDirectory().newStockItem("stockitem2", 110, 10, 8);
+        imo.getStockItemDirectory().newStockItem("stockitem3", 120, 5, 5);                
+        
+        // adding goods order 
+        GoodsOrder go = inventoryEnterprise.getInvGoodsOrderQueue().newOrder();            
+        
+        go.setDistributorOrganization(ido);       
+        go.setItem(si);      
+        go.setMfrOrganization(imo);
+        go.setOrderType(0);
+        go.setQuantity(0);
+        go.setTaxPc(0);
+        go.setTotalSellingPrice(0);                
     }
     
     public UserAccountDirectory getUserAccountDirectory() {
@@ -85,7 +103,7 @@ public class StoreMgmtSystem {
         this.storeEnterprise = storeEnterprise;
     }           
 
-    public CustomerEnterprise getCustomerEnterprise() {
+    public ECommerceEnterprise getCustomerEnterprise() {
         return customerEnterprise;
     }
 

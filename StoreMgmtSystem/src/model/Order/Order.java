@@ -4,7 +4,7 @@ package model.Order;
  *
  * @author saidutt
  */
-public class Order {
+public abstract class Order {
     
     private final int orderID;        
     private String from;
@@ -25,6 +25,7 @@ public class Order {
     }
 
     public void setFrom(String from) {
+        
         this.from = from;
     }
 
@@ -33,8 +34,9 @@ public class Order {
     }
 
     public void setTo(String to) {
+        
         this.to = to;
-    }
+    }  
 
     public int getOrderType() {
         return orderType;
@@ -53,9 +55,10 @@ public class Order {
     }
 
     public void setItemName(String itemName) {
+        
         this.itemName = itemName;
     }
-
+    
     public int getQuantity() {
         return quantity;
     }
@@ -80,5 +83,16 @@ public class Order {
     public void setTotalSellingPrice(float totalSellingPrice) {
         
         this.totalSellingPrice = totalSellingPrice;
+    }
+    
+    public String getStatus() {
+        
+        switch(this.orderID) {
+            
+            case 0:             
+                return "Ordered from manufacturer";                
+            default:
+                return "";                
+        }
     }
 }

@@ -41,4 +41,10 @@ public class ShopOrder extends Order{
     public void setItem(StockItem item) {
         this.item = item;
     }        
+
+    @Override
+    public String getStatus() {
+       
+        return "Shop order";
+    }
 }

@@ -1,19 +1,22 @@
 package model.Organization;
 
+import model.Enterprise.InventoryEnterprise;
 import model.UserAccount.UserAccount;
 import model.UserAccount.UserAccountDirectory;
 
 /**
  *
  * @author saidutt
- **/
-public class InvDistributorOrganization extends Organization {
-        
-    private final UserAccountDirectory userAccountDirectory;    
+ */
+public class InvTransportationOrganization extends Organization{
     
-    public InvDistributorOrganization() {
+     private final UserAccountDirectory userAccountDirectory; 
+     private final InventoryEnterprise parentInvEnterprise;
+    
+    public InvTransportationOrganization(InventoryEnterprise pParent) {
                 
         userAccountDirectory = new UserAccountDirectory();
+        this.parentInvEnterprise = pParent;
     }
 
     public UserAccountDirectory getUserAccountDirectory() {
@@ -25,4 +28,10 @@ public class InvDistributorOrganization extends Organization {
         
         return this.userAccountDirectory.newUserAccount(pUserName, pPassword, pRole);
     }
+    
+    public InventoryEnterprise getParentInvEnterprise() {
+        
+        return parentInvEnterprise;
+    }
+    
 }

@@ -6,14 +6,13 @@ import model.Order.OrderQueue;
  *
  * @author saidutt
  */
-public class Enterprise {
+public abstract class Enterprise {
     
     private int enterpriseType;        
     private OrderQueue orderQueue;
     
     Enterprise() {
                 
-        orderQueue = new OrderQueue();        
     }
     
     Enterprise(int pType) {
@@ -38,6 +37,4 @@ public class Enterprise {
     public void setOrderQueue(OrderQueue orderQueue) {
         this.orderQueue = orderQueue;
     }
-    
-    
 }

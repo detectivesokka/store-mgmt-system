@@ -9,6 +9,12 @@ public class OnlineOrder extends Order{
     public OnlineOrder(int pId) {
         super(pId);
     }
+
+    @Override
+    public String getStatus() {
+        
+        return "Online order";
+    }
     
     
 }
