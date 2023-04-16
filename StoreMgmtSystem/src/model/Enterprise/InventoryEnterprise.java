@@ -16,6 +16,7 @@ public class InventoryEnterprise extends Enterprise{
     private final ArrayList<InvManufacturerOrganization> invManOrgList;
     private final ArrayList<InvDistributorOrganization> invDisOrgList;   
     private final ArrayList<InvTransportationOrganization> invTransOrgList;
+    
     private final GoodsOrderQueue invGoodsOrderQueue;
     
     

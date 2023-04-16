@@ -1,7 +1,7 @@
 package model.Order;
 
 import model.Organization.InvDistributorOrganization;
-import model.Organization.ShopOrganization;
+import model.Organization.LocalStoreOrganization;
 import model.StockItem.StockItem;
 
 /**
@@ -10,7 +10,7 @@ import model.StockItem.StockItem;
  */
 public class ShopOrder extends Order{
     
-    ShopOrganization shop;
+    LocalStoreOrganization shop;
     InvDistributorOrganization ido;
     StockItem item;
     
@@ -18,11 +18,11 @@ public class ShopOrder extends Order{
         super(pId);
     }
 
-    public ShopOrganization getShop() {
+    public LocalStoreOrganization getShop() {
         return shop;
     }
 
-    public void setShop(ShopOrganization shop) {
+    public void setShop(LocalStoreOrganization shop) {
         this.shop = shop;
     }
 

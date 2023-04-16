@@ -3,7 +3,7 @@ package userinterface.Order;
 import model.Order.OrderQueue;
 import model.Order.ShopOrder;
 import model.Organization.InvDistributorOrganization;
-import model.Organization.ShopOrganization;
+import model.Organization.LocalStoreOrganization;
 import model.StockItem.StockItem;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
@@ -135,11 +135,10 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
     
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         
-        OrderQueue orderQueue = this.system.getInventoryEnterprise().getOrderQueue();        
         ShopOrder so = this.system.getShopOrderQueue().newOrder();                
        
         so.setIdo((InvDistributorOrganization)this.orderItem.getParentDirectory().getParentOrg());
-        so.setShop((ShopOrganization)this.user.getParentOrg());
+        so.setShop((LocalStoreOrganization)this.user.getParentOrg());
         so.setItem(orderItem);        
     }//GEN-LAST:event_btnSubmitActionPerformed
 

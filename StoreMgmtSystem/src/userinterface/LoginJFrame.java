@@ -163,7 +163,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                         userPanel = new AdminJPanel();
                         break;
                     case 1:
-                        userPanel = new OCustomerJPanel();
+                        userPanel = new OCustomerJPanel(user, org);
                         break;
                     case 2:
                         userPanel = new ODeliverymanJPanel();
@@ -224,7 +224,25 @@ public class LoginJFrame extends javax.swing.JFrame {
         if(result != null) {
             
             return result;
-        }                
+        }
+        
+        // Checking EComm enterprise
+                       
+        result = this.system.getCustomerEnterprise().searchUserAccount(pUsername, pPassword);
+        
+        if(result != null) {
+            
+            return result;
+        }
+        
+        // Checking Store enterprise
+                       
+        result = this.system.getStoreEnterprise().searchUserAccount(pUsername, pPassword);
+        
+        if(result != null) {
+            
+            return result;
+        }
         
         return null;
     }

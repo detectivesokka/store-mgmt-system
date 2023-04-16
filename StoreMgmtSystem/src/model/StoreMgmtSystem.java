@@ -8,6 +8,8 @@ import model.Order.ShopOrderQueue;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
 import model.Organization.InvTransportationOrganization;
+import model.Organization.OnlineStoreOrganization;
+import model.Organization.LocalStoreOrganization;
 import model.StockItem.StockItem;
 
 /**
@@ -21,7 +23,7 @@ public class StoreMgmtSystem {
     private ComplianceEnterprise complianceEnterprise;
     private InventoryEnterprise inventoryEnterprise;
     private StoreEnterprise storeEnterprise;
-    private final ECommerceEnterprise customerEnterprise;
+    private final ECommerceEnterprise eCommerceEnterprise;
     
     private final GoodsOrderQueue goQueue;
     private final ShopOrderQueue soQueue;
@@ -34,7 +36,7 @@ public class StoreMgmtSystem {
         complianceEnterprise = new ComplianceEnterprise();
         inventoryEnterprise = new InventoryEnterprise();
         storeEnterprise = new StoreEnterprise();                
-        customerEnterprise = new ECommerceEnterprise();
+        eCommerceEnterprise = new ECommerceEnterprise();
                 
         goQueue = new GoodsOrderQueue();
         soQueue = new ShopOrderQueue();                
@@ -49,6 +51,7 @@ public class StoreMgmtSystem {
         userAccountDirectory.newUserAccount("odeliveryman", "odeliveryman", 2);        
 
         // add items
+        // INV ORGANIZATIONS
         InvManufacturerOrganization imo = inventoryEnterprise.newInvManufacturerOrganization();
         imo.newUserAccount("gmfr", "gmfr", 7);
         
@@ -56,7 +59,7 @@ public class StoreMgmtSystem {
         ido.newUserAccount("gdis", "gdis", 8);
         
         InvTransportationOrganization ito = inventoryEnterprise.newInvTransportationOrganization();
-        ito.newUserAccount("gtrans", "gtrans", 6);                
+        ito.newUserAccount("gtrans", "gtrans", 6);                                   
         
         StockItem si = imo.getStockItemDirectory().newStockItem("stockitem1", 100, 15, 10);
         imo.getStockItemDirectory().newStockItem("stockitem2", 110, 10, 8);
@@ -71,7 +74,17 @@ public class StoreMgmtSystem {
         go.setOrderType(0);
         go.setQuantity(0);
         go.setTaxPc(0);
-        go.setTotalSellingPrice(0);                
+        go.setTotalSellingPrice(0);   
+                
+        // E-COMM ORGANIZATIONS
+        OnlineStoreOrganization oso = this.eCommerceEnterprise.newLocalStoreOrganization();
+        oso.newUserAccount("ocus1", "ocus1", 1);
+        oso.newUserAccount("odel1", "odel1", 2);
+        
+        // OFFLINE SHOP ORG
+        LocalStoreOrganization so = this.storeEnterprise.newLocalStoreOrganization();
+        so.newUserAccount("mgr1", "mgr1", 3);
+        so.newUserAccount("emp1", "emp1", 4);       
     }
     
     public UserAccountDirectory getUserAccountDirectory() {
@@ -104,7 +117,7 @@ public class StoreMgmtSystem {
     }           
 
     public ECommerceEnterprise getCustomerEnterprise() {
-        return customerEnterprise;
+        return eCommerceEnterprise;
     }
 
     public GoodsOrderQueue getGoodsOrderQueue() {

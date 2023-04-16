@@ -1,7 +1,5 @@
 package model.Enterprise;
 
-import model.Order.OrderQueue;
-
 /**
  *
  * @author saidutt
@@ -9,10 +7,10 @@ import model.Order.OrderQueue;
 public abstract class Enterprise {
     
     private int enterpriseType;        
-    private OrderQueue orderQueue;
     
     Enterprise() {
-                
+        
+        
     }
     
     Enterprise(int pType) {
@@ -29,12 +27,4 @@ public abstract class Enterprise {
         
         this.enterpriseType = enterpriseType;
     }      
-
-    public OrderQueue getOrderQueue() {
-        return orderQueue;
-    }
-
-    public void setOrderQueue(OrderQueue orderQueue) {
-        this.orderQueue = orderQueue;
-    }
 }

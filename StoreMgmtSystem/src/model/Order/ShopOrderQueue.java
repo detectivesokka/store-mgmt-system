@@ -2,7 +2,7 @@ package model.Order;
 
 import java.util.ArrayList;
 import model.Organization.InvDistributorOrganization;
-import model.Organization.ShopOrganization;
+import model.Organization.LocalStoreOrganization;
 import model.StockItem.StockItem;
 
 /**
@@ -13,7 +13,7 @@ import model.StockItem.StockItem;
 public class ShopOrderQueue implements OrderQueue {
 
     private InvDistributorOrganization ido;
-    private ShopOrganization shop;
+    private LocalStoreOrganization shop;
     private StockItem si;
     private ArrayList<ShopOrder> orderList;
 
@@ -35,11 +35,11 @@ public class ShopOrderQueue implements OrderQueue {
         this.ido = ido;
     }
 
-    public ShopOrganization getShop() {
+    public LocalStoreOrganization getShop() {
         return shop;
     }
 
-    public void setShop(ShopOrganization shop) {
+    public void setShop(LocalStoreOrganization shop) {
         this.shop = shop;
     }
 

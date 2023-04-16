@@ -1,8 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package userinterface.RolesWorkArea;
+
+import javax.swing.JTabbedPane;
+import javax.swing.table.DefaultTableModel;
+import model.Organization.LocalStoreOrganization;
+import model.Organization.Organization;
+import model.StockItem.StockItem;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -13,8 +17,14 @@ public class OCustomerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form OnlineCustomer
      */
-    public OCustomerJPanel() {
+    
+    LocalStoreOrganization localStoreOrganization;
+    UserAccount userAccount;
+    
+    public OCustomerJPanel(UserAccount pAcc, Organization pOrg) {
         initComponents();
+        this.userAccount = pAcc;
+        this.localStoreOrganization = (LocalStoreOrganization)pOrg;
     }
 
     /**
@@ -26,19 +36,227 @@ public class OCustomerJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tbdPane = new javax.swing.JTabbedPane();
+        paneWelcome = new javax.swing.JPanel();
+        lblWelcome2 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblDispName = new javax.swing.JLabel();
+        lblRole = new javax.swing.JLabel();
+        lblDispRole = new javax.swing.JLabel();
+        paneOrders = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblOrders = new javax.swing.JTable();
+        paneShop = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblShop = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        fldQuantity = new javax.swing.JTextField();
+        btnOrderItem = new javax.swing.JButton();
+
+        tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tbdPaneStateChanged(evt);
+            }
+        });
+
+        lblWelcome2.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblWelcome2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWelcome2.setText("Welcome");
+        lblWelcome2.setName(""); // NOI18N
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUsername.setText("Name - ");
+
+        lblRole.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        lblRole.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblRole.setText("Role - ");
+
+        javax.swing.GroupLayout paneWelcomeLayout = new javax.swing.GroupLayout(paneWelcome);
+        paneWelcome.setLayout(paneWelcomeLayout);
+        paneWelcomeLayout.setHorizontalGroup(
+            paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneWelcomeLayout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblWelcome2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(paneWelcomeLayout.createSequentialGroup()
+                        .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(lblRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblDispName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDispRole, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                        .addGap(9, 9, 9)))
+                .addContainerGap(280, Short.MAX_VALUE))
+        );
+        paneWelcomeLayout.setVerticalGroup(
+            paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneWelcomeLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(lblWelcome2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDispName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(288, Short.MAX_VALUE))
+        );
+
+        tbdPane.addTab("Welcome", paneWelcome);
+
+        tblOrders.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Item", "Quantity", "Supplier", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblOrders);
+
+        javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
+        paneOrders.setLayout(paneOrdersLayout);
+        paneOrdersLayout.setHorizontalGroup(
+            paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+        );
+        paneOrdersLayout.setVerticalGroup(
+            paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneOrdersLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        tbdPane.addTab("Orders", paneOrders);
+
+        tblShop.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Item", "Avail quantity", "Price", "Manufacturer"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblShop);
+
+        jLabel1.setText("Quantity");
+
+        fldQuantity.setText("0");
+
+        btnOrderItem.setText("Order");
+        btnOrderItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderItemActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout paneShopLayout = new javax.swing.GroupLayout(paneShop);
+        paneShop.setLayout(paneShopLayout);
+        paneShopLayout.setHorizontalGroup(
+            paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+            .addGroup(paneShopLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        paneShopLayout.setVerticalGroup(
+            paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneShopLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fldQuantity)
+                    .addComponent(btnOrderItem)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(59, 59, 59))
+        );
+
+        tbdPane.addTab("Shop", paneShop);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 714, Short.MAX_VALUE)
+            .addComponent(tbdPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
+            .addComponent(tbdPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemActionPerformed
+
+    }//GEN-LAST:event_btnOrderItemActionPerformed
+
+    private void tbdPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tbdPaneStateChanged
+
+        JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
+        int index = sourceTabbedPane.getSelectedIndex();
+
+        switch(index) {
+
+            case 1 : populateShopTable();
+            break;            
+        }
+    }//GEN-LAST:event_tbdPaneStateChanged
+    
+    private void populateShopTable() {
+        
+        //DefaultTableModel model = (DefaultTableModel) tblShop.getModel();
+        //model.setRowCount(0);
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOrderItem;
+    private javax.swing.JTextField fldQuantity;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblDispName;
+    private javax.swing.JLabel lblDispRole;
+    private javax.swing.JLabel lblRole;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblWelcome2;
+    private javax.swing.JPanel paneOrders;
+    private javax.swing.JPanel paneShop;
+    private javax.swing.JPanel paneWelcome;
+    private javax.swing.JTabbedPane tbdPane;
+    private javax.swing.JTable tblOrders;
+    private javax.swing.JTable tblShop;
     // End of variables declaration//GEN-END:variables
 }
