@@ -18,7 +18,7 @@ public class LocalStoreOrganization extends Organization {
     public LocalStoreOrganization(StoreEnterprise pParent, String pName) {
         
         this.stockItemDirectory = new StockItemDirectory(this);
-        this.userAccountDirectory = new UserAccountDirectory();
+        this.userAccountDirectory = new UserAccountDirectory(this);
         this.storeEnterprise = pParent;
         this.setName(pName);
     }        

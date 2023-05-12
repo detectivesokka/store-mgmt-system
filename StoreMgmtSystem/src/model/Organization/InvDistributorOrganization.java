@@ -13,7 +13,7 @@ public class InvDistributorOrganization extends Organization {
     
     public InvDistributorOrganization() {
                 
-        userAccountDirectory = new UserAccountDirectory();
+        userAccountDirectory = new UserAccountDirectory(this);
     }
 
     public UserAccountDirectory getUserAccountDirectory() {

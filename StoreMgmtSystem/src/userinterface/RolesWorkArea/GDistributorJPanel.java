@@ -1,5 +1,6 @@
 package userinterface.RolesWorkArea;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import model.Order.GoodsOrder;
@@ -175,7 +176,7 @@ public class GDistributorJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Avail quantity", "Price", "Manufacturer"
+                "Item ID", "Item", "Avail quantity", "Price", "Manufacturer"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -256,12 +257,40 @@ public class GDistributorJPanel extends javax.swing.JPanel {
 
     private void btnOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemActionPerformed
         
-        GoodsOrder go = this.system.getInventoryEnterprise().getInvGoodsOrderQueue().newOrder();
-        go.setDistributorOrganization((InvDistributorOrganization)this.user.getParentOrg());
-        //go.setMfrOrganization(null);
-        //go.setItem(null);
-        //go.setQuantity(0);
+        int rowIndex = this.tblShop.getSelectedRow();
+        int itemId;
+        String manufacturer;
+        InvManufacturerOrganization imo;
+        int quantity;
+
+        if(rowIndex < 0) {
+
+            JOptionPane.showMessageDialog(null, "Please select column");
+            return;
+        }
         
+        try {
+            quantity = Integer.parseInt(this.fldQuantity.getText());
+            
+            if (quantity <= 0) {
+                
+                throw new NumberFormatException();
+            }
+            
+            itemId=Integer.parseInt(this.tblShop.getValueAt(rowIndex,0).toString());
+            manufacturer = this.tblShop.getValueAt(rowIndex, 4).toString();
+            imo = this.system.getInventoryEnterprise().searchMfrOrganization(manufacturer);        
+            GoodsOrder go = this.system.getInventoryEnterprise().getInvGoodsOrderQueue().newOrder();
+        
+            go.setDistributorOrganization((InvDistributorOrganization)this.user.getParentOrg());
+            go.setMfrOrganization(imo);
+            go.setItem(imo.getStockItemDirectory().searchStockItem(itemId));
+            go.setQuantity(quantity);            
+            
+        } catch (NumberFormatException e) {
+            
+            JOptionPane.showMessageDialog(null, "Quantity must be correct");
+        }
     }//GEN-LAST:event_btnOrderItemActionPerformed
 
     private void btnNewOrder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewOrder1ActionPerformed

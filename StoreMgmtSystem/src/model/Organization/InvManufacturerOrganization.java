@@ -26,7 +26,7 @@ public class InvManufacturerOrganization extends Organization {
     public InvManufacturerOrganization(InventoryEnterprise pParent, String pName) {
         
         stockItemDirectory = new StockItemDirectory(this);
-        userAccountDirectory = new UserAccountDirectory();
+        userAccountDirectory = new UserAccountDirectory(this);
         parentInvEnterprise = pParent;
         this.setName(pName);
     }

@@ -15,7 +15,7 @@ public class InvTransportationOrganization extends Organization{
     
     public InvTransportationOrganization(InventoryEnterprise pParent) {
                 
-        userAccountDirectory = new UserAccountDirectory();
+        userAccountDirectory = new UserAccountDirectory(this);
         this.parentInvEnterprise = pParent;
     }
 

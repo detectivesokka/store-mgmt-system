@@ -8,8 +8,7 @@ public abstract class Order {
     
     private final int orderID;        
     private String from;
-    private String to;
-    private int orderType;
+    private String to;    
     private String itemName;
     private int quantity;
     private float taxPc;
@@ -36,15 +35,7 @@ public abstract class Order {
     public void setTo(String to) {
         
         this.to = to;
-    }  
-
-    public int getOrderType() {
-        return orderType;
-    }
-
-    public void setOrderType(int orderType) {
-        this.orderType = orderType;
-    }
+    }      
     
     public int getOrderID() {
         return orderID;

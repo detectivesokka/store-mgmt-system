@@ -1,6 +1,7 @@
 package model.UserAccount;
 
 import java.util.ArrayList;
+import model.Organization.Organization;
 
 /**
  *
@@ -9,10 +10,13 @@ import java.util.ArrayList;
 public class UserAccountDirectory {
     
     private ArrayList<UserAccount> userAccountList;
+    private Organization parentOrganization;
     private int userCount = 1;
     
-    public UserAccountDirectory() {
-        userAccountList = new ArrayList();
+    public UserAccountDirectory(Organization pParent) {
+        
+        userAccountList = new ArrayList();        
+        this.parentOrganization = pParent;
     }
 
     public ArrayList<UserAccount> getUserAccountList() {
@@ -47,6 +51,7 @@ public class UserAccountDirectory {
     public UserAccount newUserAccount(String pUserName, String pPassword, int pRole) {
         
         UserAccount ua = new UserAccount(userCount++, pUserName, pPassword, pRole);
+        ua.setParentOrg(parentOrganization);
         this.userAccountList.add(ua);
         return ua;        
     }

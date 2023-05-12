@@ -18,7 +18,7 @@ public class OnlineStoreOrganization extends Organization {
     public OnlineStoreOrganization(ECommerceEnterprise pParent, String pName) {
         
         this.stockItemDirectory = new StockItemDirectory(this);
-        this.userAccountDirectory = new UserAccountDirectory();
+        this.userAccountDirectory = new UserAccountDirectory(this);
         this.eCommerceEnterprise = pParent;
         this.setName(pName);
     }        

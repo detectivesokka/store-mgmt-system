@@ -109,4 +109,17 @@ public class InventoryEnterprise extends Enterprise{
     public GoodsOrderQueue getInvGoodsOrderQueue() {
         return invGoodsOrderQueue;
     }        
+
+    public InvManufacturerOrganization searchMfrOrganization(String manufacturer) {
+                
+        for (InvManufacturerOrganization imo : this.invManOrgList) {
+            
+            if (imo.getName() != null && imo.getName().equals(manufacturer)) {
+                
+                return imo;
+            }
+        }    
+        
+        return null;
+    }
 }   

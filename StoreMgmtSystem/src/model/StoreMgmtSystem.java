@@ -32,7 +32,7 @@ public class StoreMgmtSystem {
     
     public StoreMgmtSystem() {
         
-        userAccountDirectory = new UserAccountDirectory();     
+        userAccountDirectory = new UserAccountDirectory(null);     
         
         complianceEnterprise = new ComplianceEnterprise();
         inventoryEnterprise = new InventoryEnterprise();
@@ -74,8 +74,7 @@ public class StoreMgmtSystem {
                         
         go.setDistributorOrganization(ido);       
         go.setItem(si);      
-        go.setMfrOrganization(imo);
-        go.setOrderType(0);
+        go.setMfrOrganization(imo);        
         go.setQuantity(0);
         go.setTaxPc(0);
         go.setTotalSellingPrice(0);                   

@@ -16,7 +16,7 @@ public class TaxationOrganization extends Organization {
     public TaxationOrganization(ComplianceEnterprise parent, String imo1) {
         
         this.complianceEnterprise = parent;
-        this.userAccountDirectory = new UserAccountDirectory();
+        this.userAccountDirectory = new UserAccountDirectory(this);
         this.setName(imo1);
     }
 
