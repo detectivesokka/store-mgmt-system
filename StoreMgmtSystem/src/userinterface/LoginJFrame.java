@@ -5,8 +5,8 @@ import userinterface.RolesWorkArea.AdminJPanel;
 import userinterface.RolesWorkArea.TaxAuditorJPanel;
 import userinterface.RolesWorkArea.ShopEmpJPanel;
 import userinterface.RolesWorkArea.ShopMgrJPanel;
-import userinterface.RolesWorkArea.ODeliverymanJPanel;
-import userinterface.RolesWorkArea.OCustomerJPanel;
+import userinterface.RolesWorkArea.OnlineDeliverymanJPanel;
+import userinterface.RolesWorkArea.OnlineCustomerJPanel;
 import userinterface.RolesWorkArea.GTransporterJPanel;
 import userinterface.RolesWorkArea.GMfrJPanel;
 import userinterface.RolesWorkArea.GDistributorJPanel;
@@ -88,41 +88,38 @@ public class LoginJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(310, 310, 310)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(TitleLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fldUsername)
-                            .addComponent(fldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))))
-                .addGap(118, 118, 118))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TitleLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(331, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(178, 178, 178)
                 .addComponent(TitleLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsername)
-                    .addComponent(fldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword)
-                    .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(btnSubmit)
-                .addContainerGap(139, Short.MAX_VALUE))
+                    .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(249, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,10 +160,10 @@ public class LoginJFrame extends javax.swing.JFrame {
                         userPanel = new AdminJPanel();
                         break;
                     case 1:
-                        userPanel = new OCustomerJPanel(user, org);
+                        userPanel = new OnlineCustomerJPanel(user, org);
                         break;
                     case 2:
-                        userPanel = new ODeliverymanJPanel();
+                        userPanel = new OnlineDeliverymanJPanel();
                         break;
                     case 3:
                         userPanel = new ShopMgrJPanel();
@@ -185,7 +182,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                         break;
                     case 8:
                         userPanel = new GDistributorJPanel(this.system, user);
-                        break;
+                        break;                    
                     default:
                         userPanel = null;
                 }
@@ -215,6 +212,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                 result = new ArrayList<> ();
                 result.add(null);
                 result.add(u);
+                return result;
             }
         }
         // Checking InventoryEnterprise
@@ -238,6 +236,15 @@ public class LoginJFrame extends javax.swing.JFrame {
         // Checking Store enterprise
                        
         result = this.system.getStoreEnterprise().searchUserAccount(pUsername, pPassword);
+        
+        if(result != null) {
+            
+            return result;
+        }                
+        
+        // Checking Compliance enterprise
+                       
+        result = this.system.getComplianceEnterprise().searchUserAccount(pUsername, pPassword);
         
         if(result != null) {
             

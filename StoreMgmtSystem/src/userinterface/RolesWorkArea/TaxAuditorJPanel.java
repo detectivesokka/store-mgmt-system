@@ -26,19 +26,145 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tbdPane3 = new javax.swing.JTabbedPane();
+        paneWelcome3 = new javax.swing.JPanel();
+        lblWelcome5 = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblDispName = new javax.swing.JLabel();
+        lblRole = new javax.swing.JLabel();
+        lblDispRole = new javax.swing.JLabel();
+        paneOrganizations = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
+        tbdPane3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tbdPane3StateChanged(evt);
+            }
+        });
+
+        lblWelcome5.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblWelcome5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblWelcome5.setText("Welcome");
+        lblWelcome5.setName(""); // NOI18N
+
+        lblUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUsername.setText("Name - ");
+
+        lblRole.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        lblRole.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblRole.setText("Role - ");
+
+        javax.swing.GroupLayout paneWelcome3Layout = new javax.swing.GroupLayout(paneWelcome3);
+        paneWelcome3.setLayout(paneWelcome3Layout);
+        paneWelcome3Layout.setHorizontalGroup(
+            paneWelcome3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneWelcome3Layout.createSequentialGroup()
+                .addGroup(paneWelcome3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(paneWelcome3Layout.createSequentialGroup()
+                        .addGap(348, 348, 348)
+                        .addComponent(lblWelcome5, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(paneWelcome3Layout.createSequentialGroup()
+                        .addGap(279, 279, 279)
+                        .addGroup(paneWelcome3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(paneWelcome3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblDispName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(297, Short.MAX_VALUE))
+        );
+        paneWelcome3Layout.setVerticalGroup(
+            paneWelcome3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneWelcome3Layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(lblWelcome5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(paneWelcome3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDispName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(paneWelcome3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(244, Short.MAX_VALUE))
+        );
+
+        tbdPane3.addTab("Welcome", paneWelcome3);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Name", "Organization type", "Total revenue", "Tax amount", "Audit status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout paneOrganizationsLayout = new javax.swing.GroupLayout(paneOrganizations);
+        paneOrganizations.setLayout(paneOrganizationsLayout);
+        paneOrganizationsLayout.setHorizontalGroup(
+            paneOrganizationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+        );
+        paneOrganizationsLayout.setVerticalGroup(
+            paneOrganizationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneOrganizationsLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 107, Short.MAX_VALUE))
+        );
+
+        tbdPane3.addTab("Organizations", paneOrganizations);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(tbdPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(tbdPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tbdPane3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tbdPane3StateChanged
+
+        /*JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
+        int index = sourceTabbedPane.getSelectedIndex();
+
+        switch(index) {
+
+            case 1 : populateShopTable();
+            break;
+        }*/
+    }//GEN-LAST:event_tbdPane3StateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblDispName;
+    private javax.swing.JLabel lblDispRole;
+    private javax.swing.JLabel lblRole;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblWelcome5;
+    private javax.swing.JPanel paneOrganizations;
+    private javax.swing.JPanel paneWelcome3;
+    private javax.swing.JTabbedPane tbdPane3;
     // End of variables declaration//GEN-END:variables
 }

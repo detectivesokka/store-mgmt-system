@@ -62,6 +62,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
         btnAcceptOrder = new javax.swing.JButton();
+        btnAcceptOrder1 = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -99,7 +100,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
                             .addComponent(lblDispName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblDispRole, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
                         .addGap(9, 9, 9)))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(466, Short.MAX_VALUE))
         );
         paneWelcome2Layout.setVerticalGroup(
             paneWelcome2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +115,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
                 .addGroup(paneWelcome2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addContainerGap(330, Short.MAX_VALUE))
         );
 
         tbdPane.addTab("Welcome", paneWelcome2);
@@ -176,7 +177,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
                 .addComponent(btnDeleteItem)
                 .addGap(18, 18, 18)
                 .addComponent(btnEditItem)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(421, Short.MAX_VALUE))
         );
         paneInventoryLayout.setVerticalGroup(
             paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,24 +188,24 @@ public class GMfrJPanel extends javax.swing.JPanel {
                     .addComponent(btnAddItem)
                     .addComponent(btnDeleteItem)
                     .addComponent(btnEditItem))
-                .addGap(0, 149, Short.MAX_VALUE))
+                .addGap(0, 159, Short.MAX_VALUE))
         );
 
         tbdPane.addTab("Inventory", paneInventory);
 
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Quantity", "Assignee", "Status"
+                "ID", "Item", "Quantity", "Distributor", "Status", "Assigned to"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -220,23 +221,34 @@ public class GMfrJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnAcceptOrder1.setText("Dispatch order");
+        btnAcceptOrder1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptOrder1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
         paneOrdersLayout.setHorizontalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addGap(270, 270, 270)
+                .addGap(339, 339, 339)
                 .addComponent(btnAcceptOrder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAcceptOrder1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAcceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAcceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAcceptOrder1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 40, Short.MAX_VALUE))
         );
 
         tbdPane.addTab("Orders", paneOrders);
@@ -318,6 +330,10 @@ public class GMfrJPanel extends javax.swing.JPanel {
 
     
     }//GEN-LAST:event_btnAcceptOrderActionPerformed
+
+    private void btnAcceptOrder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptOrder1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAcceptOrder1ActionPerformed
     
     private int getSelectedItemFromTable() {
         
@@ -360,6 +376,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceptOrder;
+    private javax.swing.JButton btnAcceptOrder1;
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnDeleteItem;
     private javax.swing.JButton btnEditItem;

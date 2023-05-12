@@ -2,29 +2,27 @@
 package userinterface.RolesWorkArea;
 
 import javax.swing.JTabbedPane;
-import javax.swing.table.DefaultTableModel;
-import model.Organization.LocalStoreOrganization;
+import model.Organization.OnlineStoreOrganization;
 import model.Organization.Organization;
-import model.StockItem.StockItem;
 import model.UserAccount.UserAccount;
 
 /**
  *
  * @author saidutt
  */
-public class OCustomerJPanel extends javax.swing.JPanel {
+public class OnlineCustomerJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form OnlineCustomer
      */
     
-    LocalStoreOrganization localStoreOrganization;
-    UserAccount userAccount;
+    private final OnlineStoreOrganization onlineStoreOrganization;
+    private final UserAccount userAccount;
     
-    public OCustomerJPanel(UserAccount pAcc, Organization pOrg) {
+    public OnlineCustomerJPanel(UserAccount pAcc, Organization pOrg) {
         initComponents();
         this.userAccount = pAcc;
-        this.localStoreOrganization = (LocalStoreOrganization)pOrg;
+        this.onlineStoreOrganization = (OnlineStoreOrganization)pOrg;
     }
 
     /**
@@ -46,6 +44,7 @@ public class OCustomerJPanel extends javax.swing.JPanel {
         paneOrders = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         paneShop = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblShop = new javax.swing.JTable();
@@ -77,26 +76,27 @@ public class OCustomerJPanel extends javax.swing.JPanel {
         paneWelcomeLayout.setHorizontalGroup(
             paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneWelcomeLayout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblWelcome2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(274, 274, 274)
+                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(paneWelcomeLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(lblWelcome2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(paneWelcomeLayout.createSequentialGroup()
                         .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                            .addComponent(lblRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblDispName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDispRole, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
-                        .addGap(9, 9, 9)))
-                .addContainerGap(280, Short.MAX_VALUE))
+                            .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
         paneWelcomeLayout.setVerticalGroup(
             paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneWelcomeLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(213, 213, 213)
                 .addComponent(lblWelcome2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addGap(18, 18, 18)
                 .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDispName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -104,7 +104,7 @@ public class OCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(236, Short.MAX_VALUE))
         );
 
         tbdPane.addTab("Welcome", paneWelcome);
@@ -130,17 +130,25 @@ public class OCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblOrders);
 
+        jButton1.setText("Track order");
+
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
         paneOrdersLayout.setHorizontalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(paneOrdersLayout.createSequentialGroup()
+                .addGap(397, 397, 397)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         tbdPane.addTab("Orders", paneOrders);
@@ -153,7 +161,7 @@ public class OCustomerJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Avail quantity", "Price", "Manufacturer"
+                "ID", "Item", "Avail quantity", "Price", "Supplier"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -181,15 +189,15 @@ public class OCustomerJPanel extends javax.swing.JPanel {
         paneShop.setLayout(paneShopLayout);
         paneShopLayout.setHorizontalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(paneShopLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(fldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
         paneShopLayout.setVerticalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +206,7 @@ public class OCustomerJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fldQuantity)
-                    .addComponent(btnOrderItem)
+                    .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(59, 59, 59))
         );
@@ -244,6 +252,7 @@ public class OCustomerJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOrderItem;
     private javax.swing.JTextField fldQuantity;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
