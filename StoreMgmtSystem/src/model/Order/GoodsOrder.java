@@ -21,13 +21,13 @@ public class GoodsOrder extends Order {
 
     public InvManufacturerOrganization getDistributorOrganization() {
         
-        return imo;
+        return imo;       
     }
 
     public void setMfrOrganization(InvManufacturerOrganization imo) {
         
-        this.imo = imo;
-        setFrom(imo.getName());
+        this.imo = imo;       
+        this.setFrom(imo.getName());
     }
 
     public InvDistributorOrganization getMfrOrganization() {
@@ -37,8 +37,8 @@ public class GoodsOrder extends Order {
 
     public void setDistributorOrganization(InvDistributorOrganization ido) {
         
-        this.ido = ido;       
-        setTo(ido.getName());
+        this.ido = ido;         
+        this.setTo(ido.getName());
     }
 
     public StockItem getItem() {
@@ -48,8 +48,9 @@ public class GoodsOrder extends Order {
 
     public void setItem(StockItem item) {
         
-        this.item = item;
-        setItemName(item.getItemName());
+        this.item = item;        
+        this.setItemName(item.getItemName());
+        this.setTaxPc(item.getPcTax());        
     }
 
     @Override
