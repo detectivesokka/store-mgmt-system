@@ -11,33 +11,33 @@ import model.StockItem.StockItem;
 public class GoodsOrder extends Order {
         
     private InvManufacturerOrganization imo;
-    private InvDistributorOrganization ido;    
-    private StockItem item;   
+    private InvDistributorOrganization ido;
+    private StockItem item;
     
     public GoodsOrder(int pId) {
         
         super(pId);
     }
 
-    public InvManufacturerOrganization getDistributorOrganization() {
+    public InvManufacturerOrganization getMfrOrganization() {
         
-        return imo;       
+        return imo;
     }
 
     public void setMfrOrganization(InvManufacturerOrganization imo) {
         
-        this.imo = imo;       
+        this.imo = imo;
         this.setFrom(imo.getName());
     }
 
-    public InvDistributorOrganization getMfrOrganization() {
+    public InvDistributorOrganization getDistributorOrganization() {
         
         return ido;
     }
 
     public void setDistributorOrganization(InvDistributorOrganization ido) {
         
-        this.ido = ido;         
+        this.ido = ido;
         this.setTo(ido.getName());
     }
 
@@ -48,16 +48,23 @@ public class GoodsOrder extends Order {
 
     public void setItem(StockItem item) {
         
-        this.item = item;        
+        this.item = item;
         this.setItemName(item.getItemName());
-        this.setTaxPc(item.getPcTax());        
-    }
-
-    @Override
-    public String getStatus() {
+        this.setTaxPc(item.getPcTax());
+    }   
+    
+    public void dispatchToDistributor() throws Exception {
         
-        return "Goods order";
+        if (this.item.getQuantity() - this.getQuantity() < 0) {
+        
+            throw new Exception("Can't send more items than present");
+        }
+        
+        this.item.setQuantity(this.item.getQuantity() - this.getQuantity());         
     }
     
-    
+    public void addToDistributorInventory() {
+        
+        this.getDistributorOrganization().getStockItemDirectory().newStockItem(this.item.getItemName(), this.item.getPrice(), this.item.getPcTax(), this.getQuantity());
+    }
 }

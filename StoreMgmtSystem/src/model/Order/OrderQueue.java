@@ -8,7 +8,7 @@ public interface OrderQueue {
     
     public abstract Order newOrder ();
     
-    public abstract Order searchStockItem(int pId);
+    public abstract Order searchOrder(int pId);
     
-    public abstract void deleteStockItem(int pId) ;
+    public abstract void deleteOrder(int pId) ;
 }

@@ -29,16 +29,16 @@ public class InventoryEnterprise extends Enterprise{
         this.invGoodsOrderQueue = new GoodsOrderQueue();   
     }                
 
-    public InvManufacturerOrganization newInvManufacturerOrganization() {
+    public InvManufacturerOrganization newInvManufacturerOrganization(String pName) {
         
-        InvManufacturerOrganization imf = new InvManufacturerOrganization(this, "imo1");
+        InvManufacturerOrganization imf = new InvManufacturerOrganization(this, pName);
         this.invManOrgList.add(imf);
         return imf;        
     }
     
-    public InvDistributorOrganization newInvDistributorOrganization() {
+    public InvDistributorOrganization newInvDistributorOrganization(String pName) {
         
-        InvDistributorOrganization id = new InvDistributorOrganization();
+        InvDistributorOrganization id = new InvDistributorOrganization(this, pName);
         this.invDisOrgList.add(id);
         return id;        
     }

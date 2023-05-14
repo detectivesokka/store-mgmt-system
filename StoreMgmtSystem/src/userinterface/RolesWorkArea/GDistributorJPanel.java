@@ -56,7 +56,10 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         paneOrders = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
-        btnNewOrder1 = new javax.swing.JButton();
+        btnCancelOrder = new javax.swing.JButton();
+        paneInventory = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblInventory = new javax.swing.JTable();
         paneShop = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblShop = new javax.swing.JTable();
@@ -127,12 +130,19 @@ public class GDistributorJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Quantity", "Supplier", "Status"
+                "Order ID", "Item", "Quantity", "Supplier", "Status"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -140,10 +150,10 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblOrders);
 
-        btnNewOrder1.setText("Cancel order");
-        btnNewOrder1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelOrder.setText("Cancel order");
+        btnCancelOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewOrder1ActionPerformed(evt);
+                btnCancelOrderActionPerformed(evt);
             }
         });
 
@@ -154,7 +164,7 @@ public class GDistributorJPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addGap(380, 380, 380)
-                .addComponent(btnNewOrder1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
@@ -162,11 +172,45 @@ public class GDistributorJPanel extends javax.swing.JPanel {
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnNewOrder1)
+                .addComponent(btnCancelOrder)
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
         tbdPane.addTab("Orders", paneOrders);
+
+        tblInventory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Item ID", "Item", "Avail quantity", "Cost price", "Selling price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblInventory);
+
+        javax.swing.GroupLayout paneInventoryLayout = new javax.swing.GroupLayout(paneInventory);
+        paneInventory.setLayout(paneInventoryLayout);
+        paneInventoryLayout.setHorizontalGroup(
+            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+        );
+        paneInventoryLayout.setVerticalGroup(
+            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+        );
+
+        tbdPane.addTab("Inventory", paneInventory);
 
         tblShop.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -250,7 +294,9 @@ public class GDistributorJPanel extends javax.swing.JPanel {
             
             case 1 : populateOrdersTable();
             break;
-            case 2 : populateShopTable();
+            case 3 : populateShopTable();
+            break;
+            case 2 : populateInventoryTable();
             break;
         }
     }//GEN-LAST:event_tbdPaneStateChanged
@@ -286,16 +332,36 @@ public class GDistributorJPanel extends javax.swing.JPanel {
             go.setMfrOrganization(imo);
             go.setItem(imo.getStockItemDirectory().searchStockItem(itemId));
             go.setQuantity(quantity);            
+            go.setStatus("Order placed by Distributor");
+            JOptionPane.showMessageDialog(null, "Order placed!");
             
         } catch (NumberFormatException e) {
             
             JOptionPane.showMessageDialog(null, "Quantity must be correct");
         }
+        
+        
     }//GEN-LAST:event_btnOrderItemActionPerformed
 
-    private void btnNewOrder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewOrder1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNewOrder1ActionPerformed
+    private void btnCancelOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOrderActionPerformed
+        
+        int rowIndex = this.tblOrders.getSelectedRow();
+        int orderId;
+        
+        try {
+            
+            orderId = Integer.parseInt(this.tblShop.getValueAt(rowIndex,0).toString());            
+            this.system.getInventoryEnterprise().getInvGoodsOrderQueue().deleteOrder(orderId);
+        
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Order no longer exists");
+            
+        } 
+                 
+        populateOrdersTable();        
+                
+    }//GEN-LAST:event_btnCancelOrderActionPerformed
 
     private void populateOrdersTable() {
         
@@ -305,7 +371,7 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         for (GoodsOrder go : this.system.getInventoryEnterprise().getInvGoodsOrderQueue().getOrderList()) {                       
                                                                             
             // Adding new row to the table                                       
-            model.addRow(new Object[]{go.getOrderID(), "", go.getQuantity(), "", go.getStatus()});                        
+            model.addRow(new Object[]{go.getOrderID(), go.getItem().getItemName(), go.getQuantity(), go.getFrom(), go.getStatus()});
         }
     }
     
@@ -324,22 +390,38 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         }
     }
     
+    private void populateInventoryTable() {
+        
+        DefaultTableModel model = (DefaultTableModel) tblInventory.getModel();
+        model.setRowCount(0);
+        
+        for (StockItem si : ((InvDistributorOrganization)this.user.getParentOrg()).getStockItemDirectory().getStockItemList()) {
+                                        
+            // Adding new row to the table                                       
+            model.addRow(new Object[]{si.getItemId(), si.getItemName(), si.getQuantity(), si.getPrice(), "-"});
+        }
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNewOrder1;
+    private javax.swing.JButton btnCancelOrder;
     private javax.swing.JButton btnOrderItem;
     private javax.swing.JTextField fldQuantity;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblDispName;
     private javax.swing.JLabel lblDispRole;
     private javax.swing.JLabel lblRole;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblWelcome2;
+    private javax.swing.JPanel paneInventory;
     private javax.swing.JPanel paneOrders;
     private javax.swing.JPanel paneShop;
     private javax.swing.JPanel paneWelcome;
     private javax.swing.JTabbedPane tbdPane;
+    private javax.swing.JTable tblInventory;
     private javax.swing.JTable tblOrders;
     private javax.swing.JTable tblShop;
     // End of variables declaration//GEN-END:variables

@@ -68,7 +68,7 @@ public class ShopOrderQueue implements OrderQueue {
     }
 
     @Override
-    public ShopOrder searchStockItem(int pId) {
+    public ShopOrder searchOrder(int pId) {
 
         for (ShopOrder o : this.orderList) {
 
@@ -82,8 +82,8 @@ public class ShopOrderQueue implements OrderQueue {
     }
 
     @Override
-    public void deleteStockItem(int pId) {
-        ShopOrder o = searchStockItem(pId);
+    public void deleteOrder(int pId) {
+        ShopOrder o = searchOrder(pId);
         this.orderList.remove(o);
     }
 

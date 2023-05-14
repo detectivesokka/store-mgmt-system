@@ -1,6 +1,7 @@
 package userinterface.RolesWorkArea;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import model.Order.GoodsOrder;
@@ -62,7 +63,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
         btnAcceptOrder = new javax.swing.JButton();
-        btnAcceptOrder1 = new javax.swing.JButton();
+        btnDispatchOrder = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -195,17 +196,17 @@ public class GMfrJPanel extends javax.swing.JPanel {
 
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Quantity", "Distributor", "Status", "Assigned to"
+                "ID", "Item", "Quantity", "Distributor", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -221,10 +222,10 @@ public class GMfrJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnAcceptOrder1.setText("Dispatch order");
-        btnAcceptOrder1.addActionListener(new java.awt.event.ActionListener() {
+        btnDispatchOrder.setText("Dispatch order");
+        btnDispatchOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAcceptOrder1ActionPerformed(evt);
+                btnDispatchOrderActionPerformed(evt);
             }
         });
 
@@ -237,7 +238,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
                 .addGap(339, 339, 339)
                 .addComponent(btnAcceptOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAcceptOrder1)
+                .addComponent(btnDispatchOrder)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
@@ -247,7 +248,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAcceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAcceptOrder1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDispatchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 40, Short.MAX_VALUE))
         );
 
@@ -327,13 +328,65 @@ public class GMfrJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteItemActionPerformed
 
     private void btnAcceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptOrderActionPerformed
-
-    
+               
+        
+        int rowIndex = this.tblOrders.getSelectedRow();        
+        int orderId;
+        String status;
+        
+        try {
+            
+            orderId=Integer.parseInt(tblOrders.getValueAt(rowIndex,0).toString());
+            status = tblOrders.getValueAt(rowIndex,4).toString();
+            
+            if (status.compareTo("Accepted by Manufacturer") == 0 || status.compareTo("Ready for dispatch") == 0 ) {
+                
+                JOptionPane.showMessageDialog(null, "Order already accepted");            
+                return;
+            }
+            
+            GoodsOrder go = this.org.getParentInvEnterprise().getInvGoodsOrderQueue().searchOrder(orderId);
+            go.setStatus("Accepted by Manufacturer");
+            
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Select an order to accept");            
+        }
+        
+        populateOrdersTable();
     }//GEN-LAST:event_btnAcceptOrderActionPerformed
 
-    private void btnAcceptOrder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptOrder1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAcceptOrder1ActionPerformed
+    private void btnDispatchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDispatchOrderActionPerformed
+        
+        int rowIndex = this.tblOrders.getSelectedRow();        
+        int orderId;        
+        String status;
+        
+        try {
+            
+            orderId=Integer.parseInt(tblOrders.getValueAt(rowIndex,0).toString());                                                
+            
+            GoodsOrder go = this.org.getParentInvEnterprise().getInvGoodsOrderQueue().searchOrder(orderId);
+            status = tblOrders.getValueAt(rowIndex,4).toString();
+            
+            if (status.compareTo("Accepted by Manufacturer") != 0) {
+               
+                JOptionPane.showMessageDialog(null, "Order not ready to be dispached");            
+                return;
+            } 
+            
+            go.dispatchToDistributor();
+            go.setStatus("Ready for dispatch");
+            
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Select an order to dispatch");            
+        }
+        
+        populateOrdersTable();
+    }//GEN-LAST:event_btnDispatchOrderActionPerformed
     
     private int getSelectedItemFromTable() {
         
@@ -370,15 +423,15 @@ public class GMfrJPanel extends javax.swing.JPanel {
         for (GoodsOrder goq : this.org.getParentInvEnterprise().getInvGoodsOrderQueue().getOrderList()) {
             
             // Adding new row to the table                                       
-            model.addRow(new Object[]{goq.getOrderID(),goq.getItemName(), goq.getQuantity(), goq.getFrom(), goq.getStatus()});            
+            model.addRow(new Object[]{goq.getOrderID(),goq.getItemName(), goq.getQuantity(), goq.getFrom(), goq.getStatus(), "-"});            
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceptOrder;
-    private javax.swing.JButton btnAcceptOrder1;
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnDeleteItem;
+    private javax.swing.JButton btnDispatchOrder;
     private javax.swing.JButton btnEditItem;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

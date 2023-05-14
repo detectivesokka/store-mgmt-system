@@ -52,13 +52,10 @@ public class StoreMgmtSystem {
 
         // add items
         // INV ORGANIZATIONS
-        InvManufacturerOrganization imo = inventoryEnterprise.newInvManufacturerOrganization();
-        InvDistributorOrganization ido = inventoryEnterprise.newInvDistributorOrganization();
+        InvManufacturerOrganization imo = inventoryEnterprise.newInvManufacturerOrganization("imo1");
+        InvDistributorOrganization ido = inventoryEnterprise.newInvDistributorOrganization("ido1");
         InvTransportationOrganization ito = inventoryEnterprise.newInvTransportationOrganization();
-        
-        // adding goods order
-        GoodsOrder go = inventoryEnterprise.getInvGoodsOrderQueue().newOrder(); 
-        
+                        
         // E-COMM ORGANIZATIONS
         OnlineStoreOrganization oso = this.eCommerceEnterprise.newLocalStoreOrganization();
         
@@ -71,14 +68,7 @@ public class StoreMgmtSystem {
         StockItem si = imo.getStockItemDirectory().newStockItem("stockitem1", 100, 15, 10);                                      
         imo.getStockItemDirectory().newStockItem("stockitem2", 110, 10, 8);
         imo.getStockItemDirectory().newStockItem("stockitem3", 120, 5, 5);                
-                        
-        go.setDistributorOrganization(ido);       
-        go.setItem(si);      
-        go.setMfrOrganization(imo);        
-        go.setQuantity(0);
-        go.setTaxPc(0);
-        go.setTotalSellingPrice(0);                   
-        
+                                
         userAccountDirectory.newUserAccount("admin", "admin", 0); 
         oso.newUserAccount("ocus1", "ocus1", 1);
         oso.newUserAccount("odel1", "odel1", 2);        

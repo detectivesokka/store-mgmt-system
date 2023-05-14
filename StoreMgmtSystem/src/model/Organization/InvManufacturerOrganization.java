@@ -21,7 +21,7 @@ public class InvManufacturerOrganization extends Organization {
         this.userAccountDirectory = userAccountDirectory;
         this.parentInvEnterprise = pParent;
         this.setName(pName);
-    }        
+    }
 
     public InvManufacturerOrganization(InventoryEnterprise pParent, String pName) {
         

@@ -25,14 +25,14 @@ public class GoodsOrderQueue implements OrderQueue {
     }
 
     @Override
-    public void deleteStockItem(int pId) {
+    public void deleteOrder(int pId) {
 
-        GoodsOrder o = searchStockItem(pId);
+        GoodsOrder o = searchOrder(pId);
         this.goodsOrders.remove(o);
     }
 
     @Override
-    public GoodsOrder searchStockItem(int pId) {
+    public GoodsOrder searchOrder(int pId) {
 
         for (GoodsOrder o : this.goodsOrders) {
 

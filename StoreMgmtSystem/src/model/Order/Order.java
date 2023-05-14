@@ -13,6 +13,7 @@ public abstract class Order {
     private int quantity;
     private float taxPc;
     private float totalSellingPrice;
+    private String orderStatus;
     
     Order(int pId) {
         
@@ -75,15 +76,12 @@ public abstract class Order {
         
         this.totalSellingPrice = totalSellingPrice;
     }
-    
+
     public String getStatus() {
-        
-        switch(this.orderID) {
-            
-            case 0:             
-                return "Ordered from manufacturer";                
-            default:
-                return "";                
-        }
+        return orderStatus;
+    }
+
+    public void setStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }

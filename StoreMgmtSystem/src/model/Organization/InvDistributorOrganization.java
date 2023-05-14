@@ -1,5 +1,7 @@
 package model.Organization;
 
+import model.Enterprise.InventoryEnterprise;
+import model.StockItem.StockItemDirectory;
 import model.UserAccount.UserAccount;
 import model.UserAccount.UserAccountDirectory;
 
@@ -9,11 +11,17 @@ import model.UserAccount.UserAccountDirectory;
  **/
 public class InvDistributorOrganization extends Organization {
         
-    private final UserAccountDirectory userAccountDirectory;    
+    private final UserAccountDirectory userAccountDirectory;
+    private final InventoryEnterprise parentInvEnterprise;
+    private final StockItemDirectory stockItemDirectory;    
     
-    public InvDistributorOrganization() {
+    public InvDistributorOrganization(InventoryEnterprise pParent, String pName) {
                 
-        userAccountDirectory = new UserAccountDirectory(this);
+        this.userAccountDirectory = new UserAccountDirectory(this);        
+        this.stockItemDirectory = new StockItemDirectory(this);
+        
+        this.setName(pName);
+        this.parentInvEnterprise = pParent;
     }
 
     public UserAccountDirectory getUserAccountDirectory() {
@@ -25,4 +33,14 @@ public class InvDistributorOrganization extends Organization {
         
         return this.userAccountDirectory.newUserAccount(pUserName, pPassword, pRole);
     }
+
+    public InventoryEnterprise getParentInvEnterprise() {
+        return parentInvEnterprise;
+    }        
+
+    public StockItemDirectory getStockItemDirectory() {
+        return stockItemDirectory;
+    }
+    
+    
 }

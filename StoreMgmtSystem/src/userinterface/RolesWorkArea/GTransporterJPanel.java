@@ -1,5 +1,6 @@
 package userinterface.RolesWorkArea;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import model.Order.GoodsOrder;
@@ -24,7 +25,14 @@ public class GTransporterJPanel extends javax.swing.JPanel {
         
         initComponents();
         this.org = (InvTransportationOrganization)pOrg;
-        this.user = pUser;             
+        this.user = pUser; 
+        customizeWelcomeScreen(pUser);
+    }
+    
+    private void customizeWelcomeScreen(UserAccount pUserAccount) {
+        
+        this.lblDispName.setText(pUserAccount.getUserName());
+        this.lblDispRole.setText(pUserAccount.getRoleString());
     }
 
     /**
@@ -114,7 +122,7 @@ public class GTransporterJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Quantity", "Supplier", "Status", "Asisgned"
+                "Order Id", "Item", "Quantity", "Supplier", "Status", "Distributor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -135,6 +143,11 @@ public class GTransporterJPanel extends javax.swing.JPanel {
         });
 
         btnAccept.setText("Accept Order");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
@@ -185,8 +198,64 @@ public class GTransporterJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tbdPaneStateChanged
 
     private void btnDeliveredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveredActionPerformed
-        // TODO add your handling code here:
+        
+        int rowIndex = this.tblOrders.getSelectedRow();        
+        int orderId;        
+        String status;
+        
+        try {
+            
+            orderId=Integer.parseInt(this.tblOrders.getValueAt(rowIndex,0).toString());                                                
+            
+            GoodsOrder go = this.org.getParentInvEnterprise().getInvGoodsOrderQueue().searchOrder(orderId);
+            status = this.tblOrders.getValueAt(rowIndex,4).toString();
+            
+            if (status.compareTo("Ready for shipping") != 0) {
+               
+                JOptionPane.showMessageDialog(null, "Order not ready to be shipped");            
+                return;
+            } 
+            
+            go.addToDistributorInventory();
+            go.setStatus("Order delivered to customer");            
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Select an order to ship");            
+        }
+        
+        populateOrdersTable();
     }//GEN-LAST:event_btnDeliveredActionPerformed
+
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        
+        int rowIndex = this.tblOrders.getSelectedRow();        
+        int orderId;        
+        String status;
+        
+        try {
+            
+            orderId=Integer.parseInt(this.tblOrders.getValueAt(rowIndex,0).toString());                                                
+            
+            GoodsOrder go = this.org.getParentInvEnterprise().getInvGoodsOrderQueue().searchOrder(orderId);
+            status = this.tblOrders.getValueAt(rowIndex,4).toString();
+            
+            if (status.compareTo("Ready for dispatch") != 0) {
+               
+                JOptionPane.showMessageDialog(null, "Order not ready to be accepted");            
+                return;
+            } 
+             
+            go.setStatus("Ready for shipping");
+            
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Select an order to accept");            
+        }
+        
+        populateOrdersTable();
+    }//GEN-LAST:event_btnAcceptActionPerformed
     
     private void populateOrdersTable() {
         
@@ -196,7 +265,7 @@ public class GTransporterJPanel extends javax.swing.JPanel {
         for (GoodsOrder goq : this.org.getParentInvEnterprise().getInvGoodsOrderQueue().getOrderList()) {
             
             // Adding new row to the table                                       
-            model.addRow(new Object[]{goq.getOrderID(),goq.getItemName(), goq.getQuantity(), goq.getFrom(), goq.getStatus()});            
+            model.addRow(new Object[]{goq.getOrderID(),goq.getItemName(), goq.getQuantity(), goq.getTo(), goq.getStatus(), goq.getFrom()});            
         }
     }
 
