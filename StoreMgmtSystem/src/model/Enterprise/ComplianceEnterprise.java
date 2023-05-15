@@ -2,6 +2,7 @@ package model.Enterprise;
 
 import java.util.ArrayList;
 import model.Organization.TaxationOrganization;
+import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
 
 /**
@@ -12,9 +13,9 @@ public class ComplianceEnterprise extends Enterprise{
 
     private final ArrayList <TaxationOrganization> taxOrgList;
     
-    public ComplianceEnterprise() {
+    public ComplianceEnterprise(StoreMgmtSystem pSystem) {
         
-        super(2);
+        super(2, pSystem);
         taxOrgList = new ArrayList<>();        
     }
 

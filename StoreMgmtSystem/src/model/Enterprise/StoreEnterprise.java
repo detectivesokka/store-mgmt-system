@@ -3,6 +3,7 @@ package model.Enterprise;
 import java.util.ArrayList;
 import model.Order.ShopOrderQueue;
 import model.Organization.LocalStoreOrganization;
+import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
 
 /**
@@ -14,9 +15,9 @@ public class StoreEnterprise extends Enterprise {
     private final ArrayList<LocalStoreOrganization> localOrgList;
     private final ShopOrderQueue shopOrderQueue;        
     
-    public StoreEnterprise() {
+    public StoreEnterprise(StoreMgmtSystem pSystem) {
         
-        super(1);
+        super(1, pSystem);
         localOrgList = new ArrayList<>();
         shopOrderQueue = new ShopOrderQueue();
     }

@@ -5,6 +5,7 @@ import model.Order.GoodsOrderQueue;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
 import model.Organization.InvTransportationOrganization;
+import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
 
 /**
@@ -20,9 +21,9 @@ public class InventoryEnterprise extends Enterprise{
     private final GoodsOrderQueue invGoodsOrderQueue;
     
     
-    public InventoryEnterprise() {
+    public InventoryEnterprise(StoreMgmtSystem pSystem) {
         
-        super(3);
+        super(3, pSystem);
         invManOrgList = new ArrayList<>();
         invDisOrgList = new ArrayList<>();
         invTransOrgList = new ArrayList<>();

@@ -1,21 +1,20 @@
 package model.Enterprise;
 
+import model.StoreMgmtSystem;
+
 /**
  *
  * @author saidutt
  */
 public abstract class Enterprise {
     
-    private int enterpriseType;        
+    private final int enterpriseType;   
+    private final StoreMgmtSystem system;       
     
-    Enterprise() {
-        
-        
-    }
-    
-    Enterprise(int pType) {
+    Enterprise(int pType, StoreMgmtSystem pSystem) {
                 
         this.enterpriseType = pType;        
+        this.system = pSystem;
     }
         
     public int getEnterpriseType() {
@@ -23,8 +22,8 @@ public abstract class Enterprise {
         return enterpriseType;
     }
 
-    public void setEnterpriseType(int enterpriseType) {
+    public StoreMgmtSystem getSystem() {
         
-        this.enterpriseType = enterpriseType;
-    }      
+        return system;
+    }   
 }

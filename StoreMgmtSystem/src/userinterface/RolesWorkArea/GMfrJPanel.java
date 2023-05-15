@@ -53,17 +53,17 @@ public class GMfrJPanel extends javax.swing.JPanel {
         lblDispName = new javax.swing.JLabel();
         lblRole = new javax.swing.JLabel();
         lblDispRole = new javax.swing.JLabel();
+        paneOrders = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblOrders = new javax.swing.JTable();
+        btnAcceptOrder = new javax.swing.JButton();
+        btnDispatchOrder = new javax.swing.JButton();
         paneInventory = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblInventory = new javax.swing.JTable();
         btnAddItem = new javax.swing.JButton();
         btnDeleteItem = new javax.swing.JButton();
         btnEditItem = new javax.swing.JButton();
-        paneOrders = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblOrders = new javax.swing.JTable();
-        btnAcceptOrder = new javax.swing.JButton();
-        btnDispatchOrder = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -121,79 +121,6 @@ public class GMfrJPanel extends javax.swing.JPanel {
 
         tbdPane.addTab("Welcome", paneWelcome2);
 
-        tblInventory.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Item Name", "Cost", "Tax bracket", "Quantity"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblInventory);
-        if (tblInventory.getColumnModel().getColumnCount() > 0) {
-            tblInventory.getColumnModel().getColumn(3).setHeaderValue("Tax bracket");
-        }
-
-        btnAddItem.setText("Add Item");
-        btnAddItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddItemActionPerformed(evt);
-            }
-        });
-
-        btnDeleteItem.setText("Delete Item");
-        btnDeleteItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteItemActionPerformed(evt);
-            }
-        });
-
-        btnEditItem.setText("Edit Item");
-        btnEditItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditItemActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout paneInventoryLayout = new javax.swing.GroupLayout(paneInventory);
-        paneInventory.setLayout(paneInventoryLayout);
-        paneInventoryLayout.setHorizontalGroup(
-            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(paneInventoryLayout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnDeleteItem)
-                .addGap(18, 18, 18)
-                .addComponent(btnEditItem)
-                .addContainerGap(421, Short.MAX_VALUE))
-        );
-        paneInventoryLayout.setVerticalGroup(
-            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneInventoryLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddItem)
-                    .addComponent(btnDeleteItem)
-                    .addComponent(btnEditItem))
-                .addGap(0, 159, Short.MAX_VALUE))
-        );
-
-        tbdPane.addTab("Inventory", paneInventory);
-
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -234,25 +161,95 @@ public class GMfrJPanel extends javax.swing.JPanel {
         paneOrdersLayout.setHorizontalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addGap(339, 339, 339)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOrdersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAcceptOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDispatchOrder)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(325, 325, 325))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAcceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDispatchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 40, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tbdPane.addTab("Orders", paneOrders);
+
+        tblInventory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Item Name", "Cost", "Tax bracket", "Quantity", "Selling Price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblInventory);
+
+        btnAddItem.setText("Add Item");
+        btnAddItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddItemActionPerformed(evt);
+            }
+        });
+
+        btnDeleteItem.setText("Delete Item");
+        btnDeleteItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteItemActionPerformed(evt);
+            }
+        });
+
+        btnEditItem.setText("Edit Item");
+        btnEditItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditItemActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout paneInventoryLayout = new javax.swing.GroupLayout(paneInventory);
+        paneInventory.setLayout(paneInventoryLayout);
+        paneInventoryLayout.setHorizontalGroup(
+            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneInventoryLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDeleteItem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEditItem)
+                .addGap(304, 304, 304))
+        );
+        paneInventoryLayout.setVerticalGroup(
+            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneInventoryLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddItem)
+                    .addComponent(btnDeleteItem)
+                    .addComponent(btnEditItem))
+                .addContainerGap())
+        );
+
+        tbdPane.addTab("Inventory", paneInventory);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -411,7 +408,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
         for(StockItem si : this.org.getStockItemDirectory().getStockItemList()) {          
             
             // Adding new row to the table                                       
-            model.addRow(new Object[]{si.getItemId() ,si.getItemName(), si.getPrice(), si.getPcTax(), si.getQuantity()});            
+            model.addRow(new Object[]{si.getItemId() ,si.getItemName(), si.getPrice(), si.getPcTax(), si.getQuantity(), si.getSellingPrice()});            
         }
     }
     

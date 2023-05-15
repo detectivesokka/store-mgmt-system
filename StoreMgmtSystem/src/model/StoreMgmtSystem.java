@@ -2,7 +2,6 @@ package model;
 
 import model.UserAccount.*;
 import model.Enterprise.*;
-import model.Order.GoodsOrder;
 import model.Order.GoodsOrderQueue;
 import model.Order.ShopOrderQueue;
 import model.Organization.InvDistributorOrganization;
@@ -65,9 +64,9 @@ public class StoreMgmtSystem {
         // Compliance enterprise
         TaxationOrganization to = this.complianceEnterprise.newTaxationOrganization();
         
-        StockItem si = imo.getStockItemDirectory().newStockItem("stockitem1", 100, 15, 10);                                      
-        imo.getStockItemDirectory().newStockItem("stockitem2", 110, 10, 8);
-        imo.getStockItemDirectory().newStockItem("stockitem3", 120, 5, 5);                
+        StockItem si = imo.getStockItemDirectory().newStockItem("stockitem1", 100.0f, 120.0f, 15, 10);                                      
+        imo.getStockItemDirectory().newStockItem("stockitem2", 110f, 150f, 10, 8);
+        imo.getStockItemDirectory().newStockItem("stockitem3", 120f, 122f, 5, 5);                
                                 
         userAccountDirectory.newUserAccount("admin", "admin", 0); 
         oso.newUserAccount("ocus1", "ocus1", 1);

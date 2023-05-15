@@ -2,8 +2,12 @@
 package userinterface.RolesWorkArea;
 
 import javax.swing.JTabbedPane;
+import javax.swing.table.DefaultTableModel;
+import model.Organization.InvDistributorOrganization;
 import model.Organization.OnlineStoreOrganization;
 import model.Organization.Organization;
+import model.StockItem.StockItem;
+import model.StockItem.StockItemDirectory;
 import model.UserAccount.UserAccount;
 
 /**
@@ -15,16 +19,21 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form OnlineCustomer
      */
-    
-    private final OnlineStoreOrganization onlineStoreOrganization;
+        
     private final UserAccount userAccount;
     
-    public OnlineCustomerJPanel(UserAccount pAcc, Organization pOrg) {
+    public OnlineCustomerJPanel(UserAccount pAcc) {
+        
         initComponents();
-        this.userAccount = pAcc;
-        this.onlineStoreOrganization = (OnlineStoreOrganization)pOrg;
+        this.userAccount = pAcc;      
+        populateWelcomeScreen();
     }
-
+    
+    private void populateWelcomeScreen() {
+        
+        this.lblDispName.setText(userAccount.getUserName());
+        this.lblDispRole.setText(userAccount.getRoleString());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,7 +126,7 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Quantity", "Supplier", "Status"
+                "ID", "Item", "Quantity", "Seller", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -138,17 +147,17 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addGap(397, 397, 397)
+                .addGap(402, 402, 402)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tbdPane.addTab("Orders", paneOrders);
@@ -161,7 +170,7 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Avail quantity", "Price", "Supplier"
+                "Item Id", "Item", "Avail quantity", "Price", "Seller"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -190,25 +199,25 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
         paneShopLayout.setHorizontalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(paneShopLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneShopLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(fldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGap(22, 22, 22))
         );
         paneShopLayout.setVerticalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneShopLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fldQuantity)
                     .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(59, 59, 59))
+                .addContainerGap())
         );
 
         tbdPane.addTab("Shop", paneShop);
@@ -236,18 +245,45 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
 
         switch(index) {
 
-            case 1 : populateShopTable();
+            case 1: populateOrdersTable();
+            break;
+            case 2 : populateShopTable();
             break;            
         }
     }//GEN-LAST:event_tbdPaneStateChanged
     
+    private void populateOrdersTable() {
+        
+        DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
+        model.setRowCount(0);
+        
+//        for () {
+//            
+//            // Adding new row to the table                                       
+//            model.addRow(new Object[]{});
+//        }
+    }
+    
     private void populateShopTable() {
         
-        //DefaultTableModel model = (DefaultTableModel) tblShop.getModel();
-        //model.setRowCount(0);
+        DefaultTableModel model = (DefaultTableModel) tblShop.getModel();
+        model.setRowCount(0);
+        
+        OnlineStoreOrganization oso = (OnlineStoreOrganization)this.userAccount.getParentOrg();
+        
+        for (InvDistributorOrganization ido : oso.geteCommerceEnterprise().getSystem().getInventoryEnterprise().getInvDisOrgList()) {
+            
+            for (StockItem si : ido.getStockItemDirectory().getStockItemList()) {
+                
+                model.addRow(new Object[] {});
+                
+            }
+        }
+            
         
         
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOrderItem;

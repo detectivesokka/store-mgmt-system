@@ -65,6 +65,6 @@ public class GoodsOrder extends Order {
     
     public void addToDistributorInventory() {
         
-        this.getDistributorOrganization().getStockItemDirectory().newStockItem(this.item.getItemName(), this.item.getPrice(), this.item.getPcTax(), this.getQuantity());
+        this.getDistributorOrganization().getStockItemDirectory().newStockItem(this.item.getItemName(), this.item.getSellingPrice(), 0f, this.item.getPcTax(), this.getQuantity());
     }
 }

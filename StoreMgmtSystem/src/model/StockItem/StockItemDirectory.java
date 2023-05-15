@@ -33,9 +33,9 @@ public class StockItemDirectory {
         return si;        
     }
     
-    public StockItem newStockItem (String pName, float pPrice, int pTax, int pQuant) {
+    public StockItem newStockItem (String pName, float pPrice, float pSellingPrice, int pTax, int pQuant) {
         
-        StockItem si = new StockItem(itemCount++, pName, pPrice, pTax, pQuant);
+        StockItem si = new StockItem(itemCount++, pName, pPrice, pSellingPrice, pTax, pQuant);
         this.stockItemList.add(si);
         return si;        
     }

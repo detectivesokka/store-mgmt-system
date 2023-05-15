@@ -7,7 +7,8 @@ package model.StockItem;
 public class StockItem {
     
     private String itemName;
-    private float price;
+    private float costPrice;
+    private float sellingPrice;
     private int pcTax;
     private int quantity;
     private StockItemDirectory parentDirectory;
@@ -20,12 +21,13 @@ public class StockItem {
         this.parentDirectory = pSID;
     }
 
-    public StockItem(int itemId, String itemName, float price, int pcTax, int quantity) {
+    public StockItem(int itemId, String itemName, float price, float pSellingPrice, int pcTax, int quantity) {
         this.itemName = itemName;
-        this.price = price;
+        this.costPrice = price;
         this.pcTax = pcTax;
         this.quantity = quantity;
         this.itemId = itemId;
+        this.sellingPrice = pSellingPrice;
     }
 
     public String getItemName() {
@@ -37,11 +39,11 @@ public class StockItem {
     }
 
     public float getPrice() {
-        return price;
+        return costPrice;
     }
 
     public void setPrice(float price) {
-        this.price = price;
+        this.costPrice = price;
     }
 
     public int getPcTax() {
@@ -66,6 +68,14 @@ public class StockItem {
 
     public StockItemDirectory getParentDirectory() {
         return parentDirectory;
+    }
+
+    public float getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(float sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
     
     

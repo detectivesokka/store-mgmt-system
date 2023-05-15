@@ -60,6 +60,9 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         paneInventory = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblInventory = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        fldSellingPrice = new javax.swing.JTextField();
+        btnSetSellingPrice = new javax.swing.JButton();
         paneShop = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblShop = new javax.swing.JTable();
@@ -162,18 +165,18 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         paneOrdersLayout.setHorizontalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addGap(380, 380, 380)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOrdersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancelOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(386, 386, 386))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelOrder)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tbdPane.addTab("Orders", paneOrders);
@@ -199,15 +202,47 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblInventory);
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel2.setText("Selling price");
+
+        fldSellingPrice.setText("0");
+        fldSellingPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fldSellingPriceActionPerformed(evt);
+            }
+        });
+
+        btnSetSellingPrice.setText("Set");
+        btnSetSellingPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSetSellingPriceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout paneInventoryLayout = new javax.swing.GroupLayout(paneInventory);
         paneInventory.setLayout(paneInventoryLayout);
         paneInventoryLayout.setHorizontalGroup(
             paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(paneInventoryLayout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fldSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSetSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneInventoryLayout.setVerticalGroup(
             paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(paneInventoryLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fldSellingPrice)
+                    .addComponent(btnSetSellingPrice)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11))
         );
 
         tbdPane.addTab("Inventory", paneInventory);
@@ -251,7 +286,7 @@ public class GDistributorJPanel extends javax.swing.JPanel {
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(paneShopLayout.createSequentialGroup()
-                .addGap(255, 255, 255)
+                .addGap(266, 266, 266)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(fldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,13 +297,13 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         paneShopLayout.setVerticalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneShopLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fldQuantity)
                     .addComponent(btnOrderItem)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41))
+                .addContainerGap())
         );
 
         tbdPane.addTab("Shop", paneShop);
@@ -363,6 +398,47 @@ public class GDistributorJPanel extends javax.swing.JPanel {
                 
     }//GEN-LAST:event_btnCancelOrderActionPerformed
 
+    private void btnSetSellingPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetSellingPriceActionPerformed
+        
+        int rowIndex = this.tblInventory.getSelectedRow();
+        int itemId;
+        StockItem si;
+        
+        float sellingPrice;
+
+        if(rowIndex < 0) {
+
+            JOptionPane.showMessageDialog(null, "Please select column");
+            return;
+        }
+        
+        try {
+            sellingPrice = Float.parseFloat(this.fldSellingPrice.getText());
+            
+            if (sellingPrice <= 0) {
+                
+                throw new Exception("Selling price can't be less or equal to 0");
+            }
+            
+            itemId=Integer.parseInt(this.tblShop.getValueAt(rowIndex,0).toString());                
+            
+            si = ((InvDistributorOrganization)this.user.getParentOrg()).getStockItemDirectory().searchStockItem(itemId);            
+            si.setSellingPrice(sellingPrice);
+            
+            JOptionPane.showMessageDialog(null, "Selling price set");
+            populateInventoryTable();
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+    }//GEN-LAST:event_btnSetSellingPriceActionPerformed
+
+    private void fldSellingPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSellingPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fldSellingPriceActionPerformed
+
     private void populateOrdersTable() {
         
         DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
@@ -384,8 +460,15 @@ public class GDistributorJPanel extends javax.swing.JPanel {
             
             for (StockItem si : imo.getStockItemDirectory().getStockItemList()) {
                                                                             
-                // Adding new row to the table                                       
-                model.addRow(new Object[]{si.getItemId() ,si.getItemName(), si.getQuantity(), si.getPrice(), imo.getName()});            
+                // Adding new row to the table 
+                if (si.getSellingPrice() == 0f) {
+                    
+                    model.addRow(new Object[]{si.getItemId() ,si.getItemName(), si.getQuantity() ,"-", imo.getName()});            
+                    
+                } else {
+                    
+                    model.addRow(new Object[]{si.getItemId() ,si.getItemName(), si.getQuantity(), si.getSellingPrice(), imo.getName()});            
+                }
             }
         }
     }
@@ -398,7 +481,7 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         for (StockItem si : ((InvDistributorOrganization)this.user.getParentOrg()).getStockItemDirectory().getStockItemList()) {
                                         
             // Adding new row to the table                                       
-            model.addRow(new Object[]{si.getItemId(), si.getItemName(), si.getQuantity(), si.getPrice(), "-"});
+            model.addRow(new Object[]{si.getItemId(), si.getItemName(), si.getQuantity(), si.getPrice(), si.getSellingPrice()});
         }
     }
     
@@ -406,8 +489,11 @@ public class GDistributorJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelOrder;
     private javax.swing.JButton btnOrderItem;
+    private javax.swing.JButton btnSetSellingPrice;
     private javax.swing.JTextField fldQuantity;
+    private javax.swing.JTextField fldSellingPrice;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
