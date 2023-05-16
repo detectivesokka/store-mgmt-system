@@ -33,10 +33,10 @@ public class StoreMgmtSystem {
         
         userAccountDirectory = new UserAccountDirectory(null);     
         
-        complianceEnterprise = new ComplianceEnterprise();
-        inventoryEnterprise = new InventoryEnterprise();
-        storeEnterprise = new StoreEnterprise();                
-        eCommerceEnterprise = new ECommerceEnterprise();
+        complianceEnterprise = new ComplianceEnterprise(this);
+        inventoryEnterprise = new InventoryEnterprise(this);
+        storeEnterprise = new StoreEnterprise(this);                
+        eCommerceEnterprise = new ECommerceEnterprise(this);
         
         goQueue = new GoodsOrderQueue();
         soQueue = new ShopOrderQueue();                

@@ -10,7 +10,6 @@ public class GoodsOrderQueue implements OrderQueue {
 
     private int goodsOrderCount = 1;
     private final ArrayList<GoodsOrder> goodsOrders;
-
     
     {
         goodsOrders = new ArrayList<>();

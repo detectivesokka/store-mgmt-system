@@ -59,7 +59,7 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
         tblShop = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         fldQuantity = new javax.swing.JTextField();
-        btnOrderItem = new javax.swing.JButton();
+        btnOrder = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -126,7 +126,7 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Quantity", "Seller", "Status"
+                "Item ID", "Item", "Quantity", "Seller", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -146,17 +146,17 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
         paneOrdersLayout.setHorizontalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addGap(402, 402, 402)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOrdersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(401, 401, 401))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -186,11 +186,16 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
         jLabel1.setText("Quantity");
 
         fldQuantity.setText("0");
-
-        btnOrderItem.setText("Order");
-        btnOrderItem.addActionListener(new java.awt.event.ActionListener() {
+        fldQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrderItemActionPerformed(evt);
+                fldQuantityActionPerformed(evt);
+            }
+        });
+
+        btnOrder.setText("Order");
+        btnOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderActionPerformed(evt);
             }
         });
 
@@ -202,21 +207,23 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneShopLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(fldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         paneShopLayout.setVerticalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneShopLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fldQuantity)
-                    .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(paneShopLayout.createSequentialGroup()
+                        .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(fldQuantity))
                 .addContainerGap())
         );
 
@@ -234,9 +241,11 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemActionPerformed
-
-    }//GEN-LAST:event_btnOrderItemActionPerformed
+    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_btnOrderActionPerformed
 
     private void tbdPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tbdPaneStateChanged
 
@@ -251,17 +260,17 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
             break;            
         }
     }//GEN-LAST:event_tbdPaneStateChanged
+
+    private void fldQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldQuantityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fldQuantityActionPerformed
     
     private void populateOrdersTable() {
         
         DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
         model.setRowCount(0);
         
-//        for () {
-//            
-//            // Adding new row to the table                                       
-//            model.addRow(new Object[]{});
-//        }
+        
     }
     
     private void populateShopTable() {
@@ -275,7 +284,7 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
             
             for (StockItem si : ido.getStockItemDirectory().getStockItemList()) {
                 
-                model.addRow(new Object[] {});
+                model.addRow(new Object[] {si.getItemId(), si.getItemName(), si.getQuantity(), si.getSellingPrice(), ido.getName()});
                 
             }
         }
@@ -286,7 +295,7 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnOrderItem;
+    private javax.swing.JButton btnOrder;
     private javax.swing.JTextField fldQuantity;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

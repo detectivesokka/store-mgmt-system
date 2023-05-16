@@ -1,7 +1,6 @@
 package model.Enterprise;
 
 import java.util.ArrayList;
-import model.Order.ShopOrderQueue;
 import model.Organization.OnlineStoreOrganization;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
@@ -12,13 +11,11 @@ import model.UserAccount.UserAccount;
  */
 public class ECommerceEnterprise extends Enterprise{
 
-    private final ArrayList<OnlineStoreOrganization> onlineStrOrgList;
-    private final ShopOrderQueue shopOrderQueue;        
+    private final ArrayList<OnlineStoreOrganization> onlineStrOrgList;    
     
     public ECommerceEnterprise(StoreMgmtSystem pSystem) {
         super(0, pSystem);
-        onlineStrOrgList = new ArrayList<>();
-        shopOrderQueue = new ShopOrderQueue();
+        onlineStrOrgList = new ArrayList<>();       
     }                    
 
     public ArrayList<OnlineStoreOrganization> getOnlineStrOrgList() {

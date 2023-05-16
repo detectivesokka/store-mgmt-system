@@ -1,9 +1,12 @@
 package model.Organization;
 
 import model.Enterprise.ECommerceEnterprise;
+import model.Order.OnlineOrderQueue;
+import model.Order.ShopOrderQueue;
 import model.StockItem.StockItemDirectory;
 import model.UserAccount.UserAccount;
 import model.UserAccount.UserAccountDirectory;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -14,11 +17,13 @@ public class OnlineStoreOrganization extends Organization {
     private final StockItemDirectory stockItemDirectory;
     private final UserAccountDirectory userAccountDirectory;    
     private final ECommerceEnterprise eCommerceEnterprise;
+    private final OnlineOrderQueue onlineOrderQueue;        
     
     public OnlineStoreOrganization(ECommerceEnterprise pParent, String pName) {
         
         this.stockItemDirectory = new StockItemDirectory(this);
         this.userAccountDirectory = new UserAccountDirectory(this);
+        this.onlineOrderQueue = new OnlineOrderQueue();
         this.eCommerceEnterprise = pParent;
         this.setName(pName);
     }        
@@ -39,5 +44,8 @@ public class OnlineStoreOrganization extends Organization {
     public ECommerceEnterprise geteCommerceEnterprise() {
         return eCommerceEnterprise;
     }     
-    
+
+    public OnlineOrderQueue getOnlineOrderQueue() {
+        return onlineOrderQueue;
+    }        
 }
