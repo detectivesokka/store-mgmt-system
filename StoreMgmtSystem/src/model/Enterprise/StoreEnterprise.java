@@ -12,24 +12,19 @@ import model.UserAccount.UserAccount;
  */
 public class StoreEnterprise extends Enterprise {
 
-    private final ArrayList<LocalStoreOrganization> localOrgList;
-    private final ShopOrderQueue shopOrderQueue;        
+    private final ArrayList<LocalStoreOrganization> localOrgList;    
     
     public StoreEnterprise(StoreMgmtSystem pSystem) {
         
         super(1, pSystem);
         localOrgList = new ArrayList<>();
-        shopOrderQueue = new ShopOrderQueue();
+        
     }
 
     public ArrayList<LocalStoreOrganization> getLocalOrgList() {
         return localOrgList;
     }
-    
-    public ShopOrderQueue getShopOrderQueue() {
-        return shopOrderQueue;
-    }
-    
+       
     public LocalStoreOrganization newLocalStoreOrganization() {
         
         LocalStoreOrganization imf = new LocalStoreOrganization(this, "imo1");

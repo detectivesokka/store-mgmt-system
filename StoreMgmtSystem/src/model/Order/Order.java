@@ -12,7 +12,7 @@ public abstract class Order {
     private String itemName;
     private int quantity;
     private float taxPc;
-    private float totalSellingPrice;
+    private double totalSellingPrice;
     private String orderStatus;
     
     Order(int pId) {
@@ -67,12 +67,12 @@ public abstract class Order {
         this.taxPc = taxPc;
     }
 
-    public float getTotalSellingPrice() {
+    public double getTotalSellingPrice() {
         
         return totalSellingPrice;
     }
 
-    public void setTotalSellingPrice(float totalSellingPrice) {
+    public void setTotalSellingPrice(double totalSellingPrice) {
         
         this.totalSellingPrice = totalSellingPrice;
     }

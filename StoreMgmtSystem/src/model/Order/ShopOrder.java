@@ -10,20 +10,11 @@ import model.StockItem.StockItem;
  */
 public class ShopOrder extends Order{
     
-    LocalStoreOrganization shop;
-    InvDistributorOrganization ido;
-    StockItem item;
+    private InvDistributorOrganization ido;
+    private StockItem item;    
     
     public ShopOrder(int pId) {
         super(pId);
-    }
-
-    public LocalStoreOrganization getShop() {
-        return shop;
-    }
-
-    public void setShop(LocalStoreOrganization shop) {
-        this.shop = shop;
     }
 
     public InvDistributorOrganization getInvDistributorOrganization() {
@@ -46,5 +37,5 @@ public class ShopOrder extends Order{
     public String getStatus() {
        
         return "Shop order";
-    }
+    }    
 }

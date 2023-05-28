@@ -35,7 +35,11 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         lblDispRole = new javax.swing.JLabel();
         paneOrders = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblOrders = new javax.swing.JTable();
+        tblGoodsOrders = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblGoodsOrders1 = new javax.swing.JTable();
         paneShop = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblShop = new javax.swing.JTable();
@@ -80,12 +84,12 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                         .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblDispName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
         paneWelcomeLayout.setVerticalGroup(
             paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneWelcomeLayout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
+                .addContainerGap(267, Short.MAX_VALUE)
                 .addComponent(lblWelcome4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -100,7 +104,36 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
 
         tbdPane2.addTab("Welcome", paneWelcome);
 
-        tblOrders.setModel(new javax.swing.table.DefaultTableModel(
+        tblGoodsOrders.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Item", "Quantity", "Employee", "Amount"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblGoodsOrders);
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel2.setText("Orders made by employees");
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("Inventory orders from Goods Distributor");
+
+        tblGoodsOrders1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -119,19 +152,32 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblOrders);
+        jScrollPane3.setViewportView(tblGoodsOrders1);
 
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
         paneOrdersLayout.setHorizontalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
+            .addComponent(jScrollPane3)
+            .addGroup(paneOrdersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
         );
 
         tbdPane2.addTab("Orders", paneOrders);
@@ -160,6 +206,11 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         jLabel1.setText("Quantity");
 
         fldQuantity.setText("0");
+        fldQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fldQuantityActionPerformed(evt);
+            }
+        });
 
         btnOrderItem.setText("Order");
         btnOrderItem.addActionListener(new java.awt.event.ActionListener() {
@@ -172,29 +223,29 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         paneShop.setLayout(paneShopLayout);
         paneShopLayout.setHorizontalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneShopLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(fldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(22, 22, 22))
         );
         paneShopLayout.setVerticalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneShopLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fldQuantity)
-                    .addComponent(btnOrderItem)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(59, 59, 59))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fldQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(btnOrderItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        tbdPane2.addTab("Shop", paneShop);
+        tbdPane2.addTab("Order Goods", paneShop);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -208,10 +259,6 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemActionPerformed
-
-    }//GEN-LAST:event_btnOrderItemActionPerformed
-
     private void tbdPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tbdPane2StateChanged
 
         /*JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
@@ -224,13 +271,24 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         }*/
     }//GEN-LAST:event_tbdPane2StateChanged
 
+    private void btnOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemActionPerformed
+
+    }//GEN-LAST:event_btnOrderItemActionPerformed
+
+    private void fldQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldQuantityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fldQuantityActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOrderItem;
     private javax.swing.JTextField fldQuantity;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblDispName;
     private javax.swing.JLabel lblDispRole;
     private javax.swing.JLabel lblRole;
@@ -240,7 +298,8 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel paneShop;
     private javax.swing.JPanel paneWelcome;
     private javax.swing.JTabbedPane tbdPane2;
-    private javax.swing.JTable tblOrders;
+    private javax.swing.JTable tblGoodsOrders;
+    private javax.swing.JTable tblGoodsOrders1;
     private javax.swing.JTable tblShop;
     // End of variables declaration//GEN-END:variables
 }

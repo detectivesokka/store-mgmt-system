@@ -1,6 +1,6 @@
 package userinterface.Order;
 
-import model.Order.OrderQueue;
+import javax.swing.JOptionPane;
 import model.Order.ShopOrder;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.LocalStoreOrganization;
@@ -134,12 +134,20 @@ public class SalesOrderJPanel extends javax.swing.JPanel {
     }
     
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        
-        ShopOrder so = this.system.getShopOrderQueue().newOrder();                
-       
-        so.setIdo((InvDistributorOrganization)this.orderItem.getParentDirectory().getParentOrg());
-        so.setShop((LocalStoreOrganization)this.user.getParentOrg());
-        so.setItem(orderItem);        
+                
+        try {
+            
+            LocalStoreOrganization lso = (LocalStoreOrganization) this.user.getParentOrg();
+            ShopOrder so = lso.getShopOrderQueue().newOrder();
+            so.setInvDistributorOrganization((InvDistributorOrganization) this.orderItem.getParentDirectory().getParentOrg());
+            so.setItem(orderItem);
+            so.setQuantity(Integer.parseInt(this.fldQuantity.getText()));
+            so.setTotalSellingPrice(Double.parseDouble(this.fldSellingPrice.getText()));
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void fldSellingPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSellingPriceActionPerformed

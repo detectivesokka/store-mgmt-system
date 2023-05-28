@@ -11,13 +11,17 @@ import model.StockItem.StockItem;
  * @author saidutt
  */
 public class ShopOrderQueue implements OrderQueue {
-
-    private InvDistributorOrganization ido;
+    
     private LocalStoreOrganization shop;
     private StockItem si;
     private ArrayList<ShopOrder> orderList;
 
     private int shopOrderCount = 1;
+    
+    public ShopOrderQueue(LocalStoreOrganization pStore) {
+        
+        this.shop = pStore;
+    }
 
     @Override
     public ShopOrder newOrder() {
@@ -26,15 +30,7 @@ public class ShopOrderQueue implements OrderQueue {
         this.getOrderList().add(so);
         return so;
     }
-
-    public InvDistributorOrganization getIdo() {
-        return ido;
-    }
-
-    public void setIdo(InvDistributorOrganization ido) {
-        this.ido = ido;
-    }
-
+    
     public LocalStoreOrganization getShop() {
         return shop;
     }

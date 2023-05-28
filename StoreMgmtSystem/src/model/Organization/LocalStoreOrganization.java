@@ -1,6 +1,7 @@
 package model.Organization;
 
 import model.Enterprise.StoreEnterprise;
+import model.Order.ShopOrderQueue;
 import model.StockItem.StockItemDirectory;
 import model.UserAccount.UserAccount;
 import model.UserAccount.UserAccountDirectory;
@@ -13,13 +14,15 @@ public class LocalStoreOrganization extends Organization {
     
     private final StockItemDirectory stockItemDirectory;
     private final UserAccountDirectory userAccountDirectory;    
-    private final StoreEnterprise storeEnterprise;
+    private final StoreEnterprise parent;
+    private final ShopOrderQueue shopOrderQueue;        
     
     public LocalStoreOrganization(StoreEnterprise pParent, String pName) {
         
         this.stockItemDirectory = new StockItemDirectory(this);
-        this.userAccountDirectory = new UserAccountDirectory(this);
-        this.storeEnterprise = pParent;
+        this.userAccountDirectory = new UserAccountDirectory(this);                
+        this.parent = pParent;
+        this.shopOrderQueue = new ShopOrderQueue(this);
         this.setName(pName);
     }        
     
@@ -37,6 +40,14 @@ public class LocalStoreOrganization extends Organization {
     }
 
     public StoreEnterprise geteCommerceEnterprise() {
-        return storeEnterprise;
+        return parent;
     }     
+
+    public StoreEnterprise getParent() {
+        return parent;
+    }
+
+    public ShopOrderQueue getShopOrderQueue() {
+        return shopOrderQueue;
+    }        
 }

@@ -32,12 +32,6 @@ public class ShopEmpJPanel extends javax.swing.JPanel {
         paneOrders = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
-        paneShop = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblShop = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        fldQuantity = new javax.swing.JTextField();
-        btnOrderItem = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -125,72 +119,10 @@ public class ShopEmpJPanel extends javax.swing.JPanel {
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 115, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
         );
 
         tbdPane.addTab("Orders", paneOrders);
-
-        tblShop.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Item", "Avail quantity", "Price", "Supplier"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblShop);
-
-        jLabel1.setText("Quantity");
-
-        fldQuantity.setText("0");
-
-        btnOrderItem.setText("Order");
-        btnOrderItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrderItemActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout paneShopLayout = new javax.swing.GroupLayout(paneShop);
-        paneShop.setLayout(paneShopLayout);
-        paneShopLayout.setHorizontalGroup(
-            paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneShopLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(fldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        paneShopLayout.setVerticalGroup(
-            paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneShopLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fldQuantity)
-                    .addComponent(btnOrderItem)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(59, 59, 59))
-        );
-
-        tbdPane.addTab("Shop", paneShop);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -216,16 +148,8 @@ public class ShopEmpJPanel extends javax.swing.JPanel {
         }*/
     }//GEN-LAST:event_tbdPaneStateChanged
 
-    private void btnOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemActionPerformed
-
-    }//GEN-LAST:event_btnOrderItemActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnOrderItem;
-    private javax.swing.JTextField fldQuantity;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDispName;
     private javax.swing.JLabel lblDispRole;
@@ -233,10 +157,8 @@ public class ShopEmpJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblWelcome2;
     private javax.swing.JPanel paneOrders;
-    private javax.swing.JPanel paneShop;
     private javax.swing.JPanel paneWelcome;
     private javax.swing.JTabbedPane tbdPane;
     private javax.swing.JTable tblOrders;
-    private javax.swing.JTable tblShop;
     // End of variables declaration//GEN-END:variables
 }

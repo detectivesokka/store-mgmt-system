@@ -25,8 +25,7 @@ public class StoreMgmtSystem {
     private StoreEnterprise storeEnterprise;
     private final ECommerceEnterprise eCommerceEnterprise;
     
-    private final GoodsOrderQueue goQueue;
-    private final ShopOrderQueue soQueue;
+    private final GoodsOrderQueue goQueue;    
     
     
     public StoreMgmtSystem() {
@@ -38,8 +37,7 @@ public class StoreMgmtSystem {
         storeEnterprise = new StoreEnterprise(this);                
         eCommerceEnterprise = new ECommerceEnterprise(this);
         
-        goQueue = new GoodsOrderQueue();
-        soQueue = new ShopOrderQueue();                
+        goQueue = new GoodsOrderQueue();        
         
         initData();
     }
@@ -114,9 +112,5 @@ public class StoreMgmtSystem {
 
     public GoodsOrderQueue getGoodsOrderQueue() {
         return goQueue;
-    }
-
-    public ShopOrderQueue getShopOrderQueue() {
-        return soQueue;
-    }
+    }   
 }
