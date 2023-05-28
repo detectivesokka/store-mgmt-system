@@ -160,10 +160,10 @@ public class LoginJFrame extends javax.swing.JFrame {
                         userPanel = new AdminJPanel();
                         break;
                     case 1:
-                        userPanel = new OnlineCustomerJPanel(user);
+                        userPanel = new OnlineCustomerJPanel(user, this.system);
                         break;
                     case 2:
-                        userPanel = new OnlineDeliverymanJPanel();
+                        userPanel = new OnlineDeliverymanJPanel(user);
                         break;
                     case 3:
                         userPanel = new ShopMgrJPanel();

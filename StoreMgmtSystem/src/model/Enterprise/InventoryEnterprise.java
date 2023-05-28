@@ -123,4 +123,17 @@ public class InventoryEnterprise extends Enterprise{
         
         return null;
     }
+
+    public InvDistributorOrganization searchDisOrganization(String seller) {
+        
+        for (InvDistributorOrganization ido : this.invDisOrgList) {
+            
+            if (ido.getName() != null && ido.getName().equals(seller)) {
+                
+                return ido;
+            }
+        }    
+        
+        return null;
+    }
 }   

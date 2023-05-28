@@ -1,6 +1,12 @@
 package userinterface.RolesWorkArea;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.table.DefaultTableModel;
+import model.Order.OnlineOrder;
+import model.Order.OnlineOrderQueue;
+import model.Organization.OnlineStoreOrganization;
+import model.UserAccount.UserAccount;
 
 /**
  *
@@ -8,11 +14,15 @@ import javax.swing.JTabbedPane;
  */
 public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
 
+    
+    private UserAccount user;
     /**
      * Creates new form OnlineDeliveryman
      */
-    public OnlineDeliverymanJPanel() {
+    public OnlineDeliverymanJPanel(UserAccount pUser) {
         initComponents();
+        
+        this.user = pUser;
     }
 
     /**
@@ -34,7 +44,8 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
         paneOrders = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnDeliver = new javax.swing.JButton();
+        btnAssign = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -94,17 +105,17 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
 
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Quantity", "Supplier", "Status"
+                "ID", "Customer", "Item", "Quantity", "Supplier", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -113,10 +124,17 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblOrders);
 
-        jButton1.setText("Assign to me");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDeliver.setText("Deliver");
+        btnDeliver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDeliverActionPerformed(evt);
+            }
+        });
+
+        btnAssign.setText("Assign to me");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignActionPerformed(evt);
             }
         });
 
@@ -125,17 +143,21 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
         paneOrdersLayout.setHorizontalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(paneOrdersLayout.createSequentialGroup()
-                .addGap(393, 393, 393)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOrdersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAssign)
+                .addGap(28, 28, 28)
+                .addComponent(btnDeliver, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(336, 336, 336))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDeliver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -159,28 +181,93 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
         int index = sourceTabbedPane.getSelectedIndex();
 
         switch(index) {
-
-            case 1 : populateMyOrdersTable();
-            break;
-            case 2 : populateOrdersTable();
+            
+            case 1 : populateOrdersTable();
             break;
         }
     }//GEN-LAST:event_tbdPaneStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnDeliverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliverActionPerformed
+        
+        int rowIndex = this.tblOrders.getSelectedRow();        
+        int orderId;        
+        String status;
+        
+        OnlineOrder o;
+        
+        
+        try {
+            
+            orderId=Integer.parseInt(this.tblOrders.getValueAt(rowIndex,0).toString());                                                
+            o = ((OnlineStoreOrganization)this.user.getParentOrg()).getOnlineOrderQueue().searchOrder(orderId);
+            status = o.getStatus();
+            
+            if (status.compareTo("Order assigned to" + this.user.getUserName()) == 0 ) {
+                
+                o.setStatus("Order delivered to customer");                
+                o.getItem().setQuantity(o.getItem().getQuantity() - o.getQuantity());                
+                
+            } else {
+                
+                throw new Exception("Can't deliver order");
+            }
+            
+        } catch(Exception e) {
+            
+            JOptionPane.showMessageDialog(null, e.getMessage());  
+            
+        }
+        
+    }//GEN-LAST:event_btnDeliverActionPerformed
 
-    private void populateMyOrdersTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+        
+        int rowIndex = this.tblOrders.getSelectedRow();        
+        int orderId;        
+        String status;
+        
+        OnlineOrder o;
+        
+        
+        try {
+            
+            orderId=Integer.parseInt(this.tblOrders.getValueAt(rowIndex,0).toString());                                                
+            o = ((OnlineStoreOrganization)this.user.getParentOrg()).getOnlineOrderQueue().searchOrder(orderId);
+            status = o.getStatus();
+            
+            if (status.compareTo("Order placed by customer") == 0 ) {
+                
+                o.setStatus("Order assigned to " + this.user.getUserName());
+                
+            } else {
+                
+                throw new Exception("Can't assign order");
+            }
+            
+        } catch(Exception e) {
+            
+            JOptionPane.showMessageDialog(null, e.getMessage());  
+            
+        }
+        
+    }//GEN-LAST:event_btnAssignActionPerformed
 
     private void populateOrdersTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        DefaultTableModel model = (DefaultTableModel) this.tblOrders.getModel();
+        model.setRowCount(0);
+        
+        OnlineStoreOrganization o =  (OnlineStoreOrganization)this.user.getParentOrg();
+        
+        for (OnlineOrder order : o.getOnlineOrderQueue().getOnlineOrders()) {
+            
+            model.addRow(new Object[] {order.getOrderID(), order.getCustomer().getUserName(), order.getItem().getItemName(), order.getItem().getQuantity(), order.getInvDisOrganization().getName(), order.getStatus()});                        
+        }                
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnDeliver;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblDispName;
     private javax.swing.JLabel lblDispRole;

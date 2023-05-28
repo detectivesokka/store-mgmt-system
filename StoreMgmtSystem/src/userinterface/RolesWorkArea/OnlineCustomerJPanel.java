@@ -1,13 +1,14 @@
 
 package userinterface.RolesWorkArea;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
+import model.Order.OnlineOrder;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.OnlineStoreOrganization;
-import model.Organization.Organization;
 import model.StockItem.StockItem;
-import model.StockItem.StockItemDirectory;
+import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
 
 /**
@@ -21,11 +22,14 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
      */
         
     private final UserAccount userAccount;
+    private final StoreMgmtSystem system;
     
-    public OnlineCustomerJPanel(UserAccount pAcc) {
+    public OnlineCustomerJPanel(UserAccount pAcc, StoreMgmtSystem pSystem) {
         
         initComponents();
         this.userAccount = pAcc;      
+        this.system = pSystem;
+        
         populateWelcomeScreen();
     }
     
@@ -218,13 +222,11 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
             .addGroup(paneShopLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(fldQuantity)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(paneShopLayout.createSequentialGroup()
-                        .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(fldQuantity))
-                .addContainerGap())
+                    .addComponent(btnOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         tbdPane.addTab("Shop", paneShop);
@@ -243,7 +245,44 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         
+        int rowIndex = this.tblShop.getSelectedRow();
+        int itemId;
+        String seller;
+        InvDistributorOrganization ido;
+        int quantity;
+
+        if(rowIndex < 0) {
+
+            JOptionPane.showMessageDialog(null, "Please select column");
+            return;
+        }
         
+        try {
+            
+            quantity = Integer.parseInt(this.fldQuantity.getText());
+            
+            if (quantity <= 0) {
+                
+                throw new NumberFormatException();
+            }
+            
+            itemId=Integer.parseInt(this.tblShop.getValueAt(rowIndex,0).toString());
+            seller = this.tblShop.getValueAt(rowIndex, 4).toString();
+            ido = this.system.getInventoryEnterprise().searchDisOrganization(seller);
+            OnlineOrder onlineOrder = ((OnlineStoreOrganization)this.userAccount.getParentOrg()).getOnlineOrderQueue().newOrder();
+            
+            onlineOrder.setInvDisOrganization(ido);
+            onlineOrder.setCustomer(this.userAccount);
+            onlineOrder.setItem(ido.getStockItemDirectory().searchStockItem(itemId));
+            onlineOrder.setQuantity(quantity);
+            onlineOrder.setStatus("Order placed by customer");
+            
+            JOptionPane.showMessageDialog(null, "Order placed!");
+            
+        } catch (NumberFormatException e) {
+            
+            JOptionPane.showMessageDialog(null, "Quantity must be correct");
+        }
         
     }//GEN-LAST:event_btnOrderActionPerformed
 
@@ -270,7 +309,12 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblOrders.getModel();
         model.setRowCount(0);
         
+        OnlineStoreOrganization oso = (OnlineStoreOrganization)this.userAccount.getParentOrg();
         
+        for (OnlineOrder o : oso.getOnlineOrderQueue().getOnlineOrders()) {
+            
+            model.addRow(new Object[] {o.getItem().getItemId(), o.getItem().getItemName(), o.getQuantity(), o.getInvDisOrganization().getName(), o.getStatus()});
+        }        
     }
     
     private void populateShopTable() {
@@ -285,12 +329,8 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
             for (StockItem si : ido.getStockItemDirectory().getStockItemList()) {
                 
                 model.addRow(new Object[] {si.getItemId(), si.getItemName(), si.getQuantity(), si.getSellingPrice(), ido.getName()});
-                
             }
-        }
-            
-        
-        
+        }     
     }
     
 

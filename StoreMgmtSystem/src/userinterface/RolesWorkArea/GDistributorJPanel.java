@@ -4,8 +4,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import model.Order.GoodsOrder;
+import model.Order.OnlineOrder;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
+import model.Organization.OnlineStoreOrganization;
 import model.StockItem.StockItem;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
@@ -57,6 +59,14 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
         btnCancelOrder = new javax.swing.JButton();
+        paneOnlineOrders = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblOnlineOrders = new javax.swing.JTable();
+        btnCancelOnlineOrder = new javax.swing.JButton();
+        paneShopOrders = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblShopOrders = new javax.swing.JTable();
+        btnCancelShopOrder = new javax.swing.JButton();
         paneInventory = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblInventory = new javax.swing.JTable();
@@ -180,6 +190,118 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         );
 
         tbdPane.addTab("Orders", paneOrders);
+
+        tblOnlineOrders.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Order ID", "Item", "Quantity", "Supplier", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tblOnlineOrders);
+
+        btnCancelOnlineOrder.setText("Cancel order");
+        btnCancelOnlineOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelOnlineOrderActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout paneOnlineOrdersLayout = new javax.swing.GroupLayout(paneOnlineOrders);
+        paneOnlineOrders.setLayout(paneOnlineOrdersLayout);
+        paneOnlineOrdersLayout.setHorizontalGroup(
+            paneOnlineOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOnlineOrdersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelOnlineOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(386, 386, 386))
+        );
+        paneOnlineOrdersLayout.setVerticalGroup(
+            paneOnlineOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneOnlineOrdersLayout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelOnlineOrder)
+                .addContainerGap())
+        );
+
+        tbdPane.addTab("Online Orders", paneOnlineOrders);
+
+        tblShopOrders.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Order ID", "Item", "Quantity", "Supplier", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tblShopOrders);
+
+        btnCancelShopOrder.setText("Cancel order");
+        btnCancelShopOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelShopOrderActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout paneShopOrdersLayout = new javax.swing.GroupLayout(paneShopOrders);
+        paneShopOrders.setLayout(paneShopOrdersLayout);
+        paneShopOrdersLayout.setHorizontalGroup(
+            paneShopOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneShopOrdersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelShopOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(386, 386, 386))
+        );
+        paneShopOrdersLayout.setVerticalGroup(
+            paneShopOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneShopOrdersLayout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelShopOrder)
+                .addContainerGap())
+        );
+
+        tbdPane.addTab("Shop Orders", paneShopOrders);
 
         tblInventory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -328,10 +450,14 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         switch(index) {
             
             case 1 : populateOrdersTable();
+            break;            
+            case 2 : populateInventoryTable();
             break;
             case 3 : populateShopTable();
             break;
-            case 2 : populateInventoryTable();
+            case 4: populateOnlineOrdersTable();
+            break;
+            case 5: populateShopOrdersTable();
             break;
         }
     }//GEN-LAST:event_tbdPaneStateChanged
@@ -420,7 +546,7 @@ public class GDistributorJPanel extends javax.swing.JPanel {
                 throw new Exception("Selling price can't be less or equal to 0");
             }
             
-            itemId=Integer.parseInt(this.tblShop.getValueAt(rowIndex,0).toString());                
+            itemId=Integer.parseInt(this.tblInventory.getValueAt(rowIndex,0).toString());                
             
             si = ((InvDistributorOrganization)this.user.getParentOrg()).getStockItemDirectory().searchStockItem(itemId);            
             si.setSellingPrice(sellingPrice);
@@ -438,6 +564,14 @@ public class GDistributorJPanel extends javax.swing.JPanel {
     private void fldSellingPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldSellingPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fldSellingPriceActionPerformed
+
+    private void btnCancelOnlineOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOnlineOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelOnlineOrderActionPerformed
+
+    private void btnCancelShopOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelShopOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelShopOrderActionPerformed
 
     private void populateOrdersTable() {
         
@@ -485,9 +619,35 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         }
     }
     
+    private void populateOnlineOrdersTable() {
+        
+        DefaultTableModel model = (DefaultTableModel) tblOnlineOrders.getModel();
+        model.setRowCount(0);
+        
+        for (OnlineStoreOrganization oso : this.system.getCustomerEnterprise().getOnlineStrOrgList()) {
+            
+            for (OnlineOrder o : oso.getOnlineOrderQueue().getOnlineOrders()) {
+                
+                if (o.getInvDisOrganization() == this.user.getParentOrg()) {
+                
+                    model.addRow(new Object[] {o.getOrderID(), o.getItem().getItemName(), o.getQuantity(), o.getInvDisOrganization().getName(), o.getStatus()});
+                }
+            }            
+        }
+        
+    }
+    
+    private void populateShopOrdersTable() {
+        
+        
+        
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelOnlineOrder;
     private javax.swing.JButton btnCancelOrder;
+    private javax.swing.JButton btnCancelShopOrder;
     private javax.swing.JButton btnOrderItem;
     private javax.swing.JButton btnSetSellingPrice;
     private javax.swing.JTextField fldQuantity;
@@ -497,18 +657,24 @@ public class GDistributorJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblDispName;
     private javax.swing.JLabel lblDispRole;
     private javax.swing.JLabel lblRole;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblWelcome2;
     private javax.swing.JPanel paneInventory;
+    private javax.swing.JPanel paneOnlineOrders;
     private javax.swing.JPanel paneOrders;
     private javax.swing.JPanel paneShop;
+    private javax.swing.JPanel paneShopOrders;
     private javax.swing.JPanel paneWelcome;
     private javax.swing.JTabbedPane tbdPane;
     private javax.swing.JTable tblInventory;
+    private javax.swing.JTable tblOnlineOrders;
     private javax.swing.JTable tblOrders;
     private javax.swing.JTable tblShop;
+    private javax.swing.JTable tblShopOrders;
     // End of variables declaration//GEN-END:variables
 }

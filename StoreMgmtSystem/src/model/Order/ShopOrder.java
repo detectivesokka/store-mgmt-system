@@ -26,11 +26,11 @@ public class ShopOrder extends Order{
         this.shop = shop;
     }
 
-    public InvDistributorOrganization getIdo() {
+    public InvDistributorOrganization getInvDistributorOrganization() {
         return ido;
     }
 
-    public void setIdo(InvDistributorOrganization ido) {
+    public void setInvDistributorOrganization(InvDistributorOrganization ido) {
         this.ido = ido;
     }
 

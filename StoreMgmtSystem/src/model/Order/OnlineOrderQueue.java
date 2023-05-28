@@ -1,6 +1,7 @@
 package model.Order;
 
 import java.util.ArrayList;
+import model.Organization.Organization;
 
 /**
  *
@@ -10,10 +11,12 @@ public class OnlineOrderQueue implements OrderQueue{
     
     private int onlineOrderCount = 1;
     private final ArrayList<OnlineOrder> onlineOrders;
+    private final Organization parent;
 
-    public OnlineOrderQueue() {
+    public OnlineOrderQueue(Organization pParent) {
         
-        this.onlineOrders = new ArrayList<>();        
+        this.onlineOrders = new ArrayList<>();  
+        this.parent = pParent;
     }
 
     public int getOnlineOrderCount() {
@@ -56,4 +59,9 @@ public class OnlineOrderQueue implements OrderQueue{
 
         return null;
     }
+
+    public Organization getParent() {
+        return parent;
+    }    
+    
 }

@@ -1,9 +1,8 @@
 package model.Order;
 
 import model.Organization.InvDistributorOrganization;
-import model.Organization.InvManufacturerOrganization;
-import model.Organization.OnlineStoreOrganization;
 import model.StockItem.StockItem;
+import model.UserAccount.UserAccount;
 
 /**
  * This order tracks the purchase from the distributor by an online customer 
@@ -11,9 +10,9 @@ import model.StockItem.StockItem;
  */
 public class OnlineOrder extends Order{
         
-    private InvDistributorOrganization ido;
-    private OnlineStoreOrganization oso;
+    private InvDistributorOrganization ido;    
     private StockItem item;
+    private UserAccount customer;
     
     public OnlineOrder(int pId) {
         super(pId);
@@ -25,25 +24,15 @@ public class OnlineOrder extends Order{
         return "Online order";
     }
 
-    public InvDistributorOrganization getIdo() {
+    public InvDistributorOrganization getInvDisOrganization() {
         
         return ido;
     }
 
-    public void setIdo(InvDistributorOrganization ido) {
+    public void setInvDisOrganization(InvDistributorOrganization ido) {
         
         this.ido = ido;
-    }
-
-    public OnlineStoreOrganization getOso() {
-        
-        return oso;
-    }
-
-    public void setOso(OnlineStoreOrganization oso) {
-        
-        this.oso = oso;
-    }
+    }    
 
     public StockItem getItem() {
         
@@ -54,4 +43,12 @@ public class OnlineOrder extends Order{
         
         this.item = item;
     }    
+   
+    public UserAccount getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(UserAccount customer) {
+        this.customer = customer;
+    }        
 }
