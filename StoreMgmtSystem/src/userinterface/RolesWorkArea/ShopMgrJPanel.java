@@ -4,17 +4,32 @@
  */
 package userinterface.RolesWorkArea;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.table.DefaultTableModel;
+import model.Enterprise.InventoryEnterprise;
+import model.Order.Order;
+import model.Order.ShopOrder;
+import model.Organization.InvDistributorOrganization;
+import model.Organization.LocalStoreOrganization;
+import model.StockItem.StockItem;
+import model.UserAccount.UserAccount;
+
 /**
  *
  * @author saidutt
  */
 public class ShopMgrJPanel extends javax.swing.JPanel {
 
+    
+    private UserAccount user;
     /**
      * Creates new form ShopMgrJPanel
      */
-    public ShopMgrJPanel() {
+    public ShopMgrJPanel(UserAccount pUser) {
+        
         initComponents();
+        this.user = pUser;
     }
 
     /**
@@ -26,7 +41,7 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tbdPane2 = new javax.swing.JTabbedPane();
+        tbdPane = new javax.swing.JTabbedPane();
         paneWelcome = new javax.swing.JPanel();
         lblWelcome4 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
@@ -35,21 +50,21 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         lblDispRole = new javax.swing.JLabel();
         paneOrders = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblGoodsOrders = new javax.swing.JTable();
+        tblSales = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblGoodsOrders1 = new javax.swing.JTable();
+        tblPurchase = new javax.swing.JTable();
         paneShop = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblShop = new javax.swing.JTable();
+        tblGoods = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         fldQuantity = new javax.swing.JTextField();
         btnOrderItem = new javax.swing.JButton();
 
-        tbdPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+        tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                tbdPane2StateChanged(evt);
+                tbdPaneStateChanged(evt);
             }
         });
 
@@ -102,9 +117,9 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 .addGap(226, 226, 226))
         );
 
-        tbdPane2.addTab("Welcome", paneWelcome);
+        tbdPane.addTab("Welcome", paneWelcome);
 
-        tblGoodsOrders.setModel(new javax.swing.table.DefaultTableModel(
+        tblSales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -112,7 +127,7 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Quantity", "Employee", "Amount"
+                "Item ID", "Item", "Quantity", "Employee", "Amount"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -123,7 +138,7 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblGoodsOrders);
+        jScrollPane2.setViewportView(tblSales);
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -133,7 +148,7 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Inventory orders from Goods Distributor");
 
-        tblGoodsOrders1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPurchase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -141,7 +156,7 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Quantity", "Supplier", "Status"
+                "Item ID", "Item", "Quantity", "Supplier", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -152,7 +167,7 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(tblGoodsOrders1);
+        jScrollPane3.setViewportView(tblPurchase);
 
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
@@ -177,12 +192,12 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        tbdPane2.addTab("Orders", paneOrders);
+        tbdPane.addTab("Orders", paneOrders);
 
-        tblShop.setModel(new javax.swing.table.DefaultTableModel(
+        tblGoods.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -190,7 +205,7 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Item", "Avail quantity", "Price", "Manufacturer"
+                "Item ID", "Item", "Avail quantity", "Price", "Manufacturer"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -201,7 +216,7 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblShop);
+        jScrollPane1.setViewportView(tblGoods);
 
         jLabel1.setText("Quantity");
 
@@ -245,41 +260,121 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        tbdPane2.addTab("Order Goods", paneShop);
+        tbdPane.addTab("Order Goods", paneShop);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbdPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tbdPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbdPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tbdPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tbdPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tbdPane2StateChanged
+    private void tbdPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tbdPaneStateChanged
 
-        /*JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
+        JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
         int index = sourceTabbedPane.getSelectedIndex();
 
         switch(index) {
 
-            case 1 : populateShopTable();
+            case 1 : populateOrdersTables();
             break;
-        }*/
-    }//GEN-LAST:event_tbdPane2StateChanged
+            case 2 : populateGoodsTable();
+            break;
+        }
+    }//GEN-LAST:event_tbdPaneStateChanged
 
     private void btnOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderItemActionPerformed
 
+        int rowIndex = this.tblGoods.getSelectedRow();
+        int itemId;
+        String seller;
+        InvDistributorOrganization ido;
+        int quantity;
+
+        if(rowIndex < 0) {
+
+            JOptionPane.showMessageDialog(null, "Please select column");
+            return;
+        }
+        
+        try {
+            
+            quantity = Integer.parseInt(this.fldQuantity.getText());
+            
+            if (quantity <= 0) {
+                
+                throw new NumberFormatException();
+            }
+            
+            itemId=Integer.parseInt(this.tblGoods.getValueAt(rowIndex,0).toString());
+            seller = this.tblGoods.getValueAt(rowIndex, 4).toString();
+            ido = ((LocalStoreOrganization)this.user.getParentOrg()).getParent().getSystem().getInventoryEnterprise().searchDisOrganization(seller);
+            ShopOrder shopOrder = ((LocalStoreOrganization)this.user.getParentOrg()).getShopOrderQueue().newOrder();
+            
+            shopOrder.setInvDistributorOrganization(ido);            
+            shopOrder.setItem(ido.getStockItemDirectory().searchStockItem(itemId));
+            shopOrder.setQuantity(quantity);
+            shopOrder.setStatus("Order placed by customer");
+            
+            JOptionPane.showMessageDialog(null, "Order placed!");
+            
+        } catch (NumberFormatException e) {
+            
+            JOptionPane.showMessageDialog(null, "Quantity must be correct");
+        }
+        
     }//GEN-LAST:event_btnOrderItemActionPerformed
 
     private void fldQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldQuantityActionPerformed
-        // TODO add your handling code here:
+        
+        // Populating Goods order table
+        DefaultTableModel model = (DefaultTableModel) this.tblPurchase.getModel();
+        model.setRowCount(0);
+        
+        for (ShopOrder so : ((LocalStoreOrganization)this.user.getParentOrg()).getShopOrderQueue().getOrderList()) {
+            
+            model.addRow(new Object[] {so.getItem().getItemId(), so.getItem().getItemName(), so.getQuantity(), so.getInvDistributorOrganization().getName(), so.getStatus()});            
+        }
+        
+        // Populating Sales order table 
+        model = (DefaultTableModel) this.tblSales.getModel();
+        model.setRowCount(0);
+        
+        for (Order o : ((LocalStoreOrganization)this.user.getParentOrg()).getSalesOrderQueue().getLocalSalesOrders()) {
+            
+            model.addRow(new Object[] {o.getOrderID(), o.getItemName(), o.getQuantity(), "?",o.getTotalSellingPrice()});
+        }
+        
     }//GEN-LAST:event_fldQuantityActionPerformed
 
-
+    private void populateOrdersTables() {
+    
+        
+        
+    }
+    
+    private void populateGoodsTable() {
+        
+        DefaultTableModel model = (DefaultTableModel) this.tblGoods.getModel();
+        model.setRowCount(0);
+        
+        LocalStoreOrganization lso =  (LocalStoreOrganization)this.user.getParentOrg();
+        InventoryEnterprise ie = lso.getParent().getSystem().getInventoryEnterprise();
+        
+        for (InvDistributorOrganization ido : ie.getInvDisOrgList()) {
+            
+            for(StockItem si : ido.getStockItemDirectory().getStockItemList()) {
+                
+                model.addRow(new Object[] {si.getItemId(), si.getItemName(), si.getQuantity(), si.getPrice(), ido.getName()});                
+            }            
+        }                 
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOrderItem;
     private javax.swing.JTextField fldQuantity;
@@ -297,9 +392,9 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel paneOrders;
     private javax.swing.JPanel paneShop;
     private javax.swing.JPanel paneWelcome;
-    private javax.swing.JTabbedPane tbdPane2;
-    private javax.swing.JTable tblGoodsOrders;
-    private javax.swing.JTable tblGoodsOrders1;
-    private javax.swing.JTable tblShop;
+    private javax.swing.JTabbedPane tbdPane;
+    private javax.swing.JTable tblGoods;
+    private javax.swing.JTable tblPurchase;
+    private javax.swing.JTable tblSales;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,6 @@
 package model.Order;
 
 import model.Organization.InvDistributorOrganization;
-import model.Organization.LocalStoreOrganization;
 import model.StockItem.StockItem;
 
 /**

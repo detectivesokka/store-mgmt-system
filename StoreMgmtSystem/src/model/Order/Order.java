@@ -4,7 +4,7 @@ package model.Order;
  *
  * @author saidutt
  */
-public abstract class Order {
+public class Order {
     
     private final int orderID;        
     private String from;
