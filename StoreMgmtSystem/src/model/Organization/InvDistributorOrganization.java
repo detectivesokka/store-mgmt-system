@@ -2,6 +2,7 @@ package model.Organization;
 
 import model.Enterprise.InventoryEnterprise;
 import model.Order.OnlineOrderQueue;
+import model.StockItem.StockItem;
 import model.StockItem.StockItemDirectory;
 import model.UserAccount.UserAccount;
 import model.UserAccount.UserAccountDirectory;
@@ -42,4 +43,28 @@ public class InvDistributorOrganization extends Organization {
     public StockItemDirectory getStockItemDirectory() {
         return stockItemDirectory;
     }           
+    
+    public float getTotalRevenue() {
+        
+        float result = 0.0f;
+        
+        for (StockItem si : this.stockItemDirectory.getStockItemList()) {
+            
+            result += si.getSellingPrice() * si.getQuantity();            
+        }
+        
+        return result;
+    }
+
+    public float getTotalTaxAmount() {
+        
+        float result = 0.0f;
+        
+        for (StockItem si : this.stockItemDirectory.getStockItemList()) {
+            
+            result += si.getSellingPrice()* si.getPcTax() * si.getQuantity();
+        }
+        
+        return result;
+    }        
 }

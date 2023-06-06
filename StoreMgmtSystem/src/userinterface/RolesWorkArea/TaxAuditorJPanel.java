@@ -1,5 +1,14 @@
 package userinterface.RolesWorkArea;
 
+import javax.swing.JTabbedPane;
+import javax.swing.table.DefaultTableModel;
+import model.Organization.InvDistributorOrganization;
+import model.Organization.InvManufacturerOrganization;
+import model.Organization.InvTransportationOrganization;
+import model.Organization.LocalStoreOrganization;
+import model.Organization.OnlineStoreOrganization;
+import model.Organization.TaxationOrganization;
+import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
 
 /**
@@ -37,7 +46,9 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
         lblDispRole = new javax.swing.JLabel();
         paneOrganizations = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAudit = new javax.swing.JTable();
+        btnApprove = new javax.swing.JButton();
+        btnRequestDocuments = new javax.swing.JButton();
 
         tbdPane3.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -96,38 +107,51 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
 
         tbdPane3.addTab("Welcome", paneWelcome3);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAudit.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "Organization type", "Total revenue", "Tax amount", "Audit status"
+                "Name", "Organization type", "Total revenue", "Tax amount"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblAudit);
+
+        btnApprove.setText("Approve audit");
+
+        btnRequestDocuments.setText("Request financial documents");
 
         javax.swing.GroupLayout paneOrganizationsLayout = new javax.swing.GroupLayout(paneOrganizations);
         paneOrganizations.setLayout(paneOrganizationsLayout);
         paneOrganizationsLayout.setHorizontalGroup(
             paneOrganizationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(paneOrganizationsLayout.createSequentialGroup()
+                .addGap(321, 321, 321)
+                .addComponent(btnApprove)
+                .addGap(36, 36, 36)
+                .addComponent(btnRequestDocuments)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrganizationsLayout.setVerticalGroup(
             paneOrganizationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrganizationsLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 107, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(paneOrganizationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRequestDocuments, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         tbdPane3.addTab("Organizations", paneOrganizations);
@@ -146,20 +170,48 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
 
     private void tbdPane3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tbdPane3StateChanged
 
-        /*JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
+        JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
         int index = sourceTabbedPane.getSelectedIndex();
 
         switch(index) {
 
-            case 1 : populateShopTable();
-            break;
-        }*/
+            case 1 : populateAuditTable();
+            break;            
+        }
     }//GEN-LAST:event_tbdPane3StateChanged
 
+    
+    private void populateAuditTable () {
+        
+        StoreMgmtSystem system = ((TaxationOrganization)this.user.getParentOrg()).getComplianceEnterprise().getSystem();
+        DefaultTableModel model = (DefaultTableModel) tblAudit.getModel();
+        model.setRowCount(0);
+        
+        for (OnlineStoreOrganization oso : system.getCustomerEnterprise().getOnlineStrOrgList()) {
+            
+            model.addRow(new Object[] {oso.getName(), "Online store organization", oso.getTotalRevenue(), oso.getTotalTaxAmount()});            
+        }
+        
+        for (LocalStoreOrganization lso : system.getStoreEnterprise().getLocalOrgList()) {
+            
+            model.addRow(new Object[] {lso.getName(), "Local store organization", lso.getTotalRevenue(), lso.getTotalTaxAmount()});            
+        }
+        
+        for (InvManufacturerOrganization imo : system.getInventoryEnterprise().getInvManOrgList()) {
+            
+            model.addRow(new Object[] {imo.getName(), "Inv Man Organization", imo.getTotalRevenue(), imo.getTotalTaxAmount()});
+        }
+        
+        for (InvDistributorOrganization ido : system.getInventoryEnterprise().getInvDisOrgList()) {
+            
+            model.addRow(new Object[] {ido.getName(), "Inv Dis Organization", ido.getTotalRevenue(), ido.getTotalTaxAmount()});        
+        }                
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApprove;
+    private javax.swing.JButton btnRequestDocuments;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDispName;
     private javax.swing.JLabel lblDispRole;
     private javax.swing.JLabel lblRole;
@@ -168,5 +220,6 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel paneOrganizations;
     private javax.swing.JPanel paneWelcome3;
     private javax.swing.JTabbedPane tbdPane3;
+    private javax.swing.JTable tblAudit;
     // End of variables declaration//GEN-END:variables
 }

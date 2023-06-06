@@ -32,6 +32,5 @@ public class InvTransportationOrganization extends Organization{
     public InventoryEnterprise getParentInvEnterprise() {
         
         return parentInvEnterprise;
-    }
-    
+    }        
 }

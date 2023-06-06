@@ -57,4 +57,12 @@ public class LocalSalesOrderQueue implements OrderQueue {
         Order o = searchOrder(pId);
         this.localSalesOrders.remove(o);        
     }
+
+    public float getTotalRevenue() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public float getTotalTaxAmount() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

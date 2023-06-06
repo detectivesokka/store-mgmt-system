@@ -63,5 +63,29 @@ public class OnlineOrderQueue implements OrderQueue{
     public Organization getParent() {
         return parent;
     }    
+
+    public float getTotalRevenue() {
+        
+        float result = 0.0f;
+        
+        for (OnlineOrder o : this.onlineOrders) {
+            
+            result += o.getItem().getSellingPrice() * o.getItem().getQuantity();            
+        }
+        
+        return result;
+    }
+
+    public float getTotalTaxAmount() {
+        
+        float result = 0.0f;
+        
+        for (OnlineOrder o : this.onlineOrders) {
+            
+            result += o.getItem().getSellingPrice()* o.getItem().getPcTax() * o.getItem().getQuantity();
+        }
+        
+        return result;
+    }
     
 }

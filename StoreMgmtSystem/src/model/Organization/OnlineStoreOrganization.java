@@ -39,4 +39,14 @@ public class OnlineStoreOrganization extends Organization {
     public OnlineOrderQueue getOnlineOrderQueue() {
         return onlineOrderQueue;
     }        
+
+    public float getTotalRevenue() {
+        
+        return this.onlineOrderQueue.getTotalRevenue();        
+    }
+
+    public float getTotalTaxAmount() {
+                
+        return this.onlineOrderQueue.getTotalTaxAmount();
+    }
 }

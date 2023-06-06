@@ -1,7 +1,6 @@
 package model.Enterprise;
 
 import java.util.ArrayList;
-import model.Order.ShopOrderQueue;
 import model.Organization.LocalStoreOrganization;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;

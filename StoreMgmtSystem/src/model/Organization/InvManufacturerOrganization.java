@@ -1,6 +1,7 @@
 package model.Organization;
 
 import model.Enterprise.InventoryEnterprise;
+import model.StockItem.StockItem;
 import model.StockItem.StockItemDirectory;
 import model.UserAccount.UserAccount;
 import model.UserAccount.UserAccountDirectory;
@@ -49,5 +50,29 @@ public class InvManufacturerOrganization extends Organization {
     public InventoryEnterprise getParentInvEnterprise() {
         
         return parentInvEnterprise;
+    }
+
+    public float getTotalRevenue() {
+        
+        float result = 0.0f;
+        
+        for (StockItem si : this.stockItemDirectory.getStockItemList()) {
+            
+            result += si.getSellingPrice() * si.getQuantity();            
+        }
+        
+        return result;
+    }
+
+    public float getTotalTaxAmount() {
+        
+        float result = 0.0f;
+        
+        for (StockItem si : this.stockItemDirectory.getStockItemList()) {
+            
+            result += si.getSellingPrice()* si.getPcTax() * si.getQuantity();
+        }
+        
+        return result;
     }
 }

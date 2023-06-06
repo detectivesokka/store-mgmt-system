@@ -3,7 +3,6 @@ package model;
 import model.UserAccount.*;
 import model.Enterprise.*;
 import model.Order.GoodsOrderQueue;
-import model.Order.ShopOrderQueue;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
 import model.Organization.InvTransportationOrganization;
@@ -11,6 +10,7 @@ import model.Organization.OnlineStoreOrganization;
 import model.Organization.LocalStoreOrganization;
 import model.Organization.TaxationOrganization;
 import model.StockItem.StockItem;
+
 
 /**
  *
@@ -44,9 +44,6 @@ public class StoreMgmtSystem {
     
     public final void initData() {
                 
-//        userAccountDirectory.newUserAccount("customer", "customer", 1);
-//        userAccountDirectory.newUserAccount("odeliveryman", "odeliveryman", 2);        
-
         // add items
         // INV ORGANIZATIONS
         InvManufacturerOrganization imo = inventoryEnterprise.newInvManufacturerOrganization("imo1");

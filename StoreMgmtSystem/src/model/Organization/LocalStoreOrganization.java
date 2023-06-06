@@ -57,4 +57,16 @@ public class LocalStoreOrganization extends Organization {
     public LocalSalesOrderQueue getSalesOrderQueue() {
         return salesOrderQueue;
     }        
+
+    public float getTotalRevenue() {
+        
+        return this.salesOrderQueue.getTotalRevenue();
+        
+    }
+
+    public float getTotalTaxAmount() {
+        
+        return this.salesOrderQueue.getTotalTaxAmount();
+        
+    }
 }
