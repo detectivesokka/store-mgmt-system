@@ -1,5 +1,6 @@
 package model.Enterprise;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import model.Organization.LocalStoreOrganization;
 import model.StoreMgmtSystem;
@@ -9,7 +10,7 @@ import model.UserAccount.UserAccount;
  *
  * @author saidutt
  */
-public class StoreEnterprise extends Enterprise {
+public class StoreEnterprise extends Enterprise implements Serializable {
 
     private final ArrayList<LocalStoreOrganization> localOrgList;    
     

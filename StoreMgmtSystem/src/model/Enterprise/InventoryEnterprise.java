@@ -1,5 +1,6 @@
 package model.Enterprise;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import model.Order.GoodsOrderQueue;
 import model.Organization.InvDistributorOrganization;
@@ -12,7 +13,7 @@ import model.UserAccount.UserAccount;
  *
  * @author saidutt
  */
-public class InventoryEnterprise extends Enterprise{
+public class InventoryEnterprise extends Enterprise implements Serializable {
 
     private final ArrayList<InvManufacturerOrganization> invManOrgList;
     private final ArrayList<InvDistributorOrganization> invDisOrgList;   

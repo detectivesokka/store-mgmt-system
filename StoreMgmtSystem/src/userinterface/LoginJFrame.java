@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import model.Organization.Organization;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
+import model.db.DB4OUtil;
 
 /**
  *
@@ -26,11 +27,13 @@ public class LoginJFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoginJFrame
      */
-    
+    private DB4OUtil db;
     public StoreMgmtSystem system;
     
     public LoginJFrame() {
-        this.system = new StoreMgmtSystem();
+        
+        this.db = DB4OUtil.getInstance();
+        this.system = db.retrieveSystem();        
         initComponents();
     }
 
@@ -51,6 +54,11 @@ public class LoginJFrame extends javax.swing.JFrame {
         btnSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         TitleLogin.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         TitleLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -200,6 +208,11 @@ public class LoginJFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        
+        this.db.storeSystem(system);        
+    }//GEN-LAST:event_formWindowClosing
     
     private ArrayList<Object> searchUser(String pUsername, String pPassword) {                
         

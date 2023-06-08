@@ -1,5 +1,6 @@
 package model.Organization;
 
+import java.io.Serializable;
 import model.Enterprise.StoreEnterprise;
 import model.Order.LocalSalesOrderQueue;
 import model.Order.ShopOrderQueue;
@@ -11,10 +12,10 @@ import model.UserAccount.UserAccountDirectory;
  *
  * @author saidutt
  */
-public class LocalStoreOrganization extends Organization {
+public class LocalStoreOrganization extends Organization implements Serializable {
     
     private final StockItemDirectory stockItemDirectory;
-    private final UserAccountDirectory userAccountDirectory;    
+    private final UserAccountDirectory userAccountDirectory;
     private final StoreEnterprise parent;
     private final ShopOrderQueue shopOrderQueue;        
     private final LocalSalesOrderQueue salesOrderQueue;    

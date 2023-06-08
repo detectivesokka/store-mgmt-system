@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import model.UserAccount.*;
 import model.Enterprise.*;
 import model.Order.GoodsOrderQueue;
@@ -16,7 +17,7 @@ import model.StockItem.StockItem;
  *
  * @author saidutt
  */
-public class StoreMgmtSystem {
+public class StoreMgmtSystem implements Serializable {
 
     private final UserAccountDirectory userAccountDirectory;
     
