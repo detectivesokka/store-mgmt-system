@@ -10,9 +10,9 @@ import model.UserAccount.UserAccount;
  *
  * @author saidutt
  */
-public class ComplianceEnterprise extends Enterprise implements Serializable {
+public class ComplianceEnterprise extends Enterprise {
 
-    private final ArrayList <TaxationOrganization> taxOrgList;
+    private ArrayList <TaxationOrganization> taxOrgList;
     
     public ComplianceEnterprise(StoreMgmtSystem pSystem) {
         

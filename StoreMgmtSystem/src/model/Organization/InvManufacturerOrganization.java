@@ -12,9 +12,9 @@ import model.UserAccount.UserAccountDirectory;
  */
 public class InvManufacturerOrganization extends Organization {
     
-    private final StockItemDirectory stockItemDirectory;
-    private final UserAccountDirectory userAccountDirectory;    
-    private final InventoryEnterprise parentInvEnterprise;
+    private StockItemDirectory stockItemDirectory;
+    private UserAccountDirectory userAccountDirectory;    
+    private InventoryEnterprise parentInvEnterprise;
 
     public InvManufacturerOrganization(StockItemDirectory stockItemDirectory, UserAccountDirectory userAccountDirectory, InventoryEnterprise pParent, String pName) {
         

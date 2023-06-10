@@ -17,7 +17,7 @@ import model.UserAccount.UserAccount;
  */
 public class TaxAuditorJPanel extends javax.swing.JPanel {
 
-    private final UserAccount user;
+    private   UserAccount user;
     /**
      * Creates new form TaxAuditorJPanel
      * @param pUser

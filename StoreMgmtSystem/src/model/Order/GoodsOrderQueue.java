@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class GoodsOrderQueue implements OrderQueue {
 
     private int goodsOrderCount = 1;
-    private final ArrayList<GoodsOrder> goodsOrders;
+    private ArrayList<GoodsOrder> goodsOrders;
     
     {
         goodsOrders = new ArrayList<>();

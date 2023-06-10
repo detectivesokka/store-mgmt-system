@@ -10,8 +10,8 @@ import model.UserAccount.UserAccount;
  */
 public class StockItemDirectory {
     
-    private final ArrayList<StockItem> stockItemList;
-    private final Organization parentOrg;
+    private   ArrayList<StockItem> stockItemList;
+    private   Organization parentOrg;
             
     private int itemCount = 1;
     

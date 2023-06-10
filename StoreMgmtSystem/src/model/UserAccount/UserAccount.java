@@ -11,7 +11,7 @@ public class UserAccount {
     private String userName;
     private String password;
     private int role;
-    private final int userId;
+    private   int userId;
     private Organization parentOrg;
     
     

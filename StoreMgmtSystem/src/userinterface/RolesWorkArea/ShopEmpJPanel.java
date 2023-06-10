@@ -15,7 +15,7 @@ import model.UserAccount.UserAccount;
  */
 public class ShopEmpJPanel extends javax.swing.JPanel {
 
-    private final UserAccount user;
+    private   UserAccount user;
     /**
      * Creates new form ShopEmpJPanel
      * @param pUser

@@ -13,9 +13,9 @@ import model.UserAccount.UserAccountDirectory;
  **/
 public class InvDistributorOrganization extends Organization {
         
-    private final UserAccountDirectory userAccountDirectory;
-    private final InventoryEnterprise parentInvEnterprise;
-    private final StockItemDirectory stockItemDirectory;      
+    private UserAccountDirectory userAccountDirectory;
+    private InventoryEnterprise parentInvEnterprise;
+    private StockItemDirectory stockItemDirectory;      
     
     public InvDistributorOrganization(InventoryEnterprise pParent, String pName) {
                 

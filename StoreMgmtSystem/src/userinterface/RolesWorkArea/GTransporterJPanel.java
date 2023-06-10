@@ -14,8 +14,8 @@ import model.UserAccount.UserAccount;
  */
 public class GTransporterJPanel extends javax.swing.JPanel {
 
-    private final InvTransportationOrganization org;
-    private final UserAccount user;
+    private   InvTransportationOrganization org;
+    private   UserAccount user;
     /**
      * Creates new form GoodsTransporter
      * @param pUser

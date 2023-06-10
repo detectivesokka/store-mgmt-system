@@ -21,8 +21,8 @@ public class OnlineCustomerJPanel extends javax.swing.JPanel {
      * Creates new form OnlineCustomer
      */
         
-    private final UserAccount userAccount;
-    private final StoreMgmtSystem system;
+    private   UserAccount userAccount;
+    private   StoreMgmtSystem system;
     
     public OnlineCustomerJPanel(UserAccount pAcc, StoreMgmtSystem pSystem) {
         

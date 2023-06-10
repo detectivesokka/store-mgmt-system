@@ -10,8 +10,8 @@ import model.Organization.Organization;
 public class OnlineOrderQueue implements OrderQueue{
     
     private int onlineOrderCount = 1;
-    private final ArrayList<OnlineOrder> onlineOrders;
-    private final Organization parent;
+    private ArrayList<OnlineOrder> onlineOrders;
+    private Organization parent;
 
     public OnlineOrderQueue(Organization pParent) {
         

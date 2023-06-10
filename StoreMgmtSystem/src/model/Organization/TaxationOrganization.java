@@ -10,8 +10,8 @@ import model.UserAccount.UserAccountDirectory;
  */
 public class TaxationOrganization extends Organization {
         
-    private final UserAccountDirectory userAccountDirectory;    
-    private final ComplianceEnterprise complianceEnterprise;
+    private   UserAccountDirectory userAccountDirectory;    
+    private   ComplianceEnterprise complianceEnterprise;
 
     public TaxationOrganization(ComplianceEnterprise parent, String imo1) {
         

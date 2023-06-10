@@ -22,8 +22,8 @@ public class GDistributorJPanel extends javax.swing.JPanel {
      * Creates new form GSupplierWorkArea
      */
     
-    private final UserAccount user;
-    private final StoreMgmtSystem system;
+    private UserAccount user;
+    private StoreMgmtSystem system;
     
     public GDistributorJPanel(StoreMgmtSystem pSystem, UserAccount pUser) {
         

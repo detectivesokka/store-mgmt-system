@@ -9,9 +9,9 @@ import model.Organization.LocalStoreOrganization;
  */
 public class LocalSalesOrderQueue implements OrderQueue {
     
-    private final LocalStoreOrganization parent;
+    private LocalStoreOrganization parent;
     private int localSalesOrderCount = 1;
-    private final ArrayList<Order> localSalesOrders;
+    private ArrayList<Order> localSalesOrders;
     
     public LocalSalesOrderQueue(LocalStoreOrganization pParent) {
         

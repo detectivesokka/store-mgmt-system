@@ -20,7 +20,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
     /**
      * Creates new form GoodsManufacturer
      */
-    private final InvManufacturerOrganization org;
+    private InvManufacturerOrganization org;
     
     public GMfrJPanel(UserAccount pUserAccount, Organization pOrganization) {
         

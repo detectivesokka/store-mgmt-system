@@ -10,11 +10,11 @@ import model.StoreMgmtSystem;
 
 /**
  *
- * @author Sai Dutt
+ * @author saidutt
  */
 public class DB4OUtil {
-
-    private static final String FILENAME = Paths.get("Database.db4o").toAbsolutePath().toString();// Path to the data store
+    
+    private static   String FILENAME = Paths.get("Databank.db4o").toAbsolutePath().toString();// Path to the data store
     private static DB4OUtil dB4OUtil;
 
     public synchronized static DB4OUtil getInstance() {
@@ -53,28 +53,29 @@ public class DB4OUtil {
         return null;
     }
 
-    public synchronized void storeSystem(StoreMgmtSystem pSystem) {
+    public synchronized void storeSystem(StoreMgmtSystem ecosystem) {
         ObjectContainer conn = createConnection();
-        conn.store(pSystem);
+        conn.store(ecosystem);
         conn.commit();
         conn.close();
     }
 
     public StoreMgmtSystem retrieveSystem() {
         ObjectContainer conn = createConnection();
-        ObjectSet<StoreMgmtSystem> allSystems = conn.query(StoreMgmtSystem.class); // Change to the object you want to save
-        StoreMgmtSystem system;
+        ObjectSet<StoreMgmtSystem> ecosystems = conn.query(StoreMgmtSystem.class); // Change to the object you want to save
+        StoreMgmtSystem ecosystem;
         
-        if (allSystems.isEmpty()) {
+        if (ecosystems.size() == 0) {
             
-            return new StoreMgmtSystem();
+            ecosystem = null;
             
         } else {
             
-            system = allSystems.get(allSystems.size() - 1);
+            ecosystem = ecosystems.get(ecosystems.size() - 1);
         }
         
         conn.close();
-        return system;
+        return ecosystem;
     }
+    
 }

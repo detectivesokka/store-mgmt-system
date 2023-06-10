@@ -10,8 +10,8 @@ import model.UserAccount.UserAccountDirectory;
  */
 public class InvTransportationOrganization extends Organization{
     
-     private final UserAccountDirectory userAccountDirectory; 
-     private final InventoryEnterprise parentInvEnterprise;
+     private   UserAccountDirectory userAccountDirectory; 
+     private   InventoryEnterprise parentInvEnterprise;
     
     public InvTransportationOrganization(InventoryEnterprise pParent) {
                 

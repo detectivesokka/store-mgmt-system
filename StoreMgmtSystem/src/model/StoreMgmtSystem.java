@@ -1,6 +1,5 @@
 package model;
 
-import java.io.Serializable;
 import model.UserAccount.*;
 import model.Enterprise.*;
 import model.Order.GoodsOrderQueue;
@@ -17,17 +16,17 @@ import model.StockItem.StockItem;
  *
  * @author saidutt
  */
-public class StoreMgmtSystem implements Serializable {
+public class StoreMgmtSystem {
 
-    private final UserAccountDirectory userAccountDirectory;
+    private UserAccountDirectory userAccountDirectory;
     
     private ComplianceEnterprise complianceEnterprise;
     private InventoryEnterprise inventoryEnterprise;
     private StoreEnterprise storeEnterprise;
-    private final ECommerceEnterprise eCommerceEnterprise;
+    private ECommerceEnterprise eCommerceEnterprise;
     
-    private final GoodsOrderQueue goQueue;    
-    
+    private GoodsOrderQueue goQueue;    
+           
     
     public StoreMgmtSystem() {
         
@@ -40,10 +39,10 @@ public class StoreMgmtSystem implements Serializable {
         
         goQueue = new GoodsOrderQueue();        
         
-        initData();
+        //initData();
     }
     
-    public final void initData() {
+    public   void initData() {
                 
         // add items
         // INV ORGANIZATIONS

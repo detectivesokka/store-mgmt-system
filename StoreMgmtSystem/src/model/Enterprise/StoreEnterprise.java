@@ -12,7 +12,7 @@ import model.UserAccount.UserAccount;
  */
 public class StoreEnterprise extends Enterprise implements Serializable {
 
-    private final ArrayList<LocalStoreOrganization> localOrgList;    
+    private ArrayList<LocalStoreOrganization> localOrgList;    
     
     public StoreEnterprise(StoreMgmtSystem pSystem) {
         

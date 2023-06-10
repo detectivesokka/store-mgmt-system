@@ -11,9 +11,9 @@ import model.UserAccount.UserAccountDirectory;
  */
 public class OnlineStoreOrganization extends Organization {
         
-    private final UserAccountDirectory userAccountDirectory;    
-    private final ECommerceEnterprise eCommerceEnterprise;
-    private final OnlineOrderQueue onlineOrderQueue;        
+    private   UserAccountDirectory userAccountDirectory;    
+    private   ECommerceEnterprise eCommerceEnterprise;
+    private   OnlineOrderQueue onlineOrderQueue;        
     
     public OnlineStoreOrganization(ECommerceEnterprise pParent, String pName) {
                 

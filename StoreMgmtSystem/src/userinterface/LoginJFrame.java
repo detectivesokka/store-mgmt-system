@@ -26,15 +26,23 @@ public class LoginJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginJFrame
-     */
+     */    
+    private   StoreMgmtSystem system;
     private DB4OUtil db;
-    public StoreMgmtSystem system;
-    
+   
     public LoginJFrame() {
+            
+        initComponents();                                                                  
+        db = DB4OUtil.getInstance();
+       
+        this.system = db.retrieveSystem();
         
-        this.db = DB4OUtil.getInstance();
-        this.system = db.retrieveSystem();        
-        initComponents();
+        if (this.system == null) {
+            
+            this.system = new StoreMgmtSystem();
+            
+        } 
+                
     }
 
     /**
@@ -211,7 +219,7 @@ public class LoginJFrame extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         
-        this.db.storeSystem(system);        
+        db.storeSystem(this.system);
     }//GEN-LAST:event_formWindowClosing
     
     private ArrayList<Object> searchUser(String pUsername, String pPassword) {                

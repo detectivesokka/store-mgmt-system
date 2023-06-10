@@ -13,7 +13,7 @@ public class StockItem {
     private int quantity;
     private StockItemDirectory parentDirectory;
     
-    private final int itemId;
+    private   int itemId;
 
     public StockItem(int itemId, StockItemDirectory pSID) {
         

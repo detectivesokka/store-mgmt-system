@@ -15,11 +15,11 @@ import model.UserAccount.UserAccount;
  */
 public class InventoryEnterprise extends Enterprise implements Serializable {
 
-    private final ArrayList<InvManufacturerOrganization> invManOrgList;
-    private final ArrayList<InvDistributorOrganization> invDisOrgList;   
-    private final ArrayList<InvTransportationOrganization> invTransOrgList;
+    private ArrayList<InvManufacturerOrganization> invManOrgList;
+    private ArrayList<InvDistributorOrganization> invDisOrgList;   
+    private ArrayList<InvTransportationOrganization> invTransOrgList;
     
-    private final GoodsOrderQueue invGoodsOrderQueue;
+    private GoodsOrderQueue invGoodsOrderQueue;
     
     
     public InventoryEnterprise(StoreMgmtSystem pSystem) {

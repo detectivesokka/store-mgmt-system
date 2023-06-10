@@ -12,7 +12,7 @@ import model.UserAccount.UserAccount;
  */
 public class ECommerceEnterprise extends Enterprise implements Serializable {
 
-    private final ArrayList<OnlineStoreOrganization> onlineStrOrgList;    
+    private ArrayList<OnlineStoreOrganization> onlineStrOrgList;    
     
     public ECommerceEnterprise(StoreMgmtSystem pSystem) {
         super(0, pSystem);

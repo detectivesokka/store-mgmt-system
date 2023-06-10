@@ -8,8 +8,8 @@ import model.StoreMgmtSystem;
  */
 public abstract class Enterprise {
     
-    private final int enterpriseType;   
-    private final StoreMgmtSystem system;       
+    private int enterpriseType;   
+    private StoreMgmtSystem system;       
     
     Enterprise(int pType, StoreMgmtSystem pSystem) {
                 

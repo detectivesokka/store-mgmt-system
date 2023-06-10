@@ -6,7 +6,7 @@ package model.Order;
  */
 public class Order {
     
-    private final int orderID;        
+    private int orderID;        
     private String from;
     private String to;    
     private String itemName;
