@@ -27,7 +27,7 @@ public class LoginJFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoginJFrame
      */    
-    private   StoreMgmtSystem system;
+    private StoreMgmtSystem system;
     private DB4OUtil db;
    
     public LoginJFrame() {
@@ -40,9 +40,8 @@ public class LoginJFrame extends javax.swing.JFrame {
         if (this.system == null) {
             
             this.system = new StoreMgmtSystem();
-            
-        } 
-                
+                       
+        }                 
     }
 
     /**
@@ -173,7 +172,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                 switch (user.getRole()) {
 
                     case 0:
-                        userPanel = new AdminJPanel();
+                        userPanel = new AdminJPanel(user, this.system);
                         break;
                     case 1:
                         userPanel = new OnlineCustomerJPanel(user, this.system);
@@ -222,56 +221,51 @@ public class LoginJFrame extends javax.swing.JFrame {
         db.storeSystem(this.system);
     }//GEN-LAST:event_formWindowClosing
     
-    private ArrayList<Object> searchUser(String pUsername, String pPassword) {                
-        
-        ArrayList<Object> result;
-        
-        for(UserAccount u : this.system.getUserAccountDirectory().getUserAccountList()) {
+    private ArrayList<Object> searchUser(String pUsername, String pPassword) {
 
-            if (u.getUserName().equals(pUsername) && u.getPassword().equals(pPassword))
-            {
-                result = new ArrayList<> ();
-                result.add(null);
-                result.add(u);
-                return result;
-            }
+        ArrayList<Object> result;
+        UserAccount u = this.system.getSuperAdmin();
+        
+        // checking if user is superadmin
+        if (u.getUserName().equals(pUsername) && u.getPassword().equals(pPassword)) {
+            result = new ArrayList<>();
+            result.add(null);
+            result.add(u);
+            return result;
         }
+
         // Checking InventoryEnterprise
-                       
         result = this.system.getInventoryEnterprise().searchUserAccount(pUsername, pPassword);
-        
-        if(result != null) {
-            
+
+        if (result != null) {
+
             return result;
         }
-        
+
         // Checking EComm enterprise
-                       
         result = this.system.getCustomerEnterprise().searchUserAccount(pUsername, pPassword);
-        
-        if(result != null) {
-            
+
+        if (result != null) {
+
             return result;
         }
-        
+
         // Checking Store enterprise
-                       
         result = this.system.getStoreEnterprise().searchUserAccount(pUsername, pPassword);
-        
-        if(result != null) {
-            
-            return result;
-        }                
-        
-        // Checking Compliance enterprise
-                       
-        result = this.system.getComplianceEnterprise().searchUserAccount(pUsername, pPassword);
-        
-        if(result != null) {
-            
+
+        if (result != null) {
+
             return result;
         }
-        
+
+        // Checking Compliance enterprise
+        result = this.system.getComplianceEnterprise().searchUserAccount(pUsername, pPassword);
+
+        if (result != null) {
+
+            return result;
+        }
+
         return null;
     }
     

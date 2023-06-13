@@ -451,13 +451,13 @@ public class GDistributorJPanel extends javax.swing.JPanel {
             
             case 1 : populateOrdersTable();
             break;            
-            case 2 : populateInventoryTable();
+            case 2 : populateOnlineOrdersTable();
             break;
-            case 3 : populateShopTable();
+            case 3 : populateShopOrdersTable();
             break;
-            case 4: populateOnlineOrdersTable();
+            case 4: populateInventoryTable();
             break;
-            case 5: populateShopOrdersTable();
+            case 5: populateShopTable();
             break;
         }
     }//GEN-LAST:event_tbdPaneStateChanged

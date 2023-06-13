@@ -57,7 +57,6 @@ public class GMfrJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
         btnAcceptOrder = new javax.swing.JButton();
-        btnDispatchOrder = new javax.swing.JButton();
         paneInventory = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblInventory = new javax.swing.JTable();
@@ -149,13 +148,6 @@ public class GMfrJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDispatchOrder.setText("Dispatch order");
-        btnDispatchOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDispatchOrderActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
         paneOrdersLayout.setHorizontalGroup(
@@ -164,18 +156,14 @@ public class GMfrJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOrdersLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAcceptOrder)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDispatchOrder)
-                .addGap(325, 325, 325))
+                .addGap(453, 453, 453))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAcceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDispatchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnAcceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -269,9 +257,9 @@ public class GMfrJPanel extends javax.swing.JPanel {
         int index = sourceTabbedPane.getSelectedIndex();
 
         switch(index) {
-            case 1 : populateInventoryTable();
+            case 1 : populateOrdersTable();
             break;
-            case 2 : populateOrdersTable();
+            case 2 : populateInventoryTable();
             break;
         }
     }//GEN-LAST:event_tbdPaneStateChanged
@@ -336,7 +324,7 @@ public class GMfrJPanel extends javax.swing.JPanel {
             orderId=Integer.parseInt(tblOrders.getValueAt(rowIndex,0).toString());
             status = tblOrders.getValueAt(rowIndex,4).toString();
             
-            if (status.compareTo("Accepted by Manufacturer") == 0 || status.compareTo("Ready for dispatch") == 0 ) {
+            if (status.compareTo("Order placed by Distributor") != 0 ) {
                 
                 JOptionPane.showMessageDialog(null, "Order already accepted");            
                 return;
@@ -353,37 +341,6 @@ public class GMfrJPanel extends javax.swing.JPanel {
         
         populateOrdersTable();
     }//GEN-LAST:event_btnAcceptOrderActionPerformed
-
-    private void btnDispatchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDispatchOrderActionPerformed
-        
-        int rowIndex = this.tblOrders.getSelectedRow();        
-        int orderId;        
-        String status;
-        
-        try {
-            
-            orderId=Integer.parseInt(tblOrders.getValueAt(rowIndex,0).toString());                                                
-            
-            GoodsOrder go = this.org.getParentInvEnterprise().getInvGoodsOrderQueue().searchOrder(orderId);
-            status = tblOrders.getValueAt(rowIndex,4).toString();
-            
-            if (status.compareTo("Accepted by Manufacturer") != 0) {
-               
-                JOptionPane.showMessageDialog(null, "Order not ready to be dispached");            
-                return;
-            } 
-            
-            go.dispatchToDistributor();
-            go.setStatus("Ready for dispatch");
-            
-            
-        } catch (Exception e) {
-            
-            JOptionPane.showMessageDialog(null, "Select an order to dispatch");            
-        }
-        
-        populateOrdersTable();
-    }//GEN-LAST:event_btnDispatchOrderActionPerformed
     
     private int getSelectedItemFromTable() {
         
@@ -428,7 +385,6 @@ public class GMfrJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAcceptOrder;
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnDeleteItem;
-    private javax.swing.JButton btnDispatchOrder;
     private javax.swing.JButton btnEditItem;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

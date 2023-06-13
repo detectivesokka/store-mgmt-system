@@ -1,6 +1,10 @@
 package userinterface.RolesWorkArea;
 
-import javax.swing.JTabbedPane;
+import javax.swing.JFrame;
+import model.StoreMgmtSystem;
+import model.UserAccount.UserAccount;
+import userinterface.CreateOrganization.NewOrganizationJPanel;
+import userinterface.UserCreation.NewUserJPanel;
 
 /**
  *
@@ -8,11 +12,16 @@ import javax.swing.JTabbedPane;
  */
 public class AdminJPanel extends javax.swing.JPanel {
 
+    private StoreMgmtSystem system;
     /**
      * Creates new form AdminJPanel
+     * @param pUser
+     * @param pSystem
      */
-    public AdminJPanel() {
+    public AdminJPanel(UserAccount pUser, StoreMgmtSystem pSystem) {
+        
         initComponents();
+        this.system = pSystem;
     }
 
     /**
@@ -31,6 +40,8 @@ public class AdminJPanel extends javax.swing.JPanel {
         lblDispName = new javax.swing.JLabel();
         lblRole = new javax.swing.JLabel();
         lblDispRole = new javax.swing.JLabel();
+        btnAddUser = new javax.swing.JButton();
+        btnAddOrg = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -51,6 +62,20 @@ public class AdminJPanel extends javax.swing.JPanel {
         lblRole.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblRole.setText("Role - ");
 
+        btnAddUser.setText("Add user");
+        btnAddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUserActionPerformed(evt);
+            }
+        });
+
+        btnAddOrg.setText("Add organization");
+        btnAddOrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddOrgActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout paneWelcomeLayout = new javax.swing.GroupLayout(paneWelcome);
         paneWelcome.setLayout(paneWelcomeLayout);
         paneWelcomeLayout.setHorizontalGroup(
@@ -60,13 +85,17 @@ public class AdminJPanel extends javax.swing.JPanel {
                 .addGap(293, 293, 293)
                 .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneWelcomeLayout.createSequentialGroup()
-                        .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneWelcomeLayout.createSequentialGroup()
                         .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDispName, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblDispName, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneWelcomeLayout.createSequentialGroup()
+                        .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblRole, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(btnAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblDispRole, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(btnAddOrg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(295, Short.MAX_VALUE))
         );
         paneWelcomeLayout.setVerticalGroup(
@@ -82,7 +111,11 @@ public class AdminJPanel extends javax.swing.JPanel {
                 .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddUser)
+                    .addComponent(btnAddOrg))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         tbdPane.addTab("Welcome", paneWelcome);
@@ -100,21 +133,40 @@ public class AdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbdPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tbdPaneStateChanged
-
-//        JTabbedPane sourceTabbedPane = (JTabbedPane) evt.getSource();
-//        int index = sourceTabbedPane.getSelectedIndex();
-
-//        switch(index) {
-//
-//            case 1 : populateOrdersTable();
-//            break;
-//            case 2 : populateShopTable();
-//            break;
-//        }
+        
+        
+        
     }//GEN-LAST:event_tbdPaneStateChanged
+
+    private void btnAddOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrgActionPerformed
+        
+        JFrame regFrame = new JFrame();        
+        
+        // Create Edit StockItem JPanel
+        NewOrganizationJPanel register = new NewOrganizationJPanel(this.system);
+        
+        regFrame.getContentPane().add(register);
+        regFrame.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); // Window opens in full size mode
+        regFrame.setVisible(true);        
+    }//GEN-LAST:event_btnAddOrgActionPerformed
+
+    private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
+        
+        JFrame regFrame = new JFrame();        
+        
+        // Create Edit StockItem JPanel
+        NewUserJPanel register = new NewUserJPanel(this.system);
+        
+        regFrame.getContentPane().add(register);
+        regFrame.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); // Window opens in full size mode
+        regFrame.setVisible(true);               
+        
+    }//GEN-LAST:event_btnAddUserActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddOrg;
+    private javax.swing.JButton btnAddUser;
     private javax.swing.JLabel lblDispName;
     private javax.swing.JLabel lblDispRole;
     private javax.swing.JLabel lblRole;

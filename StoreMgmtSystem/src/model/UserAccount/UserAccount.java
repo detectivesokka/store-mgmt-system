@@ -11,22 +11,29 @@ public class UserAccount {
     private String userName;
     private String password;
     private int role;
-    private   int userId;
+    private int userId;
     private Organization parentOrg;
     
     
-    UserAccount(int pUserId, Organization pParentOrg) {
+    public UserAccount(Organization pParentOrg) {
         
-        this.userId = pUserId;     
         this.parentOrg = pParentOrg;        
     }
     
-    UserAccount(int pUserId, String pUserName, String pPassword, int pRole) {
+    public UserAccount(int pUserId, String pUserName, String pPassword, int pRole) {
         
-        this.userId = pUserId;
         this.userName = pUserName;
         this.password = pPassword;
         this.role = pRole;
+        this.userId = pUserId;
+    }
+    
+    // Admin case
+    public UserAccount(String pUserName, String pPassword)
+    {
+        this.userName = pUserName;
+        this.password = pPassword;
+        this.role = 0;
     }
     
     public String getUserName() {

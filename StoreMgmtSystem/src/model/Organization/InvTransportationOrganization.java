@@ -13,10 +13,11 @@ public class InvTransportationOrganization extends Organization{
      private   UserAccountDirectory userAccountDirectory; 
      private   InventoryEnterprise parentInvEnterprise;
     
-    public InvTransportationOrganization(InventoryEnterprise pParent) {
+    public InvTransportationOrganization(InventoryEnterprise pParent, String pName) {
                 
         userAccountDirectory = new UserAccountDirectory(this);
         this.parentInvEnterprise = pParent;
+        this.setName(pName);
     }
 
     public UserAccountDirectory getUserAccountDirectory() {

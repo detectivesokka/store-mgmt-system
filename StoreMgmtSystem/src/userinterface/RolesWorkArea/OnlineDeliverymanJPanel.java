@@ -45,7 +45,6 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
         btnDeliver = new javax.swing.JButton();
-        btnAssign = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -131,33 +130,22 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnAssign.setText("Assign to me");
-        btnAssign.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssignActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout paneOrdersLayout = new javax.swing.GroupLayout(paneOrders);
         paneOrders.setLayout(paneOrdersLayout);
         paneOrdersLayout.setHorizontalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOrdersLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAssign)
-                .addGap(28, 28, 28)
+            .addGroup(paneOrdersLayout.createSequentialGroup()
+                .addGap(365, 365, 365)
                 .addComponent(btnDeliver, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(336, 336, 336))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrdersLayout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDeliver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnDeliver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -202,10 +190,11 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
             o = ((OnlineStoreOrganization)this.user.getParentOrg()).getOnlineOrderQueue().searchOrder(orderId);
             status = o.getStatus();
             
-            if (status.compareTo("Order assigned to" + this.user.getUserName()) == 0 ) {
+            if (status.compareTo("Online order") == 0 ) {
                 
                 o.setStatus("Order delivered to customer");                
                 o.getItem().setQuantity(o.getItem().getQuantity() - o.getQuantity());                
+                populateOrdersTable();
                 
             } else {
                 
@@ -219,38 +208,6 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnDeliverActionPerformed
-
-    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
-        
-        int rowIndex = this.tblOrders.getSelectedRow();        
-        int orderId;        
-        String status;
-        
-        OnlineOrder o;
-        
-        
-        try {
-            
-            orderId=Integer.parseInt(this.tblOrders.getValueAt(rowIndex,0).toString());                                                
-            o = ((OnlineStoreOrganization)this.user.getParentOrg()).getOnlineOrderQueue().searchOrder(orderId);
-            status = o.getStatus();
-            
-            if (status.compareTo("Order placed by customer") == 0 ) {
-                
-                o.setStatus("Order assigned to " + this.user.getUserName());
-                
-            } else {
-                
-                throw new Exception("Can't assign order");
-            }
-            
-        } catch(Exception e) {
-            
-            JOptionPane.showMessageDialog(null, e.getMessage());  
-            
-        }
-        
-    }//GEN-LAST:event_btnAssignActionPerformed
 
     private void populateOrdersTable() {
         
@@ -266,7 +223,6 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnDeliver;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblDispName;

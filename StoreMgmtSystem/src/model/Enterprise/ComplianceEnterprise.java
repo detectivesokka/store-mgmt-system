@@ -20,9 +20,9 @@ public class ComplianceEnterprise extends Enterprise {
         taxOrgList = new ArrayList<>();        
     }
 
-    public TaxationOrganization newTaxationOrganization() {
+    public TaxationOrganization newTaxationOrganization(String text) {
         
-        TaxationOrganization to = new TaxationOrganization(this, "imo1");
+        TaxationOrganization to = new TaxationOrganization(this, text);
         this.taxOrgList.add(to);
         return to;  
     }
@@ -47,4 +47,27 @@ public class ComplianceEnterprise extends Enterprise {
         
         return null;
     }
+
+    public ArrayList<TaxationOrganization> getTaxOrgList() {
+        return taxOrgList;
+    }
+
+    public void setTaxOrgList(ArrayList<TaxationOrganization> taxOrgList) {
+        this.taxOrgList = taxOrgList;
+    }
+
+    public TaxationOrganization searchTaxationOrganization(String organizationName) {
+        
+        for (TaxationOrganization to : this.taxOrgList) {
+                                   
+            if(to.getName().equals(organizationName)) {
+                                                
+                return to;
+            }
+        }         
+        
+        return null;        
+    }
+    
+    
 }

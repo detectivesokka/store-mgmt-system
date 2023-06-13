@@ -10,6 +10,10 @@ import model.Organization.OnlineStoreOrganization;
 import model.Organization.TaxationOrganization;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -47,8 +51,7 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
         paneOrganizations = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAudit = new javax.swing.JTable();
-        btnApprove = new javax.swing.JButton();
-        btnRequestDocuments = new javax.swing.JButton();
+        btnChart = new javax.swing.JButton();
 
         tbdPane3.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -128,9 +131,12 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblAudit);
 
-        btnApprove.setText("Approve audit");
-
-        btnRequestDocuments.setText("Request financial documents");
+        btnChart.setText("Show chart");
+        btnChart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChartActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout paneOrganizationsLayout = new javax.swing.GroupLayout(paneOrganizations);
         paneOrganizations.setLayout(paneOrganizationsLayout);
@@ -138,20 +144,17 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
             paneOrganizationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
             .addGroup(paneOrganizationsLayout.createSequentialGroup()
-                .addGap(321, 321, 321)
-                .addComponent(btnApprove)
-                .addGap(36, 36, 36)
-                .addComponent(btnRequestDocuments)
+                .addGap(371, 371, 371)
+                .addComponent(btnChart, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrganizationsLayout.setVerticalGroup(
             paneOrganizationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneOrganizationsLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paneOrganizationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRequestDocuments, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(btnChart, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tbdPane3.addTab("Organizations", paneOrganizations);
@@ -180,6 +183,32 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tbdPane3StateChanged
 
+    private void btnChartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChartActionPerformed
+        
+        // Create dataset
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        DefaultTableModel model = (DefaultTableModel) tblAudit.getModel();
+        
+        for (int row=0; row < model.getRowCount(); row++) {
+            
+            dataset.addValue((Float)model.getValueAt(row, 3), "Sales", (String)model.getValueAt(row, 1));
+        }                        
+
+        // Create the chart
+        JFreeChart chart = ChartFactory.createBarChart(
+                "Tax amount", // Chart title
+                "Organization", // Domain axis label
+                "Tax amount (in USD)", // Range axis label
+                dataset // Dataset
+        );
+
+        
+        ChartFrame frame = new ChartFrame("Bar Chart Example", chart);
+        frame.pack();
+        frame.setVisible(true);
+        
+    }//GEN-LAST:event_btnChartActionPerformed
+
     
     private void populateAuditTable () {
         
@@ -205,12 +234,11 @@ public class TaxAuditorJPanel extends javax.swing.JPanel {
         for (InvDistributorOrganization ido : system.getInventoryEnterprise().getInvDisOrgList()) {
             
             model.addRow(new Object[] {ido.getName(), "Inv Dis Organization", ido.getTotalRevenue(), ido.getTotalTaxAmount()});        
-        }                
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnApprove;
-    private javax.swing.JButton btnRequestDocuments;
+    private javax.swing.JButton btnChart;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDispName;
     private javax.swing.JLabel lblDispRole;

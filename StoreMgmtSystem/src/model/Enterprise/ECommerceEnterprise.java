@@ -23,9 +23,9 @@ public class ECommerceEnterprise extends Enterprise implements Serializable {
         return onlineStrOrgList;
     }
 
-    public OnlineStoreOrganization newLocalStoreOrganization() {
+    public OnlineStoreOrganization newOnlineStoreOrganization(String text) {
         
-        OnlineStoreOrganization imf = new OnlineStoreOrganization(this, "imo1");
+        OnlineStoreOrganization imf = new OnlineStoreOrganization(this, text);
         this.onlineStrOrgList.add(imf);
         return imf;        
     }
@@ -49,4 +49,17 @@ public class ECommerceEnterprise extends Enterprise implements Serializable {
         
         return null;
     }    
+
+    public OnlineStoreOrganization searchOnlineOrganization(String organizationName) {
+        
+        for (OnlineStoreOrganization imo : this.onlineStrOrgList) {                     
+            
+            if(imo.getName().equals(organizationName)) {
+                                                                
+                return imo;
+            }
+        }         
+        
+        return null;        
+    }
 }

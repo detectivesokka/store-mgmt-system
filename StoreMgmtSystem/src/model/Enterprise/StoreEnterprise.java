@@ -25,9 +25,9 @@ public class StoreEnterprise extends Enterprise implements Serializable {
         return localOrgList;
     }
        
-    public LocalStoreOrganization newLocalStoreOrganization() {
+    public LocalStoreOrganization newLocalStoreOrganization(String text) {
         
-        LocalStoreOrganization imf = new LocalStoreOrganization(this, "imo1");
+        LocalStoreOrganization imf = new LocalStoreOrganization(this, text);
         this.localOrgList.add(imf);
         return imf;        
     }
@@ -50,5 +50,18 @@ public class StoreEnterprise extends Enterprise implements Serializable {
         }         
         
         return null;
+    }
+
+    public LocalStoreOrganization searchLocalStoreOrganization(String organizationName) {
+        
+        for (LocalStoreOrganization imo : this.localOrgList) {                        
+            
+            if(imo.getName().equals(organizationName)) {
+                                                                
+                return imo;
+            }
+        }         
+        
+        return null;        
     }
 }

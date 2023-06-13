@@ -45,9 +45,9 @@ public class InventoryEnterprise extends Enterprise implements Serializable {
         return id;        
     }
     
-    public InvTransportationOrganization newInvTransportationOrganization() {
+    public InvTransportationOrganization newInvTransportationOrganization(String text) {
         
-        InvTransportationOrganization it = new InvTransportationOrganization(this);
+        InvTransportationOrganization it = new InvTransportationOrganization(this, text);
         this.invTransOrgList.add(it);
         return it;        
     }
@@ -136,5 +136,18 @@ public class InventoryEnterprise extends Enterprise implements Serializable {
         }    
         
         return null;
+    }
+
+    public InvTransportationOrganization searchTransOrganization(String organizationName) {
+        
+        for (InvTransportationOrganization ito : this.invTransOrgList) {
+            
+            if (ito.getName() != null && ito.getName().equals(organizationName)) {
+                
+                return ito;
+            }
+        }    
+        
+        return null;        
     }
 }   
