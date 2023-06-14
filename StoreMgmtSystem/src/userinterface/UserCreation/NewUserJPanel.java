@@ -115,10 +115,13 @@ public class NewUserJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Create user");
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("Username");
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel3.setText("Password");
 
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel4.setText("Organization");
 
         comboUsertype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
@@ -135,6 +138,7 @@ public class NewUserJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel5.setText("User type");
 
         comboOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
@@ -145,25 +149,22 @@ public class NewUserJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(327, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fldUsername)
-                            .addComponent(comboUsertype, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(btnSubmit)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(fldUsername)
+                    .addComponent(comboUsertype, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(299, 299, 299))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnSubmit)
+                .addGap(410, 410, 410))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,9 +188,9 @@ public class NewUserJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSubmit)
-                .addGap(0, 334, Short.MAX_VALUE))
+                .addGap(0, 340, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -239,35 +240,35 @@ public class NewUserJPanel extends javax.swing.JPanel {
         switch (userType) {
             
             case "Online Customer":
-                this.system.getCustomerEnterprise().searchOnlineOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, getUserCode(userType));
+                this.system.getCustomerEnterprise().searchOnlineOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, 1);
                 break;
                 
             case "Online Delivery Man":
-                this.system.getCustomerEnterprise().searchOnlineOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, getUserCode(userType));
+                this.system.getCustomerEnterprise().searchOnlineOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, 2);
                 break;
                 
             case "Shop Manager":
-                this.system.getStoreEnterprise().searchLocalStoreOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, getUserCode(userType));
+                this.system.getStoreEnterprise().searchLocalStoreOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, 3);
                 break;
                 
             case "Shop Employee":
-                this.system.getStoreEnterprise().searchLocalStoreOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, getUserCode(userType));
+                this.system.getStoreEnterprise().searchLocalStoreOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, 4);
                 break;
                 
             case "Govt Tax Auditor":
-                this.system.getComplianceEnterprise().searchTaxationOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, getUserCode(userType));
+                this.system.getComplianceEnterprise().searchTaxationOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, 5);
                 break;
                 
             case "Goods Transporter":
-                this.system.getInventoryEnterprise().searchTransOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, getUserCode(userType));
+                this.system.getInventoryEnterprise().searchTransOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, 6);
                 break;
                 
             case "Goods Manufacturer":
-                this.system.getInventoryEnterprise().searchMfrOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, getUserCode(userType));
+                this.system.getInventoryEnterprise().searchMfrOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, 7);
                 break;
                 
             case "Goods Distributor":
-                this.system.getInventoryEnterprise().searchDisOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, getUserCode(userType));
+                this.system.getInventoryEnterprise().searchDisOrganization(organizationName).newUserAccount(this.fldUsername.getText(), pwd, 8);
                 break;
                 
         }
@@ -335,8 +336,5 @@ public class NewUserJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
-
-    private int getUserCode(String userType) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  
 }

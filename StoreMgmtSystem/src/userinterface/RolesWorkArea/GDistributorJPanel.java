@@ -5,8 +5,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import model.Order.GoodsOrder;
 import model.Order.OnlineOrder;
+import model.Order.ShopOrder;
 import model.Organization.InvDistributorOrganization;
 import model.Organization.InvManufacturerOrganization;
+import model.Organization.LocalStoreOrganization;
 import model.Organization.OnlineStoreOrganization;
 import model.StockItem.StockItem;
 import model.StoreMgmtSystem;
@@ -67,18 +69,18 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         tblShopOrders = new javax.swing.JTable();
         btnCancelShopOrder = new javax.swing.JButton();
-        paneInventory = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblInventory = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        fldSellingPrice = new javax.swing.JTextField();
-        btnSetSellingPrice = new javax.swing.JButton();
         paneShop = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblShop = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         fldQuantity = new javax.swing.JTextField();
         btnOrderItem = new javax.swing.JButton();
+        paneInventory = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblInventory = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        fldSellingPrice = new javax.swing.JTextField();
+        btnSetSellingPrice = new javax.swing.JButton();
 
         tbdPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -105,14 +107,13 @@ public class GDistributorJPanel extends javax.swing.JPanel {
             paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblWelcome2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(paneWelcomeLayout.createSequentialGroup()
-                .addGap(293, 293, 293)
-                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneWelcomeLayout.createSequentialGroup()
-                        .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(paneWelcomeLayout.createSequentialGroup()
+                        .addComponent(lblRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneWelcomeLayout.createSequentialGroup()
-                        .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDispName, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(295, Short.MAX_VALUE))
@@ -175,10 +176,10 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         paneOrdersLayout.setHorizontalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOrdersLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(paneOrdersLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(btnCancelOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(386, 386, 386))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOrdersLayout.setVerticalGroup(
             paneOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,10 +232,10 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         paneOnlineOrdersLayout.setHorizontalGroup(
             paneOnlineOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOnlineOrdersLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(paneOnlineOrdersLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(btnCancelOnlineOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(386, 386, 386))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneOnlineOrdersLayout.setVerticalGroup(
             paneOnlineOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,10 +288,10 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         paneShopOrdersLayout.setHorizontalGroup(
             paneShopOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneShopOrdersLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(paneShopOrdersLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(btnCancelShopOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(386, 386, 386))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneShopOrdersLayout.setVerticalGroup(
             paneShopOrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,72 +303,6 @@ public class GDistributorJPanel extends javax.swing.JPanel {
         );
 
         tbdPane.addTab("Shop Orders", paneShopOrders);
-
-        tblInventory.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Item ID", "Item", "Avail quantity", "Cost price", "Selling price"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(tblInventory);
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Selling price");
-
-        fldSellingPrice.setText("0");
-        fldSellingPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fldSellingPriceActionPerformed(evt);
-            }
-        });
-
-        btnSetSellingPrice.setText("Set");
-        btnSetSellingPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSetSellingPriceActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout paneInventoryLayout = new javax.swing.GroupLayout(paneInventory);
-        paneInventory.setLayout(paneInventoryLayout);
-        paneInventoryLayout.setHorizontalGroup(
-            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
-            .addGroup(paneInventoryLayout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(fldSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSetSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        paneInventoryLayout.setVerticalGroup(
-            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneInventoryLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fldSellingPrice)
-                    .addComponent(btnSetSellingPrice)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(11, 11, 11))
-        );
-
-        tbdPane.addTab("Inventory", paneInventory);
 
         tblShop.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -430,6 +365,72 @@ public class GDistributorJPanel extends javax.swing.JPanel {
 
         tbdPane.addTab("Shop", paneShop);
 
+        tblInventory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Item ID", "Item", "Avail quantity", "Cost price", "Selling price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblInventory);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel2.setText("Selling price");
+
+        fldSellingPrice.setText("0");
+        fldSellingPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fldSellingPriceActionPerformed(evt);
+            }
+        });
+
+        btnSetSellingPrice.setText("Set");
+        btnSetSellingPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSetSellingPriceActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout paneInventoryLayout = new javax.swing.GroupLayout(paneInventory);
+        paneInventory.setLayout(paneInventoryLayout);
+        paneInventoryLayout.setHorizontalGroup(
+            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(paneInventoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fldSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSetSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        paneInventoryLayout.setVerticalGroup(
+            paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneInventoryLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(paneInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fldSellingPrice)
+                    .addComponent(btnSetSellingPrice)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11))
+        );
+
+        tbdPane.addTab("Inventory", paneInventory);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -455,9 +456,9 @@ public class GDistributorJPanel extends javax.swing.JPanel {
             break;
             case 3 : populateShopOrdersTable();
             break;
-            case 4: populateInventoryTable();
+            case 4: populateShopTable();
             break;
-            case 5: populateShopTable();
+            case 5: populateInventoryTable();
             break;
         }
     }//GEN-LAST:event_tbdPaneStateChanged
@@ -639,7 +640,20 @@ public class GDistributorJPanel extends javax.swing.JPanel {
     
     private void populateShopOrdersTable() {
         
+        DefaultTableModel model = (DefaultTableModel) tblShopOrders.getModel();
+        model.setRowCount(0);
         
+        for (LocalStoreOrganization lso : this.system.getStoreEnterprise().getLocalOrgList()) {
+            
+            for (ShopOrder so : lso.getShopOrderQueue().getOrderList()) {
+                
+                if (so.getInvDistributorOrganization()== this.user.getParentOrg()) {
+                
+                    model.addRow(new Object[] {so.getOrderID(), so.getItem().getItemName(), so.getQuantity(), so.getInvDistributorOrganization().getName(), so.getStatus()});
+                }
+            }            
+        }
+
         
     }
     

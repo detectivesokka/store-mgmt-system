@@ -1,6 +1,8 @@
 package userinterface.CreateOrganization;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import model.StoreMgmtSystem;
 
 /**
@@ -54,8 +56,10 @@ public class NewOrganizationJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel5.setText("Organization type");
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -64,19 +68,18 @@ public class NewOrganizationJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(317, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(fldName)
                     .addComponent(comboOrgType, 0, 146, Short.MAX_VALUE))
                 .addGap(309, 309, 309))
             .addGroup(layout.createSequentialGroup()
-                .addGap(413, 413, 413)
+                .addGap(414, 414, 414)
                 .addComponent(btnSubmit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(414, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,9 +93,9 @@ public class NewOrganizationJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboOrgType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSubmit)
-                .addGap(0, 431, Short.MAX_VALUE))
+                .addGap(0, 437, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -117,24 +120,25 @@ public class NewOrganizationJPanel extends javax.swing.JPanel {
         if (this.fldName.getText().equals("") || ((String)this.comboOrgType.getSelectedItem()).equals("Select")) {
             
             JOptionPane.showMessageDialog(null, "Enter valid organization type");
+            return;
            
-        } else if (this.fldName.getText().equals("Inventory Distributor")) {
+        } else if (((String)this.comboOrgType.getSelectedItem()).equals("Inventory Distributor")) {
             
             this.system.getInventoryEnterprise().newInvDistributorOrganization(this.fldName.getText());
             
-        } else if (this.fldName.getText().equals("Inventory Manufacturer")) {
+        } else if (((String)this.comboOrgType.getSelectedItem()).equals("Inventory Manufacturer")) {
             
             this.system.getInventoryEnterprise().newInvManufacturerOrganization(this.fldName.getText());
             
-        } else if (this.fldName.getText().equals("Inventory Transporter")) {
+        } else if (((String)this.comboOrgType.getSelectedItem()).equals("Inventory Transporter")) {
             
             this.system.getInventoryEnterprise().newInvTransportationOrganization(this.fldName.getText());
             
-        } else if (this.fldName.getText().equals("Local Store")) {
+        } else if (((String)this.comboOrgType.getSelectedItem()).equals("Local Store")) {
             
             this.system.getStoreEnterprise().newLocalStoreOrganization(this.fldName.getText());
             
-        } else if (this.fldName.getText().equals("Online store")) {
+        } else if (((String)this.comboOrgType.getSelectedItem()).equals("Online store")) {
             
             this.system.getCustomerEnterprise().newOnlineStoreOrganization(this.fldName.getText());
             
@@ -142,6 +146,8 @@ public class NewOrganizationJPanel extends javax.swing.JPanel {
             
             this.system.getComplianceEnterprise().newTaxationOrganization(this.fldName.getText());
         }         
+        
+        ((JFrame) SwingUtilities.getWindowAncestor(this)).dispose();
     }//GEN-LAST:event_btnSubmitActionPerformed
 
 

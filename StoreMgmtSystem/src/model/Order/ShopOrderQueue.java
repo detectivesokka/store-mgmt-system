@@ -1,7 +1,6 @@
 package model.Order;
 
 import java.util.ArrayList;
-import model.Organization.InvDistributorOrganization;
 import model.Organization.LocalStoreOrganization;
 import model.StockItem.StockItem;
 
@@ -21,12 +20,13 @@ public class ShopOrderQueue implements OrderQueue {
     public ShopOrderQueue(LocalStoreOrganization pStore) {
         
         this.shop = pStore;
+        this.orderList = new ArrayList<>();
     }
 
     @Override
     public ShopOrder newOrder() {
 
-        ShopOrder so = new ShopOrder(shopOrderCount++);
+        ShopOrder so = new ShopOrder(shopOrderCount++, shop);
         this.getOrderList().add(so);
         return so;
     }

@@ -2,6 +2,9 @@ package model.Enterprise;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import model.Order.ShopOrder;
+import model.Organization.InvDistributorOrganization;
+import model.Organization.InvTransportationOrganization;
 import model.Organization.LocalStoreOrganization;
 import model.StoreMgmtSystem;
 import model.UserAccount.UserAccount;
@@ -63,5 +66,20 @@ public class StoreEnterprise extends Enterprise implements Serializable {
         }         
         
         return null;        
+    }
+
+    public ShopOrder searchShopOrders(int pOrderId, String pOrg) {
+        
+        for (LocalStoreOrganization imo : this.localOrgList) {                        
+            
+            for (ShopOrder so : imo.getShopOrderQueue().getOrderList()) {
+                
+                if (so.getInvDistributorOrganization().getName().equals(pOrg) && so.getOrderID() == pOrderId) {
+                    
+                    return so;
+                }                
+            }
+        }
+        return null;
     }
 }

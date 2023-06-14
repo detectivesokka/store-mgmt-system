@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package userinterface.RolesWorkArea;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import model.Enterprise.InventoryEnterprise;
+import model.Order.LocalSalesOrderQueue;
 import model.Order.Order;
 import model.Order.ShopOrder;
 import model.Organization.InvDistributorOrganization;
@@ -20,11 +17,11 @@ import model.UserAccount.UserAccount;
  * @author saidutt
  */
 public class ShopMgrJPanel extends javax.swing.JPanel {
-
     
     private UserAccount user;
     /**
      * Creates new form ShopMgrJPanel
+     * @param pUser
      */
     public ShopMgrJPanel(UserAccount pUser) {
         
@@ -86,20 +83,15 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         paneWelcomeLayout.setHorizontalGroup(
             paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneWelcomeLayout.createSequentialGroup()
+                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addComponent(lblRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(paneWelcomeLayout.createSequentialGroup()
-                        .addGap(344, 344, 344)
-                        .addComponent(lblWelcome4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(paneWelcomeLayout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblDispName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(368, Short.MAX_VALUE))
+                    .addComponent(lblDispName, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(348, Short.MAX_VALUE))
+            .addComponent(lblWelcome4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         paneWelcomeLayout.setVerticalGroup(
             paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,12 +99,12 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
                 .addContainerGap(267, Short.MAX_VALUE)
                 .addComponent(lblWelcome4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDispName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(paneWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDispRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(226, 226, 226))
         );
@@ -239,25 +231,25 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         paneShopLayout.setHorizontalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneShopLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(paneShopLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(fldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneShopLayout.setVerticalGroup(
             paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneShopLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(paneShopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fldQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(btnOrderItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(fldQuantity)
+                    .addComponent(btnOrderItem, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         tbdPane.addTab("Order Goods", paneShop);
@@ -319,11 +311,11 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
             shopOrder.setInvDistributorOrganization(ido);            
             shopOrder.setItem(ido.getStockItemDirectory().searchStockItem(itemId));
             shopOrder.setQuantity(quantity);
-            shopOrder.setStatus("Order placed by customer");
+            shopOrder.setStatus("Order placed by manager");
             
             JOptionPane.showMessageDialog(null, "Order placed!");
             
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             
             JOptionPane.showMessageDialog(null, "Quantity must be correct");
         }
@@ -332,7 +324,13 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
 
     private void fldQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldQuantityActionPerformed
         
-        // Populating Goods order table
+      
+        
+    }//GEN-LAST:event_fldQuantityActionPerformed
+
+    private void populateOrdersTables() {
+    
+          // Populating Goods order table
         DefaultTableModel model = (DefaultTableModel) this.tblPurchase.getModel();
         model.setRowCount(0);
         
@@ -348,32 +346,29 @@ public class ShopMgrJPanel extends javax.swing.JPanel {
         for (Order o : ((LocalStoreOrganization)this.user.getParentOrg()).getSalesOrderQueue().getLocalSalesOrders()) {
             
             model.addRow(new Object[] {o.getOrderID(), o.getItemName(), o.getQuantity(), "?",o.getTotalSellingPrice()});
-        }
-        
-    }//GEN-LAST:event_fldQuantityActionPerformed
-
-    private void populateOrdersTables() {
-    
-        
+        }                          
         
     }
     
     private void populateGoodsTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) this.tblGoods.getModel();
         model.setRowCount(0);
-        
-        LocalStoreOrganization lso =  (LocalStoreOrganization)this.user.getParentOrg();
+
+        LocalStoreOrganization lso = (LocalStoreOrganization) this.user.getParentOrg();
         InventoryEnterprise ie = lso.getParent().getSystem().getInventoryEnterprise();
-        
+
         for (InvDistributorOrganization ido : ie.getInvDisOrgList()) {
-            
-            for(StockItem si : ido.getStockItemDirectory().getStockItemList()) {
-                
-                model.addRow(new Object[] {si.getItemId(), si.getItemName(), si.getQuantity(), si.getPrice(), ido.getName()});                
-            }            
-        }                 
-    }
+
+            for (StockItem si : ido.getStockItemDirectory().getStockItemList()) {
+
+                if (si.getSellingPrice() > 0f) {
+                    model.addRow(new Object[]{si.getItemId(), si.getItemName(), si.getQuantity(), si.getPrice(), ido.getName()});
+                }
+            }
+        }
+    
+}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOrderItem;

@@ -14,11 +14,11 @@ import model.UserAccount.UserAccountDirectory;
  */
 public class LocalStoreOrganization extends Organization implements Serializable {
     
-    private   StockItemDirectory stockItemDirectory;
-    private   UserAccountDirectory userAccountDirectory;
-    private   StoreEnterprise parent;
-    private   ShopOrderQueue shopOrderQueue;        
-    private   LocalSalesOrderQueue salesOrderQueue;    
+    private StockItemDirectory stockItemDirectory;
+    private UserAccountDirectory userAccountDirectory;
+    private StoreEnterprise parent;
+    private ShopOrderQueue shopOrderQueue;        
+    private LocalSalesOrderQueue salesOrderQueue;    
     
     public LocalStoreOrganization(StoreEnterprise pParent, String pName) {
         
