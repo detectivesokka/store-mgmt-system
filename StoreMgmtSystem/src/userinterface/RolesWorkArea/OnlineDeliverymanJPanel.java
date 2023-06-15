@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 import model.Order.OnlineOrder;
-import model.Order.OnlineOrderQueue;
 import model.Organization.OnlineStoreOrganization;
 import model.UserAccount.UserAccount;
 
@@ -179,15 +178,14 @@ public class OnlineDeliverymanJPanel extends javax.swing.JPanel {
         String status;
         
         OnlineOrder o;
-        
-        
+                
         try {
             
             orderId=Integer.parseInt(this.tblOrders.getValueAt(rowIndex,0).toString());                                                
             o = ((OnlineStoreOrganization)this.user.getParentOrg()).getOnlineOrderQueue().searchOrder(orderId);
             status = o.getStatus();
             
-            if (o.getStatus().equals("Online order")) {
+            if (o.getStatus().equals("Order placed by customer")) {
                 
                 o.setStatus("Order delivered to customer");                
                 o.getItem().setQuantity(o.getItem().getQuantity() - o.getQuantity());                
